@@ -289,6 +289,11 @@ actions:
         - production
         - preview
         - development
+  - target: $.paths['/v9/projects/{idOrName}/domains'].get.parameters[0].schema.oneOf[*]
+    remove: true
+  - target: $.paths['/v9/projects/{idOrName}/domains'].get.parameters[0].schema.oneOf
+    update:
+      - type: string
   - target: $.paths['/v1/projects/{idOrName}/env/{id}'].get.responses['200'].content['application/json'].schema.oneOf[1].properties['target'].oneOf[0].items.enum
     remove: true
   - target: $.paths['/v1/projects/{idOrName}/env/{id}'].get.responses['200'].content['application/json'].schema.oneOf[1].properties['target'].oneOf[0].items
