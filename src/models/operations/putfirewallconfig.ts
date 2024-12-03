@@ -17,17 +17,6 @@ export type ManagedRules = {
   owasp: Owasp;
 };
 
-export const Action = {
-  Deny: "deny",
-  Log: "log",
-} as const;
-export type Action = ClosedEnum<typeof Action>;
-
-export type Sd = {
-  active: boolean;
-  action: Action;
-};
-
 export const PutFirewallConfigAction = {
   Deny: "deny",
   Log: "log",
@@ -36,7 +25,7 @@ export type PutFirewallConfigAction = ClosedEnum<
   typeof PutFirewallConfigAction
 >;
 
-export type Ma = {
+export type Sd = {
   active: boolean;
   action: PutFirewallConfigAction;
 };
@@ -49,7 +38,7 @@ export type PutFirewallConfigSecurityAction = ClosedEnum<
   typeof PutFirewallConfigSecurityAction
 >;
 
-export type Lfi = {
+export type Ma = {
   active: boolean;
   action: PutFirewallConfigSecurityAction;
 };
@@ -62,7 +51,7 @@ export type PutFirewallConfigSecurityRequestAction = ClosedEnum<
   typeof PutFirewallConfigSecurityRequestAction
 >;
 
-export type Rfi = {
+export type Lfi = {
   active: boolean;
   action: PutFirewallConfigSecurityRequestAction;
 };
@@ -75,7 +64,7 @@ export type PutFirewallConfigSecurityRequestRequestBodyAction = ClosedEnum<
   typeof PutFirewallConfigSecurityRequestRequestBodyAction
 >;
 
-export type Rce = {
+export type Rfi = {
   active: boolean;
   action: PutFirewallConfigSecurityRequestRequestBodyAction;
 };
@@ -88,9 +77,21 @@ export type PutFirewallConfigSecurityRequestRequestBodyCrsAction = ClosedEnum<
   typeof PutFirewallConfigSecurityRequestRequestBodyCrsAction
 >;
 
-export type Php = {
+export type Rce = {
   active: boolean;
   action: PutFirewallConfigSecurityRequestRequestBodyCrsAction;
+};
+
+export const PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction = {
+  Deny: "deny",
+  Log: "log",
+} as const;
+export type PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction =
+  ClosedEnum<typeof PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction>;
+
+export type Php = {
+  active: boolean;
+  action: PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction;
 };
 
 export const PutFirewallConfigSecurityRequestRequestBodyCrsGenAction = {
@@ -798,28 +799,30 @@ export function managedRulesFromJSON(
 }
 
 /** @internal */
-export const Action$inboundSchema: z.ZodNativeEnum<typeof Action> = z
-  .nativeEnum(Action);
+export const PutFirewallConfigAction$inboundSchema: z.ZodNativeEnum<
+  typeof PutFirewallConfigAction
+> = z.nativeEnum(PutFirewallConfigAction);
 
 /** @internal */
-export const Action$outboundSchema: z.ZodNativeEnum<typeof Action> =
-  Action$inboundSchema;
+export const PutFirewallConfigAction$outboundSchema: z.ZodNativeEnum<
+  typeof PutFirewallConfigAction
+> = PutFirewallConfigAction$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Action$ {
-  /** @deprecated use `Action$inboundSchema` instead. */
-  export const inboundSchema = Action$inboundSchema;
-  /** @deprecated use `Action$outboundSchema` instead. */
-  export const outboundSchema = Action$outboundSchema;
+export namespace PutFirewallConfigAction$ {
+  /** @deprecated use `PutFirewallConfigAction$inboundSchema` instead. */
+  export const inboundSchema = PutFirewallConfigAction$inboundSchema;
+  /** @deprecated use `PutFirewallConfigAction$outboundSchema` instead. */
+  export const outboundSchema = PutFirewallConfigAction$outboundSchema;
 }
 
 /** @internal */
 export const Sd$inboundSchema: z.ZodType<Sd, z.ZodTypeDef, unknown> = z.object({
   active: z.boolean(),
-  action: Action$inboundSchema,
+  action: PutFirewallConfigAction$inboundSchema,
 });
 
 /** @internal */
@@ -832,7 +835,7 @@ export type Sd$Outbound = {
 export const Sd$outboundSchema: z.ZodType<Sd$Outbound, z.ZodTypeDef, Sd> = z
   .object({
     active: z.boolean(),
-    action: Action$outboundSchema,
+    action: PutFirewallConfigAction$outboundSchema,
   });
 
 /**
@@ -863,30 +866,30 @@ export function sdFromJSON(
 }
 
 /** @internal */
-export const PutFirewallConfigAction$inboundSchema: z.ZodNativeEnum<
-  typeof PutFirewallConfigAction
-> = z.nativeEnum(PutFirewallConfigAction);
+export const PutFirewallConfigSecurityAction$inboundSchema: z.ZodNativeEnum<
+  typeof PutFirewallConfigSecurityAction
+> = z.nativeEnum(PutFirewallConfigSecurityAction);
 
 /** @internal */
-export const PutFirewallConfigAction$outboundSchema: z.ZodNativeEnum<
-  typeof PutFirewallConfigAction
-> = PutFirewallConfigAction$inboundSchema;
+export const PutFirewallConfigSecurityAction$outboundSchema: z.ZodNativeEnum<
+  typeof PutFirewallConfigSecurityAction
+> = PutFirewallConfigSecurityAction$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PutFirewallConfigAction$ {
-  /** @deprecated use `PutFirewallConfigAction$inboundSchema` instead. */
-  export const inboundSchema = PutFirewallConfigAction$inboundSchema;
-  /** @deprecated use `PutFirewallConfigAction$outboundSchema` instead. */
-  export const outboundSchema = PutFirewallConfigAction$outboundSchema;
+export namespace PutFirewallConfigSecurityAction$ {
+  /** @deprecated use `PutFirewallConfigSecurityAction$inboundSchema` instead. */
+  export const inboundSchema = PutFirewallConfigSecurityAction$inboundSchema;
+  /** @deprecated use `PutFirewallConfigSecurityAction$outboundSchema` instead. */
+  export const outboundSchema = PutFirewallConfigSecurityAction$outboundSchema;
 }
 
 /** @internal */
 export const Ma$inboundSchema: z.ZodType<Ma, z.ZodTypeDef, unknown> = z.object({
   active: z.boolean(),
-  action: PutFirewallConfigAction$inboundSchema,
+  action: PutFirewallConfigSecurityAction$inboundSchema,
 });
 
 /** @internal */
@@ -899,7 +902,7 @@ export type Ma$Outbound = {
 export const Ma$outboundSchema: z.ZodType<Ma$Outbound, z.ZodTypeDef, Ma> = z
   .object({
     active: z.boolean(),
-    action: PutFirewallConfigAction$outboundSchema,
+    action: PutFirewallConfigSecurityAction$outboundSchema,
   });
 
 /**
@@ -930,31 +933,34 @@ export function maFromJSON(
 }
 
 /** @internal */
-export const PutFirewallConfigSecurityAction$inboundSchema: z.ZodNativeEnum<
-  typeof PutFirewallConfigSecurityAction
-> = z.nativeEnum(PutFirewallConfigSecurityAction);
+export const PutFirewallConfigSecurityRequestAction$inboundSchema:
+  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestAction> = z.nativeEnum(
+    PutFirewallConfigSecurityRequestAction,
+  );
 
 /** @internal */
-export const PutFirewallConfigSecurityAction$outboundSchema: z.ZodNativeEnum<
-  typeof PutFirewallConfigSecurityAction
-> = PutFirewallConfigSecurityAction$inboundSchema;
+export const PutFirewallConfigSecurityRequestAction$outboundSchema:
+  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestAction> =
+    PutFirewallConfigSecurityRequestAction$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PutFirewallConfigSecurityAction$ {
-  /** @deprecated use `PutFirewallConfigSecurityAction$inboundSchema` instead. */
-  export const inboundSchema = PutFirewallConfigSecurityAction$inboundSchema;
-  /** @deprecated use `PutFirewallConfigSecurityAction$outboundSchema` instead. */
-  export const outboundSchema = PutFirewallConfigSecurityAction$outboundSchema;
+export namespace PutFirewallConfigSecurityRequestAction$ {
+  /** @deprecated use `PutFirewallConfigSecurityRequestAction$inboundSchema` instead. */
+  export const inboundSchema =
+    PutFirewallConfigSecurityRequestAction$inboundSchema;
+  /** @deprecated use `PutFirewallConfigSecurityRequestAction$outboundSchema` instead. */
+  export const outboundSchema =
+    PutFirewallConfigSecurityRequestAction$outboundSchema;
 }
 
 /** @internal */
 export const Lfi$inboundSchema: z.ZodType<Lfi, z.ZodTypeDef, unknown> = z
   .object({
     active: z.boolean(),
-    action: PutFirewallConfigSecurityAction$inboundSchema,
+    action: PutFirewallConfigSecurityRequestAction$inboundSchema,
   });
 
 /** @internal */
@@ -967,7 +973,7 @@ export type Lfi$Outbound = {
 export const Lfi$outboundSchema: z.ZodType<Lfi$Outbound, z.ZodTypeDef, Lfi> = z
   .object({
     active: z.boolean(),
-    action: PutFirewallConfigSecurityAction$outboundSchema,
+    action: PutFirewallConfigSecurityRequestAction$outboundSchema,
   });
 
 /**
@@ -998,34 +1004,33 @@ export function lfiFromJSON(
 }
 
 /** @internal */
-export const PutFirewallConfigSecurityRequestAction$inboundSchema:
-  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestAction> = z.nativeEnum(
-    PutFirewallConfigSecurityRequestAction,
-  );
+export const PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema:
+  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestRequestBodyAction> = z
+    .nativeEnum(PutFirewallConfigSecurityRequestRequestBodyAction);
 
 /** @internal */
-export const PutFirewallConfigSecurityRequestAction$outboundSchema:
-  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestAction> =
-    PutFirewallConfigSecurityRequestAction$inboundSchema;
+export const PutFirewallConfigSecurityRequestRequestBodyAction$outboundSchema:
+  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestRequestBodyAction> =
+    PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PutFirewallConfigSecurityRequestAction$ {
-  /** @deprecated use `PutFirewallConfigSecurityRequestAction$inboundSchema` instead. */
+export namespace PutFirewallConfigSecurityRequestRequestBodyAction$ {
+  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema` instead. */
   export const inboundSchema =
-    PutFirewallConfigSecurityRequestAction$inboundSchema;
-  /** @deprecated use `PutFirewallConfigSecurityRequestAction$outboundSchema` instead. */
+    PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema;
+  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyAction$outboundSchema` instead. */
   export const outboundSchema =
-    PutFirewallConfigSecurityRequestAction$outboundSchema;
+    PutFirewallConfigSecurityRequestRequestBodyAction$outboundSchema;
 }
 
 /** @internal */
 export const Rfi$inboundSchema: z.ZodType<Rfi, z.ZodTypeDef, unknown> = z
   .object({
     active: z.boolean(),
-    action: PutFirewallConfigSecurityRequestAction$inboundSchema,
+    action: PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema,
   });
 
 /** @internal */
@@ -1038,7 +1043,7 @@ export type Rfi$Outbound = {
 export const Rfi$outboundSchema: z.ZodType<Rfi$Outbound, z.ZodTypeDef, Rfi> = z
   .object({
     active: z.boolean(),
-    action: PutFirewallConfigSecurityRequestAction$outboundSchema,
+    action: PutFirewallConfigSecurityRequestRequestBodyAction$outboundSchema,
   });
 
 /**
@@ -1069,33 +1074,33 @@ export function rfiFromJSON(
 }
 
 /** @internal */
-export const PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema:
-  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestRequestBodyAction> = z
-    .nativeEnum(PutFirewallConfigSecurityRequestRequestBodyAction);
+export const PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema:
+  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestRequestBodyCrsAction> =
+    z.nativeEnum(PutFirewallConfigSecurityRequestRequestBodyCrsAction);
 
 /** @internal */
-export const PutFirewallConfigSecurityRequestRequestBodyAction$outboundSchema:
-  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestRequestBodyAction> =
-    PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema;
+export const PutFirewallConfigSecurityRequestRequestBodyCrsAction$outboundSchema:
+  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestRequestBodyCrsAction> =
+    PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PutFirewallConfigSecurityRequestRequestBodyAction$ {
-  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema` instead. */
+export namespace PutFirewallConfigSecurityRequestRequestBodyCrsAction$ {
+  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema` instead. */
   export const inboundSchema =
-    PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema;
-  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyAction$outboundSchema` instead. */
+    PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema;
+  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyCrsAction$outboundSchema` instead. */
   export const outboundSchema =
-    PutFirewallConfigSecurityRequestRequestBodyAction$outboundSchema;
+    PutFirewallConfigSecurityRequestRequestBodyCrsAction$outboundSchema;
 }
 
 /** @internal */
 export const Rce$inboundSchema: z.ZodType<Rce, z.ZodTypeDef, unknown> = z
   .object({
     active: z.boolean(),
-    action: PutFirewallConfigSecurityRequestRequestBodyAction$inboundSchema,
+    action: PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema,
   });
 
 /** @internal */
@@ -1108,7 +1113,7 @@ export type Rce$Outbound = {
 export const Rce$outboundSchema: z.ZodType<Rce$Outbound, z.ZodTypeDef, Rce> = z
   .object({
     active: z.boolean(),
-    action: PutFirewallConfigSecurityRequestRequestBodyAction$outboundSchema,
+    action: PutFirewallConfigSecurityRequestRequestBodyCrsAction$outboundSchema,
   });
 
 /**
@@ -1139,33 +1144,36 @@ export function rceFromJSON(
 }
 
 /** @internal */
-export const PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema:
-  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestRequestBodyCrsAction> =
-    z.nativeEnum(PutFirewallConfigSecurityRequestRequestBodyCrsAction);
+export const PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$inboundSchema:
+  z.ZodNativeEnum<
+    typeof PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction
+  > = z.nativeEnum(PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction);
 
 /** @internal */
-export const PutFirewallConfigSecurityRequestRequestBodyCrsAction$outboundSchema:
-  z.ZodNativeEnum<typeof PutFirewallConfigSecurityRequestRequestBodyCrsAction> =
-    PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema;
+export const PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$outboundSchema:
+  z.ZodNativeEnum<
+    typeof PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction
+  > = PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PutFirewallConfigSecurityRequestRequestBodyCrsAction$ {
-  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema` instead. */
+export namespace PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$ {
+  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$inboundSchema` instead. */
   export const inboundSchema =
-    PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema;
-  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyCrsAction$outboundSchema` instead. */
+    PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$inboundSchema;
+  /** @deprecated use `PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$outboundSchema` instead. */
   export const outboundSchema =
-    PutFirewallConfigSecurityRequestRequestBodyCrsAction$outboundSchema;
+    PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$outboundSchema;
 }
 
 /** @internal */
 export const Php$inboundSchema: z.ZodType<Php, z.ZodTypeDef, unknown> = z
   .object({
     active: z.boolean(),
-    action: PutFirewallConfigSecurityRequestRequestBodyCrsAction$inboundSchema,
+    action:
+      PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$inboundSchema,
   });
 
 /** @internal */
@@ -1178,7 +1186,8 @@ export type Php$Outbound = {
 export const Php$outboundSchema: z.ZodType<Php$Outbound, z.ZodTypeDef, Php> = z
   .object({
     active: z.boolean(),
-    action: PutFirewallConfigSecurityRequestRequestBodyCrsAction$outboundSchema,
+    action:
+      PutFirewallConfigSecurityRequestRequestBodyCrsPhpAction$outboundSchema,
   });
 
 /**

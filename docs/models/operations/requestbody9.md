@@ -11,9 +11,9 @@ let value: RequestBody9 = {
   action: "ip.update",
   id: "<id>",
   value: {
-    hostname: "ornery-technologist.info",
-    ip: "bdcc:2f5f:ba5f:2fcb:96bd:6b57:4fca:28d1",
-    action: "deny",
+    hostname: "outlying-tennis.com",
+    ip: "b07f:af97:ccfb:e92c:d9eb:dcc2:f5fb:a5f2",
+    action: "bypass",
   },
 };
 ```

@@ -7,7 +7,7 @@ import { One } from "@vercel/sdk/models/operations/createdeployment.js";
 
 let value: One = {
   ref: "<value>",
-  repoId: 6751.26,
+  repoId: 510.53,
   type: "github",
 };
 ```

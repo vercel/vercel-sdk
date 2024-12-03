@@ -11,7 +11,7 @@ let value: GetDeploymentGitSourceDeployments6 = {
   type: "custom",
   ref: "<value>",
   sha: "<value>",
-  gitUrl: "https://agitated-mouser.info/",
+  gitUrl: "https://low-mortise.org/",
 };
 ```
 

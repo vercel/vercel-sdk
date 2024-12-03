@@ -225,6 +225,7 @@ run();
 
 ### [authentication](docs/sdks/authentication/README.md)
 
+* [exchangeSsoToken](docs/sdks/authentication/README.md#exchangessotoken) - SSO Token Exchange
 * [listAuthTokens](docs/sdks/authentication/README.md#listauthtokens) - List Auth Tokens
 * [createAuthToken](docs/sdks/authentication/README.md#createauthtoken) - Create an Auth Token
 * [getAuthToken](docs/sdks/authentication/README.md#getauthtoken) - Get Auth Token Metadata
@@ -314,6 +315,18 @@ run();
 * [getAllLogDrains](docs/sdks/logdrains/README.md#getalllogdrains) - Retrieves a list of all the Log Drains
 * [createConfigurableLogDrain](docs/sdks/logdrains/README.md#createconfigurablelogdrain) - Creates a Configurable Log Drain
 
+### [marketplace](docs/sdks/marketplace/README.md)
+
+* [getAccountInfo](docs/sdks/marketplace/README.md#getaccountinfo) - Get Account Information
+* [getMember](docs/sdks/marketplace/README.md#getmember) - Get Member Information
+* [createEvent](docs/sdks/marketplace/README.md#createevent) - Create Event
+* [submitBillingData](docs/sdks/marketplace/README.md#submitbillingdata) - Submit Billing Data
+* [submitInvoice](docs/sdks/marketplace/README.md#submitinvoice) - Submit Invoice
+* [getInvoice](docs/sdks/marketplace/README.md#getinvoice) - Get Invoice
+* [updateInvoice](docs/sdks/marketplace/README.md#updateinvoice) - Invoice Actions
+* [updateResourceSecrets](docs/sdks/marketplace/README.md#updateresourcesecrets) - Update Resource Secrets
+* [exchangeSsoToken](docs/sdks/marketplace/README.md#exchangessotoken) - SSO Token Exchange
+
 ### [projectMembers](docs/sdks/projectmembers/README.md)
 
 * [getProjectMembers](docs/sdks/projectmembers/README.md#getprojectmembers) - List project members
@@ -327,6 +340,7 @@ run();
 * [createProject](docs/sdks/projects/README.md#createproject) - Create a new project
 * [updateProject](docs/sdks/projects/README.md#updateproject) - Update an existing project
 * [deleteProject](docs/sdks/projects/README.md#deleteproject) - Delete a Project
+* [getProjectDomains](docs/sdks/projects/README.md#getprojectdomains) - Retrieve project domains by project by id or name
 * [getProjectDomain](docs/sdks/projects/README.md#getprojectdomain) - Get a project domain
 * [updateProjectDomain](docs/sdks/projects/README.md#updateprojectdomain) - Update a project domain
 * [removeProjectDomain](docs/sdks/projects/README.md#removeprojectdomain) - Remove a domain from a project
@@ -420,6 +434,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`artifactsUploadArtifact`](docs/sdks/artifacts/README.md#uploadartifact) - Upload a cache artifact
 - [`authenticationCreateAuthToken`](docs/sdks/authentication/README.md#createauthtoken) - Create an Auth Token
 - [`authenticationDeleteAuthToken`](docs/sdks/authentication/README.md#deleteauthtoken) - Delete an authentication token
+- [`authenticationExchangeSsoToken`](docs/sdks/authentication/README.md#exchangessotoken) - SSO Token Exchange
 - [`authenticationGetAuthToken`](docs/sdks/authentication/README.md#getauthtoken) - Get Auth Token Metadata
 - [`authenticationListAuthTokens`](docs/sdks/authentication/README.md#listauthtokens) - List Auth Tokens
 - [`certsGetCertById`](docs/sdks/certs/README.md#getcertbyid) - Get cert by id
@@ -482,6 +497,15 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`logDrainsGetAllLogDrains`](docs/sdks/logdrains/README.md#getalllogdrains) - Retrieves a list of all the Log Drains
 - [`logDrainsGetConfigurableLogDrain`](docs/sdks/logdrains/README.md#getconfigurablelogdrain) - Retrieves a Configurable Log Drain
 - [`logDrainsGetIntegrationLogDrains`](docs/sdks/logdrains/README.md#getintegrationlogdrains) - Retrieves a list of Integration log drains
+- [`marketplaceCreateEvent`](docs/sdks/marketplace/README.md#createevent) - Create Event
+- [`marketplaceExchangeSsoToken`](docs/sdks/marketplace/README.md#exchangessotoken) - SSO Token Exchange
+- [`marketplaceGetAccountInfo`](docs/sdks/marketplace/README.md#getaccountinfo) - Get Account Information
+- [`marketplaceGetInvoice`](docs/sdks/marketplace/README.md#getinvoice) - Get Invoice
+- [`marketplaceGetMember`](docs/sdks/marketplace/README.md#getmember) - Get Member Information
+- [`marketplaceSubmitBillingData`](docs/sdks/marketplace/README.md#submitbillingdata) - Submit Billing Data
+- [`marketplaceSubmitInvoice`](docs/sdks/marketplace/README.md#submitinvoice) - Submit Invoice
+- [`marketplaceUpdateInvoice`](docs/sdks/marketplace/README.md#updateinvoice) - Invoice Actions
+- [`marketplaceUpdateResourceSecrets`](docs/sdks/marketplace/README.md#updateresourcesecrets) - Update Resource Secrets
 - [`projectMembersAddProjectMember`](docs/sdks/projectmembers/README.md#addprojectmember) - Adds a new member to a project.
 - [`projectMembersGetProjectMembers`](docs/sdks/projectmembers/README.md#getprojectmembers) - List project members
 - [`projectMembersRemoveProjectMember`](docs/sdks/projectmembers/README.md#removeprojectmember) - Remove a Project Member
@@ -492,6 +516,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`projectsEditProjectEnv`](docs/sdks/projects/README.md#editprojectenv) - Edit an environment variable
 - [`projectsFilterProjectEnvs`](docs/sdks/projects/README.md#filterprojectenvs) - Retrieve the environment variables of a project by id or name
 - [`projectsGetProjectDomain`](docs/sdks/projects/README.md#getprojectdomain) - Get a project domain
+- [`projectsGetProjectDomains`](docs/sdks/projects/README.md#getprojectdomains) - Retrieve project domains by project by id or name
 - [`projectsGetProjectEnv`](docs/sdks/projects/README.md#getprojectenv) - Retrieve the decrypted value of an environment variable of a project by id
 - [`projectsGetProjects`](docs/sdks/projects/README.md#getprojects) - Retrieve a list of projects
 - [`projectsListPromoteAliases`](docs/sdks/projects/README.md#listpromotealiases) - Gets a list of aliases with status for the current promote

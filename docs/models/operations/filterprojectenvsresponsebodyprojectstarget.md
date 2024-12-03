@@ -7,13 +7,13 @@
 
 ```typescript
 const value: operations.FilterProjectEnvsTarget1[] = [
-  "development",
+  "production",
 ];
 ```
 
 ### `operations.FilterProjectEnvsTargetProjects2`
 
 ```typescript
-const value: operations.FilterProjectEnvsTargetProjects2 = "development";
+const value: operations.FilterProjectEnvsTargetProjects2 = "production";
 ```
 

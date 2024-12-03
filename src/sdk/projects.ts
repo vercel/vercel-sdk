@@ -9,6 +9,7 @@ import { projectsDeleteProject } from "../funcs/projectsDeleteProject.js";
 import { projectsEditProjectEnv } from "../funcs/projectsEditProjectEnv.js";
 import { projectsFilterProjectEnvs } from "../funcs/projectsFilterProjectEnvs.js";
 import { projectsGetProjectDomain } from "../funcs/projectsGetProjectDomain.js";
+import { projectsGetProjectDomains } from "../funcs/projectsGetProjectDomains.js";
 import { projectsGetProjectEnv } from "../funcs/projectsGetProjectEnv.js";
 import { projectsGetProjects } from "../funcs/projectsGetProjects.js";
 import { projectsListPromoteAliases } from "../funcs/projectsListPromoteAliases.js";
@@ -46,6 +47,10 @@ import {
   GetProjectDomainRequest,
   GetProjectDomainResponseBody,
 } from "../models/operations/getprojectdomain.js";
+import {
+  GetProjectDomainsRequest,
+  GetProjectDomainsResponseBody,
+} from "../models/operations/getprojectdomains.js";
 import {
   GetProjectEnvRequest,
   GetProjectEnvResponseBody,
@@ -169,6 +174,23 @@ export class Projects extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(projectsDeleteProject(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Retrieve project domains by project by id or name
+   *
+   * @remarks
+   * Retrieve the domains associated with a given project by passing either the project `id` or `name` in the URL.
+   */
+  async getProjectDomains(
+    request: GetProjectDomainsRequest,
+    options?: RequestOptions,
+  ): Promise<GetProjectDomainsResponseBody> {
+    return unwrapAsync(projectsGetProjectDomains(
       this,
       request,
       options,

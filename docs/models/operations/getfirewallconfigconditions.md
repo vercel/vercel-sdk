@@ -6,8 +6,8 @@
 import { GetFirewallConfigConditions } from "@vercel/sdk/models/operations/getfirewallconfig.js";
 
 let value: GetFirewallConfigConditions = {
-  type: "geo_as_number",
-  op: "inc",
+  type: "geo_country_region",
+  op: "lte",
 };
 ```
 

@@ -63,7 +63,7 @@ export type CreateTeamRequestBody = {
 /**
  * IMPORTANT: If extending Billing, particularly with optional fields, make sure you also update `sync-orb-subscription-to-owner.ts` to handle the items when the object is recreated.
  */
-export type Billing = {};
+export type CreateTeamBilling = {};
 
 /**
  * The team was created successfully
@@ -77,7 +77,7 @@ export type CreateTeamResponseBody = {
   /**
    * IMPORTANT: If extending Billing, particularly with optional fields, make sure you also update `sync-orb-subscription-to-owner.ts` to handle the items when the object is recreated.
    */
-  billing: Billing;
+  billing: CreateTeamBilling;
 };
 
 /** @internal */
@@ -253,43 +253,50 @@ export function createTeamRequestBodyFromJSON(
 }
 
 /** @internal */
-export const Billing$inboundSchema: z.ZodType<Billing, z.ZodTypeDef, unknown> =
-  z.object({});
-
-/** @internal */
-export type Billing$Outbound = {};
-
-/** @internal */
-export const Billing$outboundSchema: z.ZodType<
-  Billing$Outbound,
+export const CreateTeamBilling$inboundSchema: z.ZodType<
+  CreateTeamBilling,
   z.ZodTypeDef,
-  Billing
+  unknown
+> = z.object({});
+
+/** @internal */
+export type CreateTeamBilling$Outbound = {};
+
+/** @internal */
+export const CreateTeamBilling$outboundSchema: z.ZodType<
+  CreateTeamBilling$Outbound,
+  z.ZodTypeDef,
+  CreateTeamBilling
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Billing$ {
-  /** @deprecated use `Billing$inboundSchema` instead. */
-  export const inboundSchema = Billing$inboundSchema;
-  /** @deprecated use `Billing$outboundSchema` instead. */
-  export const outboundSchema = Billing$outboundSchema;
-  /** @deprecated use `Billing$Outbound` instead. */
-  export type Outbound = Billing$Outbound;
+export namespace CreateTeamBilling$ {
+  /** @deprecated use `CreateTeamBilling$inboundSchema` instead. */
+  export const inboundSchema = CreateTeamBilling$inboundSchema;
+  /** @deprecated use `CreateTeamBilling$outboundSchema` instead. */
+  export const outboundSchema = CreateTeamBilling$outboundSchema;
+  /** @deprecated use `CreateTeamBilling$Outbound` instead. */
+  export type Outbound = CreateTeamBilling$Outbound;
 }
 
-export function billingToJSON(billing: Billing): string {
-  return JSON.stringify(Billing$outboundSchema.parse(billing));
+export function createTeamBillingToJSON(
+  createTeamBilling: CreateTeamBilling,
+): string {
+  return JSON.stringify(
+    CreateTeamBilling$outboundSchema.parse(createTeamBilling),
+  );
 }
 
-export function billingFromJSON(
+export function createTeamBillingFromJSON(
   jsonString: string,
-): SafeParseResult<Billing, SDKValidationError> {
+): SafeParseResult<CreateTeamBilling, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Billing$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Billing' from JSON`,
+    (x) => CreateTeamBilling$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTeamBilling' from JSON`,
   );
 }
 
@@ -301,14 +308,14 @@ export const CreateTeamResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   slug: z.string(),
-  billing: z.lazy(() => Billing$inboundSchema),
+  billing: z.lazy(() => CreateTeamBilling$inboundSchema),
 });
 
 /** @internal */
 export type CreateTeamResponseBody$Outbound = {
   id: string;
   slug: string;
-  billing: Billing$Outbound;
+  billing: CreateTeamBilling$Outbound;
 };
 
 /** @internal */
@@ -319,7 +326,7 @@ export const CreateTeamResponseBody$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   slug: z.string(),
-  billing: z.lazy(() => Billing$outboundSchema),
+  billing: z.lazy(() => CreateTeamBilling$outboundSchema),
 });
 
 /**

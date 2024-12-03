@@ -7,9 +7,9 @@ import { BillingPlan } from "@vercel/sdk/models/operations/getconfigurations.js"
 
 let value: BillingPlan = {
   id: "<id>",
-  type: "subscription",
+  type: "prepayment",
   name: "<value>",
-  description: "fencing vice yet sushi straw ha nudge er after",
+  description: "for physical next but vacation separately utter",
 };
 ```
 

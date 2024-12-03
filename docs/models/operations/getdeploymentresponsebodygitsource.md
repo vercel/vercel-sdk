@@ -8,7 +8,7 @@
 ```typescript
 const value: operations.GetDeploymentGitSourceDeployments1 = {
   type: "github",
-  repoId: 9838.54,
+  repoId: 9253.95,
 };
 ```
 
@@ -27,7 +27,7 @@ const value: operations.GetDeploymentGitSourceDeployments2 = {
 ```typescript
 const value: operations.GetDeploymentGitSourceDeployments3 = {
   type: "gitlab",
-  projectId: 3895.49,
+  projectId: 4230.54,
 };
 ```
 
@@ -57,7 +57,7 @@ const value: operations.GetDeploymentGitSourceDeployments6 = {
   type: "custom",
   ref: "<value>",
   sha: "<value>",
-  gitUrl: "https://wealthy-chairperson.net/",
+  gitUrl: "https://hidden-printer.name/",
 };
 ```
 
@@ -68,7 +68,7 @@ const value: operations.GetDeploymentGitSourceDeployments7 = {
   type: "github",
   ref: "<value>",
   sha: "<value>",
-  repoId: 9253.95,
+  repoId: 9279.76,
 };
 ```
 
@@ -79,7 +79,7 @@ const value: operations.GetDeploymentGitSourceDeployments8 = {
   type: "gitlab",
   ref: "<value>",
   sha: "<value>",
-  projectId: 6646.66,
+  projectId: 8668.61,
 };
 ```
 

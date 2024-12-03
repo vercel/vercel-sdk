@@ -11,7 +11,7 @@ let value: CreateRecordRequest = {
     name: "subdomain",
     type: "CAA",
     ttl: 60,
-    value: "cname.vercel-dns.com",
+    value: "0 issue \\"letsencrypt.org\\"",
     comment: "used to verify ownership of domain",
   },
 };

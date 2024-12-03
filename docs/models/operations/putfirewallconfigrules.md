@@ -13,8 +13,8 @@ let value: PutFirewallConfigRules = {
     {
       conditions: [
         {
-          type: "ja4_digest",
-          op: "re",
+          type: "environment",
+          op: "nex",
         },
       ],
     },

@@ -7,15 +7,15 @@ import { GetAllLogDrainsResponseBody } from "@vercel/sdk/models/operations/getal
 
 let value: GetAllLogDrainsResponseBody = {
   id: "<id>",
-  deliveryFormat: "syslog",
-  url: "https://unsung-amnesty.biz/",
+  deliveryFormat: "json",
+  url: "https://sunny-glider.name/",
   name: "<value>",
   ownerId: "<id>",
-  createdAt: 3385.14,
-  deletedAt: 5774.96,
-  updatedAt: 8527.36,
+  createdAt: 9835.55,
+  deletedAt: 15.95,
+  updatedAt: 1454.50,
   environments: [
-    "production",
+    "preview",
   ],
 };
 ```

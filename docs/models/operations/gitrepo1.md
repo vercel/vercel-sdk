@@ -7,10 +7,10 @@ import { GitRepo1 } from "@vercel/sdk/models/operations/createdeployment.js";
 
 let value: GitRepo1 = {
   namespace: "<value>",
-  projectId: 3740.63,
+  projectId: 752.77,
   type: "gitlab",
-  url: "https://ripe-encouragement.biz/",
-  path: "/opt",
+  url: "https://honorable-rubric.net/",
+  path: "/usr/bin",
   defaultBranch: "<value>",
   name: "<value>",
   private: false,

@@ -19,5 +19,5 @@ targets:
                 token: $npm_token
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/vercel/vercel-docs/vercel-oas-code-samples
+                location: registry.speakeasyapi.dev/vercel/vercel-docs/vercel-oas-typescript-code-samples
             blocking: false

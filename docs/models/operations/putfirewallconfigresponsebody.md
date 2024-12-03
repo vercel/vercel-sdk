@@ -10,7 +10,7 @@ let value: PutFirewallConfigResponseBody = {
     ownerId: "<id>",
     projectKey: "<value>",
     id: "<id>",
-    version: 4209.10,
+    version: 780.75,
     updatedAt: "<value>",
     firewallEnabled: false,
     crs: {
@@ -20,11 +20,11 @@ let value: PutFirewallConfigResponseBody = {
       },
       ma: {
         active: false,
-        action: "deny",
+        action: "log",
       },
       lfi: {
         active: false,
-        action: "log",
+        action: "deny",
       },
       rfi: {
         active: false,
@@ -32,7 +32,7 @@ let value: PutFirewallConfigResponseBody = {
       },
       rce: {
         active: false,
-        action: "deny",
+        action: "log",
       },
       php: {
         active: false,
@@ -48,15 +48,15 @@ let value: PutFirewallConfigResponseBody = {
       },
       sqli: {
         active: false,
-        action: "deny",
+        action: "log",
       },
       sf: {
         active: false,
-        action: "deny",
+        action: "log",
       },
       java: {
         active: false,
-        action: "log",
+        action: "deny",
       },
     },
     rules: [
@@ -68,8 +68,8 @@ let value: PutFirewallConfigResponseBody = {
           {
             conditions: [
               {
-                type: "ja3_digest",
-                op: "ninc",
+                type: "geo_city",
+                op: "suf",
               },
             ],
           },
@@ -80,9 +80,9 @@ let value: PutFirewallConfigResponseBody = {
     ips: [
       {
         id: "<id>",
-        hostname: "outlandish-event.biz",
-        ip: "a256:2aee:1067:bf8f:fad1:7e4c:f8bb:fb2b",
-        action: "log",
+        hostname: "whole-ectoderm.biz",
+        ip: "146.229.45.71",
+        action: "challenge",
       },
     ],
     changes: [

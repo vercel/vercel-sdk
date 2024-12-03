@@ -7,8 +7,8 @@ import { GetEdgeConfigBackupResponseBodyUser } from "@vercel/sdk/models/operatio
 
 let value: GetEdgeConfigBackupResponseBodyUser = {
   id: "<id>",
-  username: "Pink.Schneider23",
-  email: "Julius24@gmail.com",
+  username: "Margarete76",
+  email: "Jacky_Keebler@yahoo.com",
 };
 ```
 

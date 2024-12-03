@@ -15,24 +15,24 @@ const value: operations.SearchRepoResponseBody1 = {};
 const value: operations.SearchRepoResponseBody2 = {
   gitAccount: {
     provider: "gitlab",
-    namespaceId: "<id>",
+    namespaceId: 1731.93,
   },
   repos: [
     {
-      id: 7319.30,
-      provider: "github-custom-host",
-      url: "https://hateful-obligation.org/",
+      id: 276.53,
+      provider: "gitlab",
+      url: "https://squiggly-pupil.info/",
       name: "<value>",
       slug: "<value>",
       namespace: "<value>",
       owner: {
-        id: "<id>",
+        id: 5017.73,
         name: "<value>",
       },
       ownerType: "team",
       private: false,
       defaultBranch: "<value>",
-      updatedAt: 276.53,
+      updatedAt: 4760.84,
     },
   ],
 };

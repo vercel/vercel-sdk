@@ -17,8 +17,8 @@ let value: UpdateFirewallConfigRequestBody3 = {
       {
         conditions: [
           {
-            type: "ja3_digest",
-            op: "ex",
+            type: "header",
+            op: "ninc",
           },
         ],
       },

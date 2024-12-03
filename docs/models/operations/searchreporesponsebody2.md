@@ -7,25 +7,25 @@ import { SearchRepoResponseBody2 } from "@vercel/sdk/models/operations/searchrep
 
 let value: SearchRepoResponseBody2 = {
   gitAccount: {
-    provider: "bitbucket",
-    namespaceId: "<id>",
+    provider: "github",
+    namespaceId: 6981.16,
   },
   repos: [
     {
-      id: 756.11,
-      provider: "github-custom-host",
-      url: "https://accomplished-marksman.com/",
+      id: "<id>",
+      provider: "bitbucket",
+      url: "https://friendly-produce.net",
       name: "<value>",
       slug: "<value>",
       namespace: "<value>",
       owner: {
-        id: 6981.16,
+        id: "<id>",
         name: "<value>",
       },
       ownerType: "user",
       private: false,
       defaultBranch: "<value>",
-      updatedAt: 9417.42,
+      updatedAt: 3591.07,
     },
   ],
 };

@@ -7,7 +7,7 @@ import { PutFirewallConfigSqli } from "@vercel/sdk/models/operations/putfirewall
 
 let value: PutFirewallConfigSqli = {
   active: false,
-  action: "deny",
+  action: "log",
 };
 ```
 

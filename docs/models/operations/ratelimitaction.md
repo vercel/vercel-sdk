@@ -6,7 +6,7 @@
 ### `operations.Action1`
 
 ```typescript
-const value: operations.Action1 = "rate_limit";
+const value: operations.Action1 = "log";
 ```
 
 ### `any`

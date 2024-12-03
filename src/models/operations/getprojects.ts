@@ -1058,6 +1058,7 @@ export type GetProjectsPermissions = {
   notificationCustomerBudget?: Array<ACLAction> | undefined;
   notificationStatementOfReasons?: Array<ACLAction> | undefined;
   oauth2Connection?: Array<ACLAction> | undefined;
+  observabilityConfiguration?: Array<ACLAction> | undefined;
   openTelemetryEndpoint?: Array<ACLAction> | undefined;
   paymentMethod?: Array<ACLAction> | undefined;
   permissions?: Array<ACLAction> | undefined;
@@ -1132,6 +1133,7 @@ export type GetProjectsPermissions = {
   passwordProtection?: Array<ACLAction> | undefined;
   optionsAllowlist?: Array<ACLAction> | undefined;
   job?: Array<ACLAction> | undefined;
+  observabilityData?: Array<ACLAction> | undefined;
   project?: Array<ACLAction> | undefined;
   projectFromV0?: Array<ACLAction> | undefined;
   projectAccessGroup?: Array<ACLAction> | undefined;
@@ -6440,6 +6442,7 @@ export const GetProjectsPermissions$inboundSchema: z.ZodType<
   notificationCustomerBudget: z.array(ACLAction$inboundSchema).optional(),
   notificationStatementOfReasons: z.array(ACLAction$inboundSchema).optional(),
   oauth2Connection: z.array(ACLAction$inboundSchema).optional(),
+  observabilityConfiguration: z.array(ACLAction$inboundSchema).optional(),
   openTelemetryEndpoint: z.array(ACLAction$inboundSchema).optional(),
   paymentMethod: z.array(ACLAction$inboundSchema).optional(),
   permissions: z.array(ACLAction$inboundSchema).optional(),
@@ -6515,6 +6518,7 @@ export const GetProjectsPermissions$inboundSchema: z.ZodType<
   passwordProtection: z.array(ACLAction$inboundSchema).optional(),
   optionsAllowlist: z.array(ACLAction$inboundSchema).optional(),
   job: z.array(ACLAction$inboundSchema).optional(),
+  observabilityData: z.array(ACLAction$inboundSchema).optional(),
   project: z.array(ACLAction$inboundSchema).optional(),
   projectFromV0: z.array(ACLAction$inboundSchema).optional(),
   projectAccessGroup: z.array(ACLAction$inboundSchema).optional(),
@@ -6632,6 +6636,7 @@ export type GetProjectsPermissions$Outbound = {
   notificationCustomerBudget?: Array<string> | undefined;
   notificationStatementOfReasons?: Array<string> | undefined;
   oauth2Connection?: Array<string> | undefined;
+  observabilityConfiguration?: Array<string> | undefined;
   openTelemetryEndpoint?: Array<string> | undefined;
   paymentMethod?: Array<string> | undefined;
   permissions?: Array<string> | undefined;
@@ -6706,6 +6711,7 @@ export type GetProjectsPermissions$Outbound = {
   passwordProtection?: Array<string> | undefined;
   optionsAllowlist?: Array<string> | undefined;
   job?: Array<string> | undefined;
+  observabilityData?: Array<string> | undefined;
   project?: Array<string> | undefined;
   projectFromV0?: Array<string> | undefined;
   projectAccessGroup?: Array<string> | undefined;
@@ -6824,6 +6830,7 @@ export const GetProjectsPermissions$outboundSchema: z.ZodType<
   notificationCustomerBudget: z.array(ACLAction$outboundSchema).optional(),
   notificationStatementOfReasons: z.array(ACLAction$outboundSchema).optional(),
   oauth2Connection: z.array(ACLAction$outboundSchema).optional(),
+  observabilityConfiguration: z.array(ACLAction$outboundSchema).optional(),
   openTelemetryEndpoint: z.array(ACLAction$outboundSchema).optional(),
   paymentMethod: z.array(ACLAction$outboundSchema).optional(),
   permissions: z.array(ACLAction$outboundSchema).optional(),
@@ -6899,6 +6906,7 @@ export const GetProjectsPermissions$outboundSchema: z.ZodType<
   passwordProtection: z.array(ACLAction$outboundSchema).optional(),
   optionsAllowlist: z.array(ACLAction$outboundSchema).optional(),
   job: z.array(ACLAction$outboundSchema).optional(),
+  observabilityData: z.array(ACLAction$outboundSchema).optional(),
   project: z.array(ACLAction$outboundSchema).optional(),
   projectFromV0: z.array(ACLAction$outboundSchema).optional(),
   projectAccessGroup: z.array(ACLAction$outboundSchema).optional(),

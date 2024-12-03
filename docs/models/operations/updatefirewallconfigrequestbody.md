@@ -24,8 +24,8 @@ const value: operations.UpdateFirewallConfigRequestBody2 = {
       {
         conditions: [
           {
-            type: "geo_city",
-            op: "gt",
+            type: "cookie",
+            op: "lte",
           },
         ],
       },
@@ -48,8 +48,8 @@ const value: operations.UpdateFirewallConfigRequestBody3 = {
       {
         conditions: [
           {
-            type: "host",
-            op: "inc",
+            type: "ip_address",
+            op: "lt",
           },
         ],
       },
@@ -74,7 +74,7 @@ const value: operations.UpdateFirewallConfigRequestBody4 = {
 const value: operations.UpdateFirewallConfigRequestBody5 = {
   action: "rules.priority",
   id: "<id>",
-  value: 445.10,
+  value: 1810.42,
 };
 ```
 
@@ -83,7 +83,7 @@ const value: operations.UpdateFirewallConfigRequestBody5 = {
 ```typescript
 const value: operations.RequestBody6 = {
   action: "crs.update",
-  id: "lfi",
+  id: "sqli",
   value: {
     active: false,
     action: "deny",
@@ -105,9 +105,9 @@ const value: operations.RequestBody7 = {
 const value: operations.RequestBody8 = {
   action: "ip.insert",
   value: {
-    hostname: "ecstatic-flat.biz",
-    ip: "7d3a:1a0b:e0eb:7d69:2e0a:fc3a:fcc2:d8d6",
-    action: "log",
+    hostname: "lean-accompanist.net",
+    ip: "0eb7:d692:e0af:c3af:cc2d:8d6c:9d51:a9c0",
+    action: "bypass",
   },
 };
 ```
@@ -119,8 +119,8 @@ const value: operations.RequestBody9 = {
   action: "ip.update",
   id: "<id>",
   value: {
-    hostname: "intelligent-sustenance.biz",
-    ip: "191.105.150.6",
+    hostname: "ultimate-opera.com",
+    ip: "250.174.41.117",
     action: "bypass",
   },
 };

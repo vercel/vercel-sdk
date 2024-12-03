@@ -9,27 +9,27 @@ import { GetDeploymentResponseBody2 } from "@vercel/sdk/models/operations/getdep
 
 let value: GetDeploymentResponseBody2 = {
   aliasAssigned: false,
-  bootedAt: 1081.66,
-  buildingAt: 3923.19,
+  bootedAt: 5063.43,
+  buildingAt: 3498.98,
   buildSkipped: false,
   creator: {
     uid: "<id>",
   },
   public: false,
-  status: "BUILDING",
+  status: "READY",
   id: "<id>",
   type: "LAMBDAS",
-  createdAt: 6837.26,
+  createdAt: 245.77,
   name: "<value>",
-  readyState: "QUEUED",
+  readyState: "INITIALIZING",
   meta: {
     "key": "<value>",
   },
   regions: [
     "<value>",
   ],
-  url: "https://flawed-lace.info/",
-  version: 7064.11,
+  url: "https://filthy-self-confidence.org/",
+  version: 3165.50,
 };
 ```
 

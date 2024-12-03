@@ -8,10 +8,10 @@
 ```typescript
 const value: operations.GitRepo1 = {
   namespace: "<value>",
-  projectId: 5775.90,
+  projectId: 2871.53,
   type: "gitlab",
-  url: "https://boiling-galoshes.net/",
-  path: "/usr/X11R6",
+  url: "https://neat-redesign.org",
+  path: "/lost+found",
   defaultBranch: "<value>",
   name: "<value>",
   private: false,
@@ -25,10 +25,10 @@ const value: operations.GitRepo1 = {
 const value: operations.GitRepo2 = {
   org: "<value>",
   repo: "<value>",
-  repoId: 7672.10,
+  repoId: 6599.71,
   type: "github",
-  repoOwnerId: 2871.53,
-  path: "/root",
+  repoOwnerId: 5802.38,
+  path: "/usr/libexec",
   defaultBranch: "<value>",
   name: "<value>",
   private: false,
@@ -45,11 +45,11 @@ const value: operations.GitRepo3 = {
   slug: "<value>",
   type: "bitbucket",
   workspaceUuid: "<id>",
-  path: "/usr/lib",
+  path: "/boot",
   defaultBranch: "<value>",
   name: "<value>",
   private: false,
-  ownerType: "user",
+  ownerType: "team",
 };
 ```
 

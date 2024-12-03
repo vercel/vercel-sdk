@@ -8,7 +8,7 @@
 ```typescript
 const value: operations.GitSource1 = {
   type: "github",
-  repoId: "<id>",
+  repoId: 7747.48,
 };
 ```
 
@@ -27,7 +27,7 @@ const value: operations.GitSource2 = {
 ```typescript
 const value: operations.GitSource3 = {
   type: "gitlab",
-  projectId: "<id>",
+  projectId: 6147.70,
 };
 ```
 
@@ -57,7 +57,7 @@ const value: operations.CreateDeploymentGitSource6 = {
   type: "custom",
   ref: "<value>",
   sha: "<value>",
-  gitUrl: "https://sunny-premier.org/",
+  gitUrl: "https://aged-flint.net/",
 };
 ```
 
@@ -68,7 +68,7 @@ const value: operations.CreateDeploymentGitSource7 = {
   type: "github",
   ref: "<value>",
   sha: "<value>",
-  repoId: 9665.75,
+  repoId: 8661.35,
 };
 ```
 
@@ -79,7 +79,7 @@ const value: operations.CreateDeploymentGitSource8 = {
   type: "gitlab",
   ref: "<value>",
   sha: "<value>",
-  projectId: 7747.48,
+  projectId: 9608.13,
 };
 ```
 

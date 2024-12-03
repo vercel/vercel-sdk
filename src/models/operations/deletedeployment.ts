@@ -30,13 +30,13 @@ export type DeleteDeploymentRequest = {
 /**
  * A constant with the final state of the deployment.
  */
-export const State = {
+export const DeleteDeploymentState = {
   Deleted: "DELETED",
 } as const;
 /**
  * A constant with the final state of the deployment.
  */
-export type State = ClosedEnum<typeof State>;
+export type DeleteDeploymentState = ClosedEnum<typeof DeleteDeploymentState>;
 
 /**
  * The deployment was successfully deleted
@@ -49,7 +49,7 @@ export type DeleteDeploymentResponseBody = {
   /**
    * A constant with the final state of the deployment.
    */
-  state: State;
+  state: DeleteDeploymentState;
 };
 
 /** @internal */
@@ -116,23 +116,24 @@ export function deleteDeploymentRequestFromJSON(
 }
 
 /** @internal */
-export const State$inboundSchema: z.ZodNativeEnum<typeof State> = z.nativeEnum(
-  State,
-);
+export const DeleteDeploymentState$inboundSchema: z.ZodNativeEnum<
+  typeof DeleteDeploymentState
+> = z.nativeEnum(DeleteDeploymentState);
 
 /** @internal */
-export const State$outboundSchema: z.ZodNativeEnum<typeof State> =
-  State$inboundSchema;
+export const DeleteDeploymentState$outboundSchema: z.ZodNativeEnum<
+  typeof DeleteDeploymentState
+> = DeleteDeploymentState$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace State$ {
-  /** @deprecated use `State$inboundSchema` instead. */
-  export const inboundSchema = State$inboundSchema;
-  /** @deprecated use `State$outboundSchema` instead. */
-  export const outboundSchema = State$outboundSchema;
+export namespace DeleteDeploymentState$ {
+  /** @deprecated use `DeleteDeploymentState$inboundSchema` instead. */
+  export const inboundSchema = DeleteDeploymentState$inboundSchema;
+  /** @deprecated use `DeleteDeploymentState$outboundSchema` instead. */
+  export const outboundSchema = DeleteDeploymentState$outboundSchema;
 }
 
 /** @internal */
@@ -142,7 +143,7 @@ export const DeleteDeploymentResponseBody$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   uid: z.string(),
-  state: State$inboundSchema,
+  state: DeleteDeploymentState$inboundSchema,
 });
 
 /** @internal */
@@ -158,7 +159,7 @@ export const DeleteDeploymentResponseBody$outboundSchema: z.ZodType<
   DeleteDeploymentResponseBody
 > = z.object({
   uid: z.string(),
-  state: State$outboundSchema,
+  state: DeleteDeploymentState$outboundSchema,
 });
 
 /**

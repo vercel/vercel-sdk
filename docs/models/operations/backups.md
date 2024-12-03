@@ -7,7 +7,7 @@ import { Backups } from "@vercel/sdk/models/operations/getedgeconfigbackups.js";
 
 let value: Backups = {
   id: "<id>",
-  lastModified: 442.52,
+  lastModified: 1887.32,
 };
 ```
 

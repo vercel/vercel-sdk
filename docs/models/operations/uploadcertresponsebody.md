@@ -7,8 +7,8 @@ import { UploadCertResponseBody } from "@vercel/sdk/models/operations/uploadcert
 
 let value: UploadCertResponseBody = {
   id: "<id>",
-  createdAt: 59.39,
-  expiresAt: 4346.33,
+  createdAt: 8241.05,
+  expiresAt: 1777.17,
   autoRenew: false,
   cns: [
     "<value>",

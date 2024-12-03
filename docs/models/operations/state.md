@@ -1,17 +1,15 @@
 # State
 
-A constant with the final state of the deployment.
-
 ## Example Usage
 
 ```typescript
-import { State } from "@vercel/sdk/models/operations/deletedeployment.js";
+import { State } from "@vercel/sdk/models/operations/getinvoice.js";
 
-let value: State = "DELETED";
+let value: State = "pending";
 ```
 
 ## Values
 
 ```typescript
-"DELETED"
+"pending" | "scheduled" | "invoiced" | "paid" | "notpaid" | "refund_requested" | "refunded"
 ```

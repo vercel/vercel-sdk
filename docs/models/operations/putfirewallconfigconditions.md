@@ -6,8 +6,8 @@
 import { PutFirewallConfigConditions } from "@vercel/sdk/models/operations/putfirewallconfig.js";
 
 let value: PutFirewallConfigConditions = {
-  type: "host",
-  op: "sub",
+  type: "rate_limit_api_id",
+  op: "suf",
 };
 ```
 

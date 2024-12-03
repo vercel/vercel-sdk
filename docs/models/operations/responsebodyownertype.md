@@ -5,7 +5,7 @@
 ```typescript
 import { ResponseBodyOwnerType } from "@vercel/sdk/models/operations/searchrepo.js";
 
-let value: ResponseBodyOwnerType = "team";
+let value: ResponseBodyOwnerType = "user";
 ```
 
 ## Values

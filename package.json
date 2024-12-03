@@ -1,6 +1,6 @@
 {
   "name": "@vercel/sdk",
-  "version": "14.0.0-canary.7",
+  "version": "14.0.0-canary.9",
   "author": "Speakeasy",
   "type": "module",
   "main": "./esm/index.js",
@@ -25,7 +25,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/vercel/vercel-sdk.git",
+    "url": "https://github.com/vercel/sdk.git",
     "directory": "packages/sdk"
   },
   "scripts": {

@@ -7,10 +7,9 @@ import { ResponseBodyBillingPlan } from "@vercel/sdk/models/operations/getconfig
 
 let value: ResponseBodyBillingPlan = {
   id: "<id>",
-  type: "subscription",
+  type: "prepayment",
   name: "<value>",
-  description:
-    "anti browse develop freely summarise pick than heavily speedily out",
+  description: "now nephew equally cleverly",
 };
 ```
 

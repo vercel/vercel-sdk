@@ -12,7 +12,7 @@ let value: RequestBodyValue = {
     {
       conditions: [
         {
-          type: "environment",
+          type: "cookie",
           op: "neq",
         },
       ],

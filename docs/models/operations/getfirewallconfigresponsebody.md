@@ -9,7 +9,7 @@ let value: GetFirewallConfigResponseBody = {
   ownerId: "<id>",
   projectKey: "<value>",
   id: "<id>",
-  version: 9830.67,
+  version: 7002.04,
   updatedAt: "<value>",
   firewallEnabled: false,
   crs: {
@@ -19,7 +19,7 @@ let value: GetFirewallConfigResponseBody = {
     },
     ma: {
       active: false,
-      action: "log",
+      action: "deny",
     },
     lfi: {
       active: false,
@@ -31,11 +31,11 @@ let value: GetFirewallConfigResponseBody = {
     },
     rce: {
       active: false,
-      action: "log",
+      action: "deny",
     },
     php: {
       active: false,
-      action: "log",
+      action: "deny",
     },
     gen: {
       active: false,
@@ -47,15 +47,15 @@ let value: GetFirewallConfigResponseBody = {
     },
     sqli: {
       active: false,
-      action: "log",
+      action: "deny",
     },
     sf: {
       active: false,
-      action: "log",
+      action: "deny",
     },
     java: {
       active: false,
-      action: "deny",
+      action: "log",
     },
   },
   rules: [
@@ -67,8 +67,8 @@ let value: GetFirewallConfigResponseBody = {
         {
           conditions: [
             {
-              type: "target_path",
-              op: "gt",
+              type: "ja3_digest",
+              op: "eq",
             },
           ],
         },
@@ -79,9 +79,9 @@ let value: GetFirewallConfigResponseBody = {
   ips: [
     {
       id: "<id>",
-      hostname: "bleak-bonnet.info",
-      ip: "103.116.249.241",
-      action: "deny",
+      hostname: "understated-birdbath.name",
+      ip: "93.190.108.206",
+      action: "challenge",
     },
   ],
   changes: [

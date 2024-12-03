@@ -1,16 +1,39 @@
 # Billing
 
-IMPORTANT: If extending Billing, particularly with optional fields, make sure you also update `sync-orb-subscription-to-owner.ts` to handle the items when the object is recreated.
+Billing data (interim invoicing data).
 
-## Example Usage
+
+## Supported Types
+
+### `operations.Billing1[]`
 
 ```typescript
-import { Billing } from "@vercel/sdk/models/operations/createteam.js";
-
-let value: Billing = {};
+const value: operations.Billing1[] = [
+  {
+    billingPlanId: "<id>",
+    name: "<value>",
+    price: "666.30",
+    quantity: 7006.33,
+    units: "<value>",
+    total: "<value>",
+  },
+];
 ```
 
-## Fields
+### `operations.Billing2`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: operations.Billing2 = {
+  items: [
+    {
+      billingPlanId: "<id>",
+      name: "<value>",
+      price: "841.99",
+      quantity: 6218.82,
+      units: "<value>",
+      total: "<value>",
+    },
+  ],
+};
+```
+

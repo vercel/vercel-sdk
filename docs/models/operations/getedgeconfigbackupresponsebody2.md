@@ -8,16 +8,16 @@ import { GetEdgeConfigBackupResponseBody2 } from "@vercel/sdk/models/operations/
 let value: GetEdgeConfigBackupResponseBody2 = {
   user: {
     id: "<id>",
-    username: "Makenna.Satterfield87",
-    email: "Dorian67@gmail.com",
+    username: "Dorian67",
+    email: "Hassan96@gmail.com",
   },
   id: "<id>",
-  lastModified: 1853.13,
+  lastModified: 779.93,
   backup: {
     digest: "<value>",
     items: {},
     slug: "<value>",
-    updatedAt: 4151.25,
+    updatedAt: 8049.36,
   },
   metadata: {},
 };

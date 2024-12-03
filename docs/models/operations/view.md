@@ -5,7 +5,7 @@
 ```typescript
 import { View } from "@vercel/sdk/models/operations/getconfigurations.js";
 
-let value: View = "account";
+let value: View = "project";
 ```
 
 ## Values

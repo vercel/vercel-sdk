@@ -10,7 +10,7 @@ import { UpdateFirewallConfigRequestBody5 } from "@vercel/sdk/models/operations/
 let value: UpdateFirewallConfigRequestBody5 = {
   action: "rules.priority",
   id: "<id>",
-  value: 9961.00,
+  value: 3719.35,
 };
 ```
 

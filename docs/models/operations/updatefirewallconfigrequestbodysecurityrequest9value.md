@@ -6,9 +6,9 @@
 import { UpdateFirewallConfigRequestBodySecurityRequest9Value } from "@vercel/sdk/models/operations/updatefirewallconfig.js";
 
 let value: UpdateFirewallConfigRequestBodySecurityRequest9Value = {
-  hostname: "focused-dividend.info",
-  ip: "d36c:99ce:afbb:6ecd:1eb0:7faf:97cc:fbe9",
-  action: "deny",
+  hostname: "kaleidoscopic-slide.org",
+  ip: "175.205.132.75",
+  action: "log",
 };
 ```
 

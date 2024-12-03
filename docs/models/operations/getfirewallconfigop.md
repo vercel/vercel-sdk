@@ -5,7 +5,7 @@
 ```typescript
 import { GetFirewallConfigOp } from "@vercel/sdk/models/operations/getfirewallconfig.js";
 
-let value: GetFirewallConfigOp = "ex";
+let value: GetFirewallConfigOp = "pre";
 ```
 
 ## Values

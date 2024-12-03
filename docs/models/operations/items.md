@@ -13,7 +13,7 @@ const value: operations.Items1 = false;
 
 ```typescript
 const value: operations.Items2[] = [
-  "<value>",
+  9430.62,
 ];
 ```
 

@@ -6,9 +6,9 @@
 import { Ips } from "@vercel/sdk/models/operations/putfirewallconfig.js";
 
 let value: Ips = {
-  hostname: "far-flung-intellect.org",
-  ip: "109.156.139.249",
-  action: "log",
+  hostname: "showy-vibration.info",
+  ip: "11.47.60.46",
+  action: "bypass",
 };
 ```
 

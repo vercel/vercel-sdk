@@ -9,13 +9,13 @@ let value: ResponseBodyRecords = {
   id: "<id>",
   slug: "<value>",
   name: "<value>",
-  type: "SRV",
+  type: "AAAA",
   value: "<value>",
   creator: "<value>",
-  created: 5509.94,
-  updated: 9804.66,
-  createdAt: 5886.62,
-  updatedAt: 455.11,
+  created: 4047.74,
+  updated: 6012.77,
+  createdAt: 7719.31,
+  updatedAt: 4130.86,
 };
 ```
 

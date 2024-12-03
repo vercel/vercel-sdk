@@ -12,8 +12,8 @@ let value: UpdateFirewallConfigRequestBodyValue = {
     {
       conditions: [
         {
-          type: "ip_address",
-          op: "inc",
+          type: "scheme",
+          op: "neq",
         },
       ],
     },

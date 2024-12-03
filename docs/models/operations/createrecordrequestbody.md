@@ -8,7 +8,7 @@
 ```typescript
 const value: operations.RequestBody1 = {
   name: "subdomain",
-  type: "CAA",
+  type: "A",
   ttl: 60,
   value: "192.0.2.42",
   comment: "used to verify ownership of domain",
@@ -20,7 +20,7 @@ const value: operations.RequestBody1 = {
 ```typescript
 const value: operations.RequestBody2 = {
   name: "subdomain",
-  type: "NS",
+  type: "HTTPS",
   ttl: 60,
   value: "2001:DB8::42",
   comment: "used to verify ownership of domain",
@@ -32,7 +32,7 @@ const value: operations.RequestBody2 = {
 ```typescript
 const value: operations.RequestBody3 = {
   name: "subdomain",
-  type: "NS",
+  type: "HTTPS",
   ttl: 60,
   value: "cname.vercel-dns.com",
   comment: "used to verify ownership of domain",
@@ -44,7 +44,7 @@ const value: operations.RequestBody3 = {
 ```typescript
 const value: operations.RequestBody4 = {
   name: "subdomain",
-  type: "MX",
+  type: "CAA",
   ttl: 60,
   value: "0 issue \\"letsencrypt.org\\"",
   comment: "used to verify ownership of domain",
@@ -56,7 +56,7 @@ const value: operations.RequestBody4 = {
 ```typescript
 const value: operations.RequestBody5 = {
   name: "subdomain",
-  type: "MX",
+  type: "A",
   ttl: 60,
   value: "cname.vercel-dns.com",
   comment: "used to verify ownership of domain",
@@ -68,7 +68,7 @@ const value: operations.RequestBody5 = {
 ```typescript
 const value: operations.Six = {
   name: "subdomain",
-  type: "A",
+  type: "ALIAS",
   ttl: 60,
   value: "10 mail.example.com.",
   mxPriority: 10,
@@ -80,7 +80,7 @@ const value: operations.Six = {
 
 ```typescript
 const value: operations.Seven = {
-  type: "HTTPS",
+  type: "CAA",
   ttl: 60,
   srv: {
     priority: 10,
@@ -96,7 +96,7 @@ const value: operations.Seven = {
 
 ```typescript
 const value: operations.Eight = {
-  type: "HTTPS",
+  type: "CNAME",
   ttl: 60,
   value: "hello",
   comment: "used to verify ownership of domain",
@@ -108,7 +108,7 @@ const value: operations.Eight = {
 ```typescript
 const value: operations.Nine = {
   name: "subdomain",
-  type: "CAA",
+  type: "HTTPS",
   ttl: 60,
   value: "ns1.example.com",
   comment: "used to verify ownership of domain",
@@ -119,7 +119,7 @@ const value: operations.Nine = {
 
 ```typescript
 const value: operations.Ten = {
-  type: "A",
+  type: "SRV",
   ttl: 60,
   https: {
     priority: 10,

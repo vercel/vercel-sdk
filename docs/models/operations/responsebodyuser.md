@@ -7,8 +7,8 @@ import { ResponseBodyUser } from "@vercel/sdk/models/operations/getedgeconfigbac
 
 let value: ResponseBodyUser = {
   id: "<id>",
-  username: "Marlee58",
-  email: "Amir.Bruen@hotmail.com",
+  username: "Titus.Davis",
+  email: "Lola66@yahoo.com",
 };
 ```
 

@@ -9,7 +9,6 @@ let value: CreateDeploymentRequest = {
   requestBody: {
     files: [
       {
-        data: "<value>",
         file: "folder/file.js",
       },
     ],

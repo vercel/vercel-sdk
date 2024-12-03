@@ -6,9 +6,9 @@
 import { UpdateFirewallConfigRateLimit1 } from "@vercel/sdk/models/operations/updatefirewallconfig.js";
 
 let value: UpdateFirewallConfigRateLimit1 = {
-  algo: "token_bucket",
-  window: 8309.09,
-  limit: 316.05,
+  algo: "fixed_window",
+  window: 5874.89,
+  limit: 7726.04,
   keys: [
     "<value>",
   ],

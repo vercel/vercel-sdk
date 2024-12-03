@@ -8,8 +8,8 @@ import { UpdateFirewallConfigRequestBodyConditionGroup } from "@vercel/sdk/model
 let value: UpdateFirewallConfigRequestBodyConditionGroup = {
   conditions: [
     {
-      type: "ip_address",
-      op: "lt",
+      type: "protocol",
+      op: "eq",
     },
   ],
 };

@@ -9,21 +9,21 @@ let value: Active = {
   ownerId: "<id>",
   projectKey: "<value>",
   id: "<id>",
-  version: 8429.35,
+  version: 3396.51,
   updatedAt: "<value>",
   firewallEnabled: false,
   crs: {
     sd: {
       active: false,
-      action: "deny",
+      action: "log",
     },
     ma: {
       active: false,
-      action: "deny",
+      action: "log",
     },
     lfi: {
       active: false,
-      action: "log",
+      action: "deny",
     },
     rfi: {
       active: false,
@@ -31,7 +31,7 @@ let value: Active = {
     },
     rce: {
       active: false,
-      action: "deny",
+      action: "log",
     },
     php: {
       active: false,
@@ -39,7 +39,7 @@ let value: Active = {
     },
     gen: {
       active: false,
-      action: "deny",
+      action: "log",
     },
     xss: {
       active: false,
@@ -67,8 +67,8 @@ let value: Active = {
         {
           conditions: [
             {
-              type: "target_path",
-              op: "neq",
+              type: "geo_city",
+              op: "re",
             },
           ],
         },
@@ -79,9 +79,9 @@ let value: Active = {
   ips: [
     {
       id: "<id>",
-      hostname: "tired-tomatillo.com",
-      ip: "6cdb:2bdf:cffe:bad0:22a7:ed8b:eecd:1ebb",
-      action: "deny",
+      hostname: "innocent-discourse.biz",
+      ip: "d90f:f40b:eec6:7da2:562a:ee10:67bf:8ffa",
+      action: "challenge",
     },
   ],
   changes: [

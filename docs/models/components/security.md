@@ -5,13 +5,11 @@
 ```typescript
 import { Security } from "@vercel/sdk/models/components/security.js";
 
-let value: Security = {
-  bearerToken: "<value>",
-};
+let value: Security = {};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `bearerToken`      | *string*           | :heavy_check_mark: | N/A                |
+| `bearerToken`      | *string*           | :heavy_minus_sign: | N/A                |

@@ -7,19 +7,19 @@ import { Repos } from "@vercel/sdk/models/operations/searchrepo.js";
 
 let value: Repos = {
   id: "<id>",
-  provider: "github",
-  url: "https://whopping-scaffold.com/",
+  provider: "bitbucket",
+  url: "https://waterlogged-beret.info/",
   name: "<value>",
   slug: "<value>",
   namespace: "<value>",
   owner: {
-    id: 4137.68,
+    id: "<id>",
     name: "<value>",
   },
   ownerType: "user",
   private: false,
   defaultBranch: "<value>",
-  updatedAt: 1620.73,
+  updatedAt: 5537.66,
 };
 ```
 

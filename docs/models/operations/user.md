@@ -9,8 +9,8 @@
 const value: components.AuthUser = {
   createdAt: 1630748523395,
   softBlock: {
-    blockedAt: 6726.27,
-    reason: "FAIR_USE_LIMITS_EXCEEDED",
+    blockedAt: 7674.66,
+    reason: "ENTERPRISE_TRIAL_ENDED",
   },
   billing: {},
   resourceConfig: {},

@@ -9,7 +9,7 @@ let value: Backup = {
   digest: "<value>",
   items: {},
   slug: "<value>",
-  updatedAt: 9605.22,
+  updatedAt: 5283.15,
 };
 ```
 

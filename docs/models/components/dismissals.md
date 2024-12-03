@@ -7,7 +7,7 @@ import { Dismissals } from "@vercel/sdk/models/components/authuser.js";
 
 let value: Dismissals = {
   scopeId: "<id>",
-  createdAt: 5929.46,
+  createdAt: 9999.64,
 };
 ```
 

@@ -16,7 +16,7 @@ const value: operations.CancelDeploymentMissing1 = {
 
 ```typescript
 const value: operations.CancelDeploymentMissing2 = {
-  type: "header",
+  type: "cookie",
   key: "<key>",
 };
 ```

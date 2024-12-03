@@ -9,13 +9,13 @@ let value: Records = {
   id: "<id>",
   slug: "<value>",
   name: "<value>",
-  type: "SRV",
+  type: "HTTPS",
   value: "<value>",
   creator: "<value>",
-  created: 3172.60,
-  updated: 9792.70,
-  createdAt: 6496.56,
-  updatedAt: 8809.98,
+  created: 7416.03,
+  updated: 7705.44,
+  createdAt: 9082.48,
+  updatedAt: 1503.50,
 };
 ```
 

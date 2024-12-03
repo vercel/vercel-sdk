@@ -7,8 +7,8 @@ import { PutFirewallConfigIps } from "@vercel/sdk/models/operations/putfirewallc
 
 let value: PutFirewallConfigIps = {
   id: "<id>",
-  hostname: "overdue-exploration.biz",
-  ip: "81.186.145.201",
+  hostname: "tender-hawk.info",
+  ip: "e1b7:f0df:6fce:0c6c:db2b:dfcf:feba:d022",
   action: "bypass",
 };
 ```

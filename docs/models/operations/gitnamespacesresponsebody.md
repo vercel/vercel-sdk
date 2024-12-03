@@ -8,7 +8,7 @@ import { GitNamespacesResponseBody } from "@vercel/sdk/models/operations/gitname
 let value: GitNamespacesResponseBody = {
   provider: "<value>",
   slug: "<value>",
-  id: 6090.94,
+  id: 1263.68,
   ownerType: "<value>",
 };
 ```

@@ -10,6 +10,7 @@
 * [createProject](#createproject) - Create a new project
 * [updateProject](#updateproject) - Update an existing project
 * [deleteProject](#deleteproject) - Delete a Project
+* [getProjectDomains](#getprojectdomains) - Retrieve project domains by project by id or name
 * [getProjectDomain](#getprojectdomain) - Get a project domain
 * [updateProjectDomain](#updateprojectdomain) - Update a project domain
 * [removeProjectDomain](#removeprojectdomain) - Remove a domain from a project
@@ -413,6 +414,90 @@ run();
 ### Response
 
 **Promise\<void\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getProjectDomains
+
+Retrieve the domains associated with a given project by passing either the project `id` or `name` in the URL.
+
+### Example Usage
+
+```typescript
+import { Vercel } from "@vercel/sdk";
+
+const vercel = new Vercel({
+  bearerToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await vercel.projects.getProjectDomains({
+    idOrName: "<value>",
+    redirect: "example.com",
+    limit: 20,
+    since: 1609499532000,
+    until: 1612264332000,
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { VercelCore } from "@vercel/sdk/core.js";
+import { projectsGetProjectDomains } from "@vercel/sdk/funcs/projectsGetProjectDomains.js";
+
+// Use `VercelCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const vercel = new VercelCore({
+  bearerToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await projectsGetProjectDomains(vercel, {
+    idOrName: "<value>",
+    redirect: "example.com",
+    limit: 20,
+    since: 1609499532000,
+    until: 1612264332000,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetProjectDomainsRequest](../../models/operations/getprojectdomainsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetProjectDomainsResponseBody](../../models/operations/getprojectdomainsresponsebody.md)\>**
 
 ### Errors
 

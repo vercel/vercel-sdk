@@ -6,9 +6,9 @@
 import { CreateWebhookRequestBody } from "@vercel/sdk/models/operations/createwebhook.js";
 
 let value: CreateWebhookRequestBody = {
-  url: "https://rosy-validity.net/",
+  url: "https://wide-seagull.net/",
   events: [
-    "edge-config.items.updated",
+    "observability.anomaly",
   ],
 };
 ```

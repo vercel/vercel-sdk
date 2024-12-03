@@ -5,7 +5,7 @@
 ```typescript
 import { RequestBodyOp } from "@vercel/sdk/models/operations/updatefirewallconfig.js";
 
-let value: RequestBodyOp = "gte";
+let value: RequestBodyOp = "pre";
 ```
 
 ## Values

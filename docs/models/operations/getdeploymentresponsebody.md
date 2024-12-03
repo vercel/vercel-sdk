@@ -18,13 +18,13 @@ const value: operations.GetDeploymentResponseBody1 = {
   env: [
     "<value>",
   ],
-  inspectorUrl: "https://winding-freezing.net",
+  inspectorUrl: "https://pastel-cardboard.info",
   isInConcurrentBuildsQueue: false,
   isInSystemBuildsQueue: false,
   projectSettings: {},
   aliasAssigned: false,
-  bootedAt: 5552.94,
-  buildingAt: 3956.34,
+  bootedAt: 7815.82,
+  buildingAt: 6937.47,
   buildSkipped: false,
   creator: {
     uid: "<id>",
@@ -33,24 +33,26 @@ const value: operations.GetDeploymentResponseBody1 = {
   status: "CANCELED",
   id: "<id>",
   type: "LAMBDAS",
-  createdAt: 5983.16,
+  createdAt: 2593.77,
   name: "<value>",
-  readyState: "QUEUED",
+  readyState: "READY",
   meta: {
     "key": "<value>",
   },
   regions: [
     "<value>",
   ],
-  url: "https://specific-popularity.org/",
-  version: 2593.77,
+  url: "https://only-valuable.org/",
+  version: 8615.91,
   projectId: "<id>",
-  plan: "hobby",
+  plan: "enterprise",
   createdIn: "<value>",
   ownerId: "<id>",
   routes: [
     {
-      handle: "miss",
+      src: "<value>",
+      continue: false,
+      middleware: 6386.09,
     },
   ],
 };
@@ -61,27 +63,27 @@ const value: operations.GetDeploymentResponseBody1 = {
 ```typescript
 const value: operations.GetDeploymentResponseBody2 = {
   aliasAssigned: false,
-  bootedAt: 9550.47,
-  buildingAt: 9792.86,
+  bootedAt: 4299.97,
+  buildingAt: 357.43,
   buildSkipped: false,
   creator: {
     uid: "<id>",
   },
   public: false,
-  status: "CANCELED",
+  status: "READY",
   id: "<id>",
   type: "LAMBDAS",
-  createdAt: 3590.97,
+  createdAt: 5021.06,
   name: "<value>",
-  readyState: "CANCELED",
+  readyState: "READY",
   meta: {
     "key": "<value>",
   },
   regions: [
     "<value>",
   ],
-  url: "https://internal-amnesty.net",
-  version: 5021.06,
+  url: "https://staid-eternity.net",
+  version: 5488.46,
 };
 ```
 

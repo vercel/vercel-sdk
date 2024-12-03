@@ -5,7 +5,7 @@
 ```typescript
 import { GetFirewallConfigType } from "@vercel/sdk/models/operations/getfirewallconfig.js";
 
-let value: GetFirewallConfigType = "geo_country_region";
+let value: GetFirewallConfigType = "header";
 ```
 
 ## Values

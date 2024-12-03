@@ -7,7 +7,7 @@ import { ResponseBodyQuote } from "@vercel/sdk/models/operations/getconfiguratio
 
 let value: ResponseBodyQuote = {
   line: "<value>",
-  amount: "797.53",
+  amount: "818.10",
 };
 ```
 

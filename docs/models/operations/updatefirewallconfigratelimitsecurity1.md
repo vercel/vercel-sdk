@@ -7,8 +7,8 @@ import { UpdateFirewallConfigRateLimitSecurity1 } from "@vercel/sdk/models/opera
 
 let value: UpdateFirewallConfigRateLimitSecurity1 = {
   algo: "token_bucket",
-  window: 7771.93,
-  limit: 1231.80,
+  window: 2641.26,
+  limit: 4724.29,
   keys: [
     "<value>",
   ],

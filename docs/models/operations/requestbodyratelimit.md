@@ -8,8 +8,8 @@
 ```typescript
 const value: operations.UpdateFirewallConfigRateLimit1 = {
   algo: "token_bucket",
-  window: 6091.61,
-  limit: 9615.75,
+  window: 302.88,
+  limit: 4069.46,
   keys: [
     "<value>",
   ],

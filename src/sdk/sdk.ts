@@ -15,6 +15,7 @@ import { Domains } from "./domains.js";
 import { EdgeConfig } from "./edgeconfig.js";
 import { Integrations } from "./integrations.js";
 import { LogDrains } from "./logdrains.js";
+import { Marketplace } from "./marketplace.js";
 import { ProjectMembers } from "./projectmembers.js";
 import { Projects } from "./projects.js";
 import { Security } from "./security.js";
@@ -68,9 +69,19 @@ export class Vercel extends ClientSDK {
     return (this._user ??= new User(this._options));
   }
 
+  private _marketplace?: Marketplace;
+  get marketplace(): Marketplace {
+    return (this._marketplace ??= new Marketplace(this._options));
+  }
+
   private _integrations?: Integrations;
   get integrations(): Integrations {
     return (this._integrations ??= new Integrations(this._options));
+  }
+
+  private _authentication?: Authentication;
+  get authentication(): Authentication {
+    return (this._authentication ??= new Authentication(this._options));
   }
 
   private _logDrains?: LogDrains;
@@ -91,11 +102,6 @@ export class Vercel extends ClientSDK {
   private _teams?: Teams;
   get teams(): Teams {
     return (this._teams ??= new Teams(this._options));
-  }
-
-  private _authentication?: Authentication;
-  get authentication(): Authentication {
-    return (this._authentication ??= new Authentication(this._options));
   }
 
   private _webhooks?: Webhooks;

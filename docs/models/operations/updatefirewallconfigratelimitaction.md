@@ -6,7 +6,7 @@
 ### `operations.UpdateFirewallConfigAction1`
 
 ```typescript
-const value: operations.UpdateFirewallConfigAction1 = "deny";
+const value: operations.UpdateFirewallConfigAction1 = "log";
 ```
 
 ### `any`

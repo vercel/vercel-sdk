@@ -1,15 +1,15 @@
 lockVersion: 2.0.0
 id: 2b328f77-299a-476f-8aa9-59080c9107fe
 management:
-  docChecksum: cab8d497813caf91acc2287c987f03b7
+  docChecksum: a5a99e306824d2c16bc508616034bf73
   docVersion: 0.0.1
   speakeasyVersion: 1.445.2
   generationVersion: 2.461.4
-  releaseVersion: 14.0.0-canary.7
-  configChecksum: 31b7bf5c1cf8212c4f29624507cc383a
-  repoURL: https://github.com/vercel/vercel-sdk.git
+  releaseVersion: 14.0.0-canary.9
+  configChecksum: b5f5a54ffe778cfe79054fa70dec07d6
+  repoURL: https://github.com/vercel/sdk.git
   repoSubDirectory: packages/sdk
-  installationURL: https://github.com/vercel/vercel-sdk
+  installationURL: https://github.com/vercel/sdk
   published: true
 features:
   typescript:
@@ -141,6 +141,9 @@ generatedFiles:
   - docs/models/operations/backup.md
   - docs/models/operations/backups.md
   - docs/models/operations/billing.md
+  - docs/models/operations/billing1.md
+  - docs/models/operations/billing2.md
+  - docs/models/operations/billingitems.md
   - docs/models/operations/billingplan.md
   - docs/models/operations/bitbucket.md
   - docs/models/operations/branchmatcher.md
@@ -250,6 +253,7 @@ generatedFiles:
   - docs/models/operations/conditiongroup.md
   - docs/models/operations/conditions.md
   - docs/models/operations/configuredby.md
+  - docs/models/operations/contact.md
   - docs/models/operations/contenthint.md
   - docs/models/operations/contenthint1.md
   - docs/models/operations/contenthint10.md
@@ -365,6 +369,10 @@ generatedFiles:
   - docs/models/operations/createedgeconfigtokenresponsebody.md
   - docs/models/operations/createedgeconfigtransfer.md
   - docs/models/operations/createedgeconfigtype.md
+  - docs/models/operations/createeventevent.md
+  - docs/models/operations/createeventeventtype.md
+  - docs/models/operations/createeventrequest.md
+  - docs/models/operations/createeventrequestbody.md
   - docs/models/operations/createlogdraincreatedfrom.md
   - docs/models/operations/createlogdraindeliveryformat.md
   - docs/models/operations/createlogdrainenvironments.md
@@ -610,6 +618,7 @@ generatedFiles:
   - docs/models/operations/createrecordresponsebody.md
   - docs/models/operations/createrecordresponsebody1.md
   - docs/models/operations/createrecordresponsebody2.md
+  - docs/models/operations/createteambilling.md
   - docs/models/operations/createteamrequestbody.md
   - docs/models/operations/createteamresponsebody.md
   - docs/models/operations/createwebhookevents.md
@@ -637,6 +646,7 @@ generatedFiles:
   - docs/models/operations/deleteconfigurationrequest.md
   - docs/models/operations/deletedeploymentrequest.md
   - docs/models/operations/deletedeploymentresponsebody.md
+  - docs/models/operations/deletedeploymentstate.md
   - docs/models/operations/deletedomainrequest.md
   - docs/models/operations/deletedomainresponsebody.md
   - docs/models/operations/deleteedgeconfigrequest.md
@@ -660,6 +670,7 @@ generatedFiles:
   - docs/models/operations/details.md
   - docs/models/operations/direction.md
   - docs/models/operations/disabledreason.md
+  - docs/models/operations/discounts.md
   - docs/models/operations/domain.md
   - docs/models/operations/domains.md
   - docs/models/operations/downloadartifactrequest.md
@@ -718,7 +729,12 @@ generatedFiles:
   - docs/models/operations/erl.md
   - docs/models/operations/errort.md
   - docs/models/operations/event.md
+  - docs/models/operations/event1.md
+  - docs/models/operations/event2.md
   - docs/models/operations/events.md
+  - docs/models/operations/eventtype.md
+  - docs/models/operations/exchangessotokenrequestbody.md
+  - docs/models/operations/exchangessotokenresponsebody.md
   - docs/models/operations/failed.md
   - docs/models/operations/fcp.md
   - docs/models/operations/fifteen.md
@@ -851,6 +867,8 @@ generatedFiles:
   - docs/models/operations/functions.md
   - docs/models/operations/gen.md
   - docs/models/operations/generate.md
+  - docs/models/operations/getaccountinforequest.md
+  - docs/models/operations/getaccountinforesponsebody.md
   - docs/models/operations/getaliascreator.md
   - docs/models/operations/getaliasprotectionbypass.md
   - docs/models/operations/getaliasprotectionbypassaliasesresponsescope.md
@@ -1148,8 +1166,20 @@ generatedFiles:
   - docs/models/operations/getintegrationlogdrainsrequest.md
   - docs/models/operations/getintegrationlogdrainsresponsebody.md
   - docs/models/operations/getintegrationlogdrainssources.md
+  - docs/models/operations/getinvoicediscounts.md
+  - docs/models/operations/getinvoiceitems.md
+  - docs/models/operations/getinvoiceperiod.md
+  - docs/models/operations/getinvoicerequest.md
+  - docs/models/operations/getinvoiceresponsebody.md
+  - docs/models/operations/getmemberrequest.md
+  - docs/models/operations/getmemberresponsebody.md
+  - docs/models/operations/getmemberrole.md
   - docs/models/operations/getprojectdomainrequest.md
   - docs/models/operations/getprojectdomainresponsebody.md
+  - docs/models/operations/getprojectdomainsdomains.md
+  - docs/models/operations/getprojectdomainsrequest.md
+  - docs/models/operations/getprojectdomainsresponsebody.md
+  - docs/models/operations/getprojectdomainsverification.md
   - docs/models/operations/getprojectenvcontenthint1.md
   - docs/models/operations/getprojectenvcontenthint10.md
   - docs/models/operations/getprojectenvcontenthint11.md
@@ -1596,6 +1626,7 @@ generatedFiles:
   - docs/models/operations/op.md
   - docs/models/operations/options.md
   - docs/models/operations/optionsallowlist.md
+  - docs/models/operations/order.md
   - docs/models/operations/origin.md
   - docs/models/operations/output.md
   - docs/models/operations/owasp.md
@@ -1617,9 +1648,11 @@ generatedFiles:
   - docs/models/operations/patchteamrequest.md
   - docs/models/operations/patchteamrequestbody.md
   - docs/models/operations/paths.md
+  - docs/models/operations/period.md
   - docs/models/operations/permissions.md
   - docs/models/operations/php.md
   - docs/models/operations/plan.md
+  - docs/models/operations/production.md
   - docs/models/operations/project.md
   - docs/models/operations/projectid.md
   - docs/models/operations/projects.md
@@ -1667,6 +1700,7 @@ generatedFiles:
   - docs/models/operations/putfirewallconfigsecurityrequestrequestbodycrsaction.md
   - docs/models/operations/putfirewallconfigsecurityrequestrequestbodycrsgenaction.md
   - docs/models/operations/putfirewallconfigsecurityrequestrequestbodycrsjavaaction.md
+  - docs/models/operations/putfirewallconfigsecurityrequestrequestbodycrsphpaction.md
   - docs/models/operations/putfirewallconfigsecurityrequestrequestbodycrssfaction.md
   - docs/models/operations/putfirewallconfigsecurityrequestrequestbodycrssqliaction.md
   - docs/models/operations/putfirewallconfigsecurityrequestrequestbodycrsxssaction.md
@@ -1698,6 +1732,7 @@ generatedFiles:
   - docs/models/operations/putfirewallconfigxss.md
   - docs/models/operations/queryparamprovider.md
   - docs/models/operations/queryparamrole.md
+  - docs/models/operations/queryparamtarget.md
   - docs/models/operations/queryparamtype.md
   - docs/models/operations/quote.md
   - docs/models/operations/ratelimit.md
@@ -1718,6 +1753,7 @@ generatedFiles:
   - docs/models/operations/recordtype.md
   - docs/models/operations/redirect.md
   - docs/models/operations/redirect1.md
+  - docs/models/operations/redirects.md
   - docs/models/operations/redirectstatuscode.md
   - docs/models/operations/remotecaching.md
   - docs/models/operations/removecertrequest.md
@@ -1947,6 +1983,7 @@ generatedFiles:
   - docs/models/operations/responsebodytype.md
   - docs/models/operations/responsebodyuser.md
   - docs/models/operations/responsebodywebanalytics.md
+  - docs/models/operations/result.md
   - docs/models/operations/revoke.md
   - docs/models/operations/rfi.md
   - docs/models/operations/role.md
@@ -1972,6 +2009,7 @@ generatedFiles:
   - docs/models/operations/searchreporesponsebody2.md
   - docs/models/operations/searchreporesponsebodyid.md
   - docs/models/operations/searchreporesponsebodyprovider.md
+  - docs/models/operations/secrets.md
   - docs/models/operations/security.md
   - docs/models/operations/servicetype.md
   - docs/models/operations/seven.md
@@ -1993,6 +2031,15 @@ generatedFiles:
   - docs/models/operations/statusresponsebody.md
   - docs/models/operations/statusstatus.md
   - docs/models/operations/strict.md
+  - docs/models/operations/submitbillingdatarequest.md
+  - docs/models/operations/submitbillingdatarequestbody.md
+  - docs/models/operations/submitbillingdatatype.md
+  - docs/models/operations/submitinvoicediscounts.md
+  - docs/models/operations/submitinvoiceitems.md
+  - docs/models/operations/submitinvoiceperiod.md
+  - docs/models/operations/submitinvoicerequest.md
+  - docs/models/operations/submitinvoicerequestbody.md
+  - docs/models/operations/submitinvoiceresponsebody.md
   - docs/models/operations/target.md
   - docs/models/operations/target1.md
   - docs/models/operations/target2.md
@@ -2002,6 +2049,7 @@ generatedFiles:
   - docs/models/operations/teamrole.md
   - docs/models/operations/teams.md
   - docs/models/operations/ten.md
+  - docs/models/operations/test.md
   - docs/models/operations/thirteen.md
   - docs/models/operations/three.md
   - docs/models/operations/tier.md
@@ -2111,6 +2159,8 @@ generatedFiles:
   - docs/models/operations/updatefirewallconfigrequestbodytype.md
   - docs/models/operations/updatefirewallconfigrequestbodyvalue.md
   - docs/models/operations/updatefirewallconfigresponsebody.md
+  - docs/models/operations/updateinvoicerequest.md
+  - docs/models/operations/updateinvoicerequestbody.md
   - docs/models/operations/updateprojectaction.md
   - docs/models/operations/updateprojectalgo.md
   - docs/models/operations/updateprojectaliasassigned.md
@@ -2336,6 +2386,8 @@ generatedFiles:
   - docs/models/operations/updaterecordrequestbody.md
   - docs/models/operations/updaterecordresponsebody.md
   - docs/models/operations/updaterecordtype.md
+  - docs/models/operations/updateresourcesecretsrequest.md
+  - docs/models/operations/updateresourcesecretsrequestbody.md
   - docs/models/operations/updateteammemberjoinedfrom.md
   - docs/models/operations/updateteammemberprojects.md
   - docs/models/operations/updateteammemberrequest.md
@@ -2352,9 +2404,11 @@ generatedFiles:
   - docs/models/operations/uploadfileresponsebody.md
   - docs/models/operations/uploadfileresponsebody1.md
   - docs/models/operations/uploadfileresponsebody2.md
+  - docs/models/operations/usage.md
   - docs/models/operations/user.md
   - docs/models/operations/utm.md
   - docs/models/operations/verification.md
+  - docs/models/operations/verified.md
   - docs/models/operations/verifiedbotsbypass.md
   - docs/models/operations/verifyprojectdomainrequest.md
   - docs/models/operations/verifyprojectdomainresponsebody.md
@@ -2375,6 +2429,7 @@ generatedFiles:
   - docs/sdks/edgeconfig/README.md
   - docs/sdks/integrations/README.md
   - docs/sdks/logdrains/README.md
+  - docs/sdks/marketplace/README.md
   - docs/sdks/projectmembers/README.md
   - docs/sdks/projects/README.md
   - docs/sdks/security/README.md
@@ -2409,6 +2464,7 @@ generatedFiles:
   - src/funcs/artifactsUploadArtifact.ts
   - src/funcs/authenticationCreateAuthToken.ts
   - src/funcs/authenticationDeleteAuthToken.ts
+  - src/funcs/authenticationExchangeSsoToken.ts
   - src/funcs/authenticationGetAuthToken.ts
   - src/funcs/authenticationListAuthTokens.ts
   - src/funcs/certsGetCertById.ts
@@ -2471,6 +2527,15 @@ generatedFiles:
   - src/funcs/logDrainsGetAllLogDrains.ts
   - src/funcs/logDrainsGetConfigurableLogDrain.ts
   - src/funcs/logDrainsGetIntegrationLogDrains.ts
+  - src/funcs/marketplaceCreateEvent.ts
+  - src/funcs/marketplaceExchangeSsoToken.ts
+  - src/funcs/marketplaceGetAccountInfo.ts
+  - src/funcs/marketplaceGetInvoice.ts
+  - src/funcs/marketplaceGetMember.ts
+  - src/funcs/marketplaceSubmitBillingData.ts
+  - src/funcs/marketplaceSubmitInvoice.ts
+  - src/funcs/marketplaceUpdateInvoice.ts
+  - src/funcs/marketplaceUpdateResourceSecrets.ts
   - src/funcs/projectMembersAddProjectMember.ts
   - src/funcs/projectMembersGetProjectMembers.ts
   - src/funcs/projectMembersRemoveProjectMember.ts
@@ -2481,6 +2546,7 @@ generatedFiles:
   - src/funcs/projectsEditProjectEnv.ts
   - src/funcs/projectsFilterProjectEnvs.ts
   - src/funcs/projectsGetProjectDomain.ts
+  - src/funcs/projectsGetProjectDomains.ts
   - src/funcs/projectsGetProjectEnv.ts
   - src/funcs/projectsGetProjects.ts
   - src/funcs/projectsListPromoteAliases.ts
@@ -2567,6 +2633,7 @@ generatedFiles:
   - src/models/operations/createdeployment.ts
   - src/models/operations/createedgeconfig.ts
   - src/models/operations/createedgeconfigtoken.ts
+  - src/models/operations/createevent.ts
   - src/models/operations/createlogdrain.ts
   - src/models/operations/createortransferdomain.ts
   - src/models/operations/createproject.ts
@@ -2592,7 +2659,9 @@ generatedFiles:
   - src/models/operations/deletewebhook.ts
   - src/models/operations/downloadartifact.ts
   - src/models/operations/editprojectenv.ts
+  - src/models/operations/exchangessotoken.ts
   - src/models/operations/filterprojectenvs.ts
+  - src/models/operations/getaccountinfo.ts
   - src/models/operations/getalias.ts
   - src/models/operations/getallchecks.ts
   - src/models/operations/getalllogdrains.ts
@@ -2622,7 +2691,10 @@ generatedFiles:
   - src/models/operations/getedgeconfigtokens.ts
   - src/models/operations/getfirewallconfig.ts
   - src/models/operations/getintegrationlogdrains.ts
+  - src/models/operations/getinvoice.ts
+  - src/models/operations/getmember.ts
   - src/models/operations/getprojectdomain.ts
+  - src/models/operations/getprojectdomains.ts
   - src/models/operations/getprojectenv.ts
   - src/models/operations/getprojectmembers.ts
   - src/models/operations/getprojects.ts
@@ -2665,17 +2737,21 @@ generatedFiles:
   - src/models/operations/rerequestcheck.ts
   - src/models/operations/searchrepo.ts
   - src/models/operations/status.ts
+  - src/models/operations/submitbillingdata.ts
+  - src/models/operations/submitinvoice.ts
   - src/models/operations/updateaccessgroup.ts
   - src/models/operations/updateaccessgroupproject.ts
   - src/models/operations/updateattackchallengemode.ts
   - src/models/operations/updatecheck.ts
   - src/models/operations/updateedgeconfig.ts
   - src/models/operations/updatefirewallconfig.ts
+  - src/models/operations/updateinvoice.ts
   - src/models/operations/updateproject.ts
   - src/models/operations/updateprojectdatacache.ts
   - src/models/operations/updateprojectdomain.ts
   - src/models/operations/updateprojectprotectionbypass.ts
   - src/models/operations/updaterecord.ts
+  - src/models/operations/updateresourcesecrets.ts
   - src/models/operations/updateteammember.ts
   - src/models/operations/uploadartifact.ts
   - src/models/operations/uploadcert.ts
@@ -2693,6 +2769,7 @@ generatedFiles:
   - src/sdk/edgeconfig.ts
   - src/sdk/integrations.ts
   - src/sdk/logdrains.ts
+  - src/sdk/marketplace.ts
   - src/sdk/projectmembers.ts
   - src/sdk/projects.ts
   - src/sdk/sdk.ts
@@ -3970,3 +4047,63 @@ examples:
           accessGroupIdOrName: "<value>"
           projectId: "<id>"
         query: {}
+  get-account-info:
+    speakeasy-default-get-account-info:
+      parameters:
+        path:
+          integrationConfigurationId: "<id>"
+      responses:
+        "200":
+          application/json: {"url": "https://friendly-pleasure.info", "contact": {"email": "Horace_Bernhard@yahoo.com"}}
+  get-member:
+    speakeasy-default-get-member:
+      parameters:
+        path:
+          integrationConfigurationId: "<id>"
+          memberId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "role": "ADMIN"}
+  create-event:
+    speakeasy-default-create-event:
+      parameters:
+        path:
+          integrationConfigurationId: "<id>"
+  submit-billing-data:
+    speakeasy-default-submit-billing-data:
+      parameters:
+        path:
+          integrationConfigurationId: "<id>"
+  submit-invoice:
+    speakeasy-default-submit-invoice:
+      parameters:
+        path:
+          integrationConfigurationId: "<id>"
+  get-invoice:
+    speakeasy-default-get-invoice:
+      parameters:
+        path:
+          integrationConfigurationId: "<id>"
+          invoiceId: "<id>"
+      responses:
+        "200":
+          application/json: {"invoiceId": "<id>", "invoiceDate": "<value>", "period": {"start": "<value>", "end": "<value>"}, "items": [{"billingPlanId": "<id>", "name": "<value>", "price": "317.28", "quantity": "1022.19", "units": "<value>", "total": "<value>"}], "total": "<value>", "created": "<value>", "updated": "<value>", "state": "scheduled", "test": false}
+  update-invoice:
+    speakeasy-default-update-invoice:
+      parameters:
+        path:
+          integrationConfigurationId: "<id>"
+          invoiceId: "<id>"
+  update-resource-secrets:
+    speakeasy-default-update-resource-secrets:
+      parameters:
+        path:
+          integrationConfigurationId: "<id>"
+          integrationProductIdOrSlug: "<value>"
+          resourceId: "<id>"
+  exchange-sso-token:
+    speakeasy-default-exchange-sso-token:
+      responses:
+        "200":
+          application/json: {"id_token": "<value>", "access_token": "<value>", "token_type": "<value>"}
+generatedTests: {}

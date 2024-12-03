@@ -5,7 +5,7 @@
 ```typescript
 import { Id } from "@vercel/sdk/models/operations/updatefirewallconfig.js";
 
-let value: Id = "sqli";
+let value: Id = "rfi";
 ```
 
 ## Values

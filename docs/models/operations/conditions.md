@@ -6,8 +6,8 @@
 import { Conditions } from "@vercel/sdk/models/operations/putfirewallconfig.js";
 
 let value: Conditions = {
-  type: "geo_as_number",
-  op: "ninc",
+  type: "geo_country",
+  op: "inc",
 };
 ```
 

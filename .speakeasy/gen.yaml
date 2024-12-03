@@ -16,7 +16,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 14.0.0-canary.7
+  version: 14.0.0-canary.9
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -30,6 +30,7 @@ typescript:
     - --filter
     - '@vercel/sdk'
   defaultErrorName: SDKError
+  enableReactQuery: false
   enumFormat: union
   flattenGlobalSecurity: true
   flatteningOrder: body-first

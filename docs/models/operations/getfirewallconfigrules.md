@@ -13,8 +13,8 @@ let value: GetFirewallConfigRules = {
     {
       conditions: [
         {
-          type: "geo_country",
-          op: "inc",
+          type: "target_path",
+          op: "ex",
         },
       ],
     },

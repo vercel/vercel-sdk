@@ -5592,6 +5592,12 @@
                           },
                           "type": "array"
                         },
+                        "observabilityConfiguration": {
+                          "items": {
+                            "$ref": "#/components/schemas/ACLAction"
+                          },
+                          "type": "array"
+                        },
                         "openTelemetryEndpoint": {
                           "items": {
                             "$ref": "#/components/schemas/ACLAction"
@@ -6031,6 +6037,12 @@
                           "type": "array"
                         },
                         "job": {
+                          "items": {
+                            "$ref": "#/components/schemas/ACLAction"
+                          },
+                          "type": "array"
+                        },
+                        "observabilityData": {
                           "items": {
                             "$ref": "#/components/schemas/ACLAction"
                           },
@@ -17905,6 +17917,1139 @@
         ]
       }
     },
+    "/v1/installations/{integrationConfigurationId}/account": {
+      "get": {
+        "description": "Fetches the best account or user’s contact info",
+        "operationId": "get-account-info",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "summary": "Get Account Information",
+        "tags": [
+          "marketplace"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "contact": {
+                      "nullable": true,
+                      "properties": {
+                        "email": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "email"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "contact"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {},
+          "403": {
+            "description": "You do not have permission to access this resource."
+          }
+        },
+        "parameters": [
+          {
+            "name": "integrationConfigurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/installations/{integrationConfigurationId}/member/{memberId}": {
+      "get": {
+        "description": "Returns the member role and other information for a given member ID (\"user_id\" claim in the SSO OIDC token).",
+        "operationId": "get-member",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "summary": "Get Member Information",
+        "tags": [
+          "marketplace"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "ADMIN",
+                        "USER"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "role"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {},
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {}
+        },
+        "parameters": [
+          {
+            "name": "integrationConfigurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/installations/{integrationConfigurationId}/events": {
+      "post": {
+        "description": "Partner notifies Vercel of any changes made to an Installation or a Resource. Vercel is expected to use `list-resources` and other read APIs to get the new state. \u003cbr/\u003e \u003cbr/\u003e `resource.updated` event should be dispatched when any state of a resource linked to Vercel is modified by the partner. \u003cbr/\u003e \u003cbr/\u003e Use cases: \u003cbr/\u003e \u003cbr/\u003e - The user renames a database in the partner’s application. The partner should dispatch a `resource.updated` event to notify Vercel to update the resource in Vercel’s datastores. \u003cbr/\u003e",
+        "operationId": "create-event",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "summary": "Create Event",
+        "tags": [
+          "marketplace"
+        ],
+        "responses": {
+          "201": {},
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {},
+          "403": {
+            "description": "You do not have permission to access this resource."
+          }
+        },
+        "parameters": [
+          {
+            "name": "integrationConfigurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event"
+                ],
+                "properties": {
+                  "event": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "installation.updated"
+                            ]
+                          },
+                          "billingPlanId": {
+                            "type": "string",
+                            "description": "The installation-level billing plan ID"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "resource.updated"
+                            ]
+                          },
+                          "productId": {
+                            "type": "string",
+                            "description": "Partner-provided product slug or id"
+                          },
+                          "resourceId": {
+                            "type": "string",
+                            "description": "Partner provided resource ID"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "productId",
+                          "resourceId"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/installations/{integrationConfigurationId}/billing": {
+      "post": {
+        "description": "Sends the billing and usage data. The partner should do this at least once a day and ideally once per hour.",
+        "operationId": "submit-billing-data",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "summary": "Submit Billing Data",
+        "tags": [
+          "marketplace"
+        ],
+        "responses": {
+          "201": {},
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {},
+          "403": {
+            "description": "You do not have permission to access this resource."
+          }
+        },
+        "parameters": [
+          {
+            "name": "integrationConfigurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "timestamp": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "eod": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "period": {
+                    "type": "object",
+                    "description": "Period for the billing cycle.",
+                    "properties": {
+                      "start": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "end": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    },
+                    "required": [
+                      "start",
+                      "end"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "billing": {
+                    "description": "Billing data (interim invoicing data).",
+                    "oneOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "billingPlanId": {
+                              "type": "string",
+                              "description": "Partner's billing plan ID."
+                            },
+                            "resourceId": {
+                              "type": "string",
+                              "description": "Partner's resource ID."
+                            },
+                            "start": {
+                              "description": "Start and end are only needed if different from the period's start/end.",
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "end": {
+                              "description": "Start and end are only needed if different from the period's start/end.",
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "Line item name."
+                            },
+                            "details": {
+                              "type": "string",
+                              "description": "Line item details."
+                            },
+                            "price": {
+                              "description": "Price per unit.",
+                              "type": "string",
+                              "pattern": "^[0-9]+(\\\\.[0-9]+)?$"
+                            },
+                            "quantity": {
+                              "type": "number",
+                              "description": "Quantity of units."
+                            },
+                            "units": {
+                              "type": "string",
+                              "description": "Units of the quantity."
+                            },
+                            "total": {
+                              "description": "Total amount.",
+                              "type": "string",
+                              "pattern": "^[0-9]+(\\\\.[0-9]+)?$"
+                            }
+                          },
+                          "required": [
+                            "billingPlanId",
+                            "name",
+                            "price",
+                            "quantity",
+                            "units",
+                            "total"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "billingPlanId": {
+                                  "type": "string",
+                                  "description": "Partner's billing plan ID."
+                                },
+                                "resourceId": {
+                                  "type": "string",
+                                  "description": "Partner's resource ID."
+                                },
+                                "start": {
+                                  "description": "Start and end are only needed if different from the period's start/end.",
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "end": {
+                                  "description": "Start and end are only needed if different from the period's start/end.",
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "description": "Line item name."
+                                },
+                                "details": {
+                                  "type": "string",
+                                  "description": "Line item details."
+                                },
+                                "price": {
+                                  "description": "Price per unit.",
+                                  "type": "string",
+                                  "pattern": "^[0-9]+(\\\\.[0-9]+)?$"
+                                },
+                                "quantity": {
+                                  "type": "number",
+                                  "description": "Quantity of units."
+                                },
+                                "units": {
+                                  "type": "string",
+                                  "description": "Units of the quantity."
+                                },
+                                "total": {
+                                  "description": "Total amount.",
+                                  "type": "string",
+                                  "pattern": "^[0-9]+(\\\\.[0-9]+)?$"
+                                }
+                              },
+                              "required": [
+                                "billingPlanId",
+                                "name",
+                                "price",
+                                "quantity",
+                                "units",
+                                "total"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "discounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "billingPlanId": {
+                                  "type": "string",
+                                  "description": "Partner's billing plan ID."
+                                },
+                                "resourceId": {
+                                  "type": "string",
+                                  "description": "Partner's resource ID."
+                                },
+                                "start": {
+                                  "description": "Start and end are only needed if different from the period's start/end.",
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "end": {
+                                  "description": "Start and end are only needed if different from the period's start/end.",
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "description": "Discount name."
+                                },
+                                "details": {
+                                  "type": "string",
+                                  "description": "Discount details."
+                                },
+                                "amount": {
+                                  "description": "Discount amount.",
+                                  "type": "string",
+                                  "pattern": "^[0-9]+(\\\\.[0-9]+)?$"
+                                }
+                              },
+                              "required": [
+                                "billingPlanId",
+                                "name",
+                                "amount"
+                              ],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": [
+                          "items"
+                        ]
+                      }
+                    ]
+                  },
+                  "usage": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "resourceId": {
+                          "type": "string",
+                          "description": "Partner's resource ID."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Metric name."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "\\n              Type of the metric.\\n              - total: measured total value, such as Database size\\n              - interval: usage during the period, such as i/o or number of queries.\\n              - rate: rate of usage, such as queries per second.\\n            ",
+                          "enum": [
+                            "total",
+                            "interval",
+                            "rate"
+                          ]
+                        },
+                        "units": {
+                          "type": "string",
+                          "description": "Metric units. Example: \\\"GB\\\""
+                        },
+                        "dayValue": {
+                          "type": "number",
+                          "description": "Metric value for the day. Could be a final or an interim value for the day."
+                        },
+                        "periodValue": {
+                          "type": "number",
+                          "description": "Metric value for the billing period. Could be a final or an interim value for the period."
+                        },
+                        "planValue": {
+                          "type": "number",
+                          "description": "The limit value of the metric for a billing period, if a limit is defined by the plan."
+                        }
+                      },
+                      "required": [
+                        "resourceId",
+                        "name",
+                        "type",
+                        "units",
+                        "dayValue",
+                        "periodValue"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "timestamp",
+                  "eod",
+                  "period",
+                  "billing",
+                  "usage"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/installations/{integrationConfigurationId}/billing/invoices": {
+      "post": {
+        "description": "This endpoint allows the partner to submit an invoice to Vercel. The invoice is created in Vercel's billing system and sent to the customer. Depending on the type of billing plan, the invoice can be sent at a time of signup, at the start of the billing period, or at the end of the billing period.\u003cbr/\u003e \u003cbr/\u003e There are several limitations to the invoice submission:\u003cbr/\u003e \u003cbr/\u003e 1. A resource can only be billed once per the billing period and the billing plan.\u003cbr/\u003e 2. The billing plan used to bill the resource must have been active for this resource during the billing period.\u003cbr/\u003e 3. The billing plan used must be a subscription plan.\u003cbr/\u003e 4. The interim usage data must be sent hourly for all types of subscriptions. See [Send subscription billing and usage data](#send-subscription-billing-and-usage-data) API on how to send interim billing and usage data.\u003cbr/\u003e",
+        "operationId": "submit-invoice",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "summary": "Submit Invoice",
+        "tags": [
+          "marketplace"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "invoiceId": {
+                      "type": "string"
+                    },
+                    "test": {
+                      "type": "boolean"
+                    },
+                    "validationErrors": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {},
+          "403": {
+            "description": "You do not have permission to access this resource."
+          }
+        },
+        "parameters": [
+          {
+            "name": "integrationConfigurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "externalId": {
+                    "type": "string"
+                  },
+                  "invoiceDate": {
+                    "description": "Invoice date. Must be within the period's start and end.",
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "memo": {
+                    "type": "string",
+                    "description": "Additional memo for the invoice."
+                  },
+                  "period": {
+                    "type": "object",
+                    "description": "Subscription period for this billing cycle.",
+                    "properties": {
+                      "start": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "end": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    },
+                    "required": [
+                      "start",
+                      "end"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "resourceId": {
+                          "type": "string",
+                          "description": "Partner's resource ID."
+                        },
+                        "billingPlanId": {
+                          "type": "string",
+                          "description": "Partner's billing plan ID."
+                        },
+                        "start": {
+                          "description": "Start and end are only needed if different from the period's start/end.",
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "end": {
+                          "description": "Start and end are only needed if different from the period's start/end.",
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "string",
+                          "pattern": "^[0-9]+(\\\\.[0-9]+)?$"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        },
+                        "units": {
+                          "type": "string"
+                        },
+                        "total": {
+                          "type": "string",
+                          "pattern": "^[0-9]+(\\\\.[0-9]+)?$"
+                        }
+                      },
+                      "required": [
+                        "billingPlanId",
+                        "name",
+                        "price",
+                        "quantity",
+                        "units",
+                        "total"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "discounts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "resourceId": {
+                          "type": "string",
+                          "description": "Partner's resource ID."
+                        },
+                        "billingPlanId": {
+                          "type": "string",
+                          "description": "Partner's billing plan ID."
+                        },
+                        "start": {
+                          "description": "Start and end are only needed if different from the period's start/end.",
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "end": {
+                          "description": "Start and end are only needed if different from the period's start/end.",
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "type": "string"
+                        },
+                        "amount": {
+                          "type": "string",
+                          "pattern": "^[0-9]+(\\\\.[0-9]+)?$"
+                        }
+                      },
+                      "required": [
+                        "billingPlanId",
+                        "name",
+                        "amount"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "test": {
+                    "type": "object",
+                    "description": "Test mode",
+                    "properties": {
+                      "validate": {
+                        "type": "boolean"
+                      },
+                      "result": {
+                        "type": "string",
+                        "enum": [
+                          "paid",
+                          "notpaid"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "invoiceDate",
+                  "period",
+                  "items"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}": {
+      "get": {
+        "description": "Get Invoice details and status for a given invoice ID.\u003cbr/\u003e \u003cbr/\u003e See Billing Events with Webhooks documentation on how to receive invoice events. This endpoint is used to retrieve the invoice details.",
+        "operationId": "get-invoice",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "summary": "Get Invoice",
+        "tags": [
+          "marketplace"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "invoiceId": {
+                      "type": "string"
+                    },
+                    "externalId": {
+                      "type": "string"
+                    },
+                    "invoiceNumber": {
+                      "type": "string"
+                    },
+                    "invoiceDate": {
+                      "type": "string"
+                    },
+                    "period": {
+                      "properties": {
+                        "start": {
+                          "type": "string"
+                        },
+                        "end": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "start",
+                        "end"
+                      ],
+                      "type": "object"
+                    },
+                    "memo": {
+                      "type": "string"
+                    },
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "billingPlanId": {
+                            "type": "string"
+                          },
+                          "resourceId": {
+                            "type": "string"
+                          },
+                          "start": {
+                            "type": "string"
+                          },
+                          "end": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "details": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "string"
+                          },
+                          "quantity": {
+                            "type": "number"
+                          },
+                          "units": {
+                            "type": "string"
+                          },
+                          "total": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "billingPlanId",
+                          "name",
+                          "price",
+                          "quantity",
+                          "units",
+                          "total"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "discounts": {
+                      "items": {
+                        "properties": {
+                          "billingPlanId": {
+                            "type": "string"
+                          },
+                          "resourceId": {
+                            "type": "string"
+                          },
+                          "start": {
+                            "type": "string"
+                          },
+                          "end": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "details": {
+                            "type": "string"
+                          },
+                          "amount": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "billingPlanId",
+                          "name",
+                          "amount"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "string"
+                    },
+                    "created": {
+                      "type": "string"
+                    },
+                    "updated": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "string",
+                      "enum": [
+                        "pending",
+                        "scheduled",
+                        "invoiced",
+                        "paid",
+                        "notpaid",
+                        "refund_requested",
+                        "refunded"
+                      ]
+                    },
+                    "refundReason": {
+                      "type": "string"
+                    },
+                    "refundTotal": {
+                      "type": "string"
+                    },
+                    "test": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "invoiceId",
+                    "invoiceDate",
+                    "period",
+                    "items",
+                    "total",
+                    "created",
+                    "updated",
+                    "state",
+                    "test"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {},
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {}
+        },
+        "parameters": [
+          {
+            "name": "integrationConfigurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}/actions": {
+      "post": {
+        "description": "This endpoint allows the partner to request a refund for an invoice to Vercel. The invoice is created using the [Submit Invoice API](#submit-invoice-api).",
+        "operationId": "update-invoice",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "summary": "Invoice Actions",
+        "tags": [
+          "marketplace"
+        ],
+        "responses": {
+          "204": {},
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {},
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {}
+        },
+        "parameters": [
+          {
+            "name": "integrationConfigurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "refund"
+                    ]
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Refund reason."
+                  },
+                  "total": {
+                    "description": "The total amount to be refunded. Must be less than or equal to the total amount of the invoice.",
+                    "type": "string",
+                    "pattern": "^[0-9]+(\\\\.[0-9]+)?$"
+                  }
+                },
+                "required": [
+                  "action",
+                  "reason",
+                  "total"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/installations/{integrationConfigurationId}/products/{integrationProductIdOrSlug}/resources/{resourceId}/secrets": {
+      "put": {
+        "description": "This endpoint updates the secrets of a resource. If a resource has projects connected, the connected secrets are updated with the new secrets. The old secrets may still be used by existing connected projects because they are not automatically redeployed. Redeployment is a manual action and must be completed by the user. All new project connections will use the new secrets.\u003cbr/\u003e \u003cbr/\u003e Use cases for this endpoint:\u003cbr/\u003e \u003cbr/\u003e - Resetting the credentials of a database in the partner. If the user requests the credentials to be updated in the partner’s application, the partner post the new set of secrets to Vercel, the user should redeploy their application and the expire the old credentials.\u003cbr/\u003e",
+        "operationId": "update-resource-secrets",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "summary": "Update Resource Secrets",
+        "tags": [
+          "marketplace"
+        ],
+        "responses": {
+          "201": {},
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {},
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {}
+        },
+        "parameters": [
+          {
+            "name": "integrationConfigurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "integrationProductIdOrSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "secrets"
+                ],
+                "properties": {
+                  "secrets": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "value"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/integrations/configurations": {
       "get": {
         "description": "Allows to retrieve all configurations for an authenticated integration. When the `project` view is used, configurations generated for the authorization flow will be filtered out of the results.",
@@ -19016,6 +20161,86 @@
             }
           }
         ]
+      }
+    },
+    "/v1/integrations/sso/token": {
+      "post": {
+        "description": "During the autorization process, Vercel sends the user to the provider [redirectLoginUrl](https://vercel.com/docs/integrations/create-integration/submit-integration#redirect-login-url), that includes the OAuth authorization `code` parameter. The provider then calls the SSO Token Exchange endpoint with the sent code and receives the OIDC token. They log the user in based on this token and redirects the user back to the Vercel account using deep-link parameters included the redirectLoginUrl. This is used to verify the identity of the user during the [**Open in Provider** flow](https://vercel.com/docs/integrations/marketplace-flows#open-in-provider-button-flow). Providers should not persist the returned `id_token` in a database since the token will expire.",
+        "operationId": "exchange-sso-token",
+        "security": [],
+        "summary": "SSO Token Exchange",
+        "tags": [
+          "authentication",
+          "marketplace"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id_token": {
+                      "type": "string"
+                    },
+                    "access_token": {
+                      "nullable": true
+                    },
+                    "token_type": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id_token",
+                    "access_token",
+                    "token_type"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "404": {},
+          "500": {}
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "client_id",
+                  "client_secret"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "The sensitive code received from Vercel"
+                  },
+                  "state": {
+                    "type": "string",
+                    "description": "The state received from the initialization request"
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "description": "The integration client id"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "The integration client secret"
+                  },
+                  "redirect_uri": {
+                    "type": "string",
+                    "description": "The integration redirect URI"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v2/integrations/log-drains": {
@@ -23167,6 +24392,12 @@
                                 },
                                 "type": "array"
                               },
+                              "observabilityConfiguration": {
+                                "items": {
+                                  "$ref": "#/components/schemas/ACLAction"
+                                },
+                                "type": "array"
+                              },
                               "openTelemetryEndpoint": {
                                 "items": {
                                   "$ref": "#/components/schemas/ACLAction"
@@ -23606,6 +24837,12 @@
                                 "type": "array"
                               },
                               "job": {
+                                "items": {
+                                  "$ref": "#/components/schemas/ACLAction"
+                                },
+                                "type": "array"
+                              },
+                              "observabilityData": {
                                 "items": {
                                   "$ref": "#/components/schemas/ACLAction"
                                 },
@@ -26656,6 +27893,12 @@
                           },
                           "type": "array"
                         },
+                        "observabilityConfiguration": {
+                          "items": {
+                            "$ref": "#/components/schemas/ACLAction"
+                          },
+                          "type": "array"
+                        },
                         "openTelemetryEndpoint": {
                           "items": {
                             "$ref": "#/components/schemas/ACLAction"
@@ -27095,6 +28338,12 @@
                           "type": "array"
                         },
                         "job": {
+                          "items": {
+                            "$ref": "#/components/schemas/ACLAction"
+                          },
+                          "type": "array"
+                        },
+                        "observabilityData": {
                           "items": {
                             "$ref": "#/components/schemas/ACLAction"
                           },
@@ -30283,6 +31532,12 @@
                           },
                           "type": "array"
                         },
+                        "observabilityConfiguration": {
+                          "items": {
+                            "$ref": "#/components/schemas/ACLAction"
+                          },
+                          "type": "array"
+                        },
                         "openTelemetryEndpoint": {
                           "items": {
                             "$ref": "#/components/schemas/ACLAction"
@@ -30722,6 +31977,12 @@
                           "type": "array"
                         },
                         "job": {
+                          "items": {
+                            "$ref": "#/components/schemas/ACLAction"
+                          },
+                          "type": "array"
+                        },
+                        "observabilityData": {
                           "items": {
                             "$ref": "#/components/schemas/ACLAction"
                           },
@@ -33671,6 +34932,12 @@
                           },
                           "type": "array"
                         },
+                        "observabilityConfiguration": {
+                          "items": {
+                            "$ref": "#/components/schemas/ACLAction"
+                          },
+                          "type": "array"
+                        },
                         "openTelemetryEndpoint": {
                           "items": {
                             "$ref": "#/components/schemas/ACLAction"
@@ -34110,6 +35377,12 @@
                           "type": "array"
                         },
                         "job": {
+                          "items": {
+                            "$ref": "#/components/schemas/ACLAction"
+                          },
+                          "type": "array"
+                        },
+                        "observabilityData": {
                           "items": {
                             "$ref": "#/components/schemas/ACLAction"
                           },
@@ -35476,9 +36749,6 @@
               "oneOf": [
                 {
                   "type": "string"
-                },
-                {
-                  "type": "integer"
                 }
               ]
             }
@@ -51378,14 +52648,15 @@
                   "edgeConfigWrite",
                   "edgeFunctionExecutionUnits",
                   "edgeMiddlewareInvocations",
-                  "edgeRequest",
                   "edgeRequestAdditionalCpuDuration",
+                  "edgeRequest",
                   "fastDataTransfer",
                   "fastOriginTransfer",
                   "functionDuration",
                   "functionInvocation",
                   "logDrainsVolume",
                   "monitoringMetric",
+                  "observabilityEvent",
                   "postgresComputeTime",
                   "postgresDataStorage",
                   "postgresDataTransfer",

@@ -6,7 +6,7 @@
 import { UpdateFirewallConfigRequestBodyConditions } from "@vercel/sdk/models/operations/updatefirewallconfig.js";
 
 let value: UpdateFirewallConfigRequestBodyConditions = {
-  type: "ip_address",
+  type: "geo_city",
   op: "eq",
 };
 ```

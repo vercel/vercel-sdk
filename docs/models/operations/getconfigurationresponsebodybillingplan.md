@@ -7,10 +7,9 @@ import { GetConfigurationResponseBodyBillingPlan } from "@vercel/sdk/models/oper
 
 let value: GetConfigurationResponseBodyBillingPlan = {
   id: "<id>",
-  type: "subscription",
+  type: "prepayment",
   name: "<value>",
-  description:
-    "license cheerfully repeatedly replicate jell black till transcend before rarely",
+  description: "across wherever yowza ick moralise",
 };
 ```
 
