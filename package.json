@@ -25,8 +25,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/vercel/sdk.git",
-    "directory": "packages/sdk"
+    "url": "https://github.com/vercel/sdk.git"
   },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
