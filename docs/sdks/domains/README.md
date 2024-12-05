@@ -683,7 +683,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.domains.patchDomain({
-    domain: "alarming-nondisclosure.com",
+    domain: "tight-secrecy.info",
     requestBody: {
       op: "update",
     },
@@ -712,7 +712,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await domainsPatchDomain(vercel, {
-    domain: "alarming-nondisclosure.com",
+    domain: "tight-secrecy.info",
     requestBody: {
       op: "update",
     },

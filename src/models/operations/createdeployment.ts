@@ -1188,7 +1188,7 @@ export type CreateDeploymentResponseBody = {
   checksState?: ChecksState | undefined;
   checksConclusion?: ChecksConclusion | undefined;
   /**
-   * Computed field that is only available for deployments with a micro-frontend configuration.
+   * Computed field that is only available for deployments with a microfrontend configuration.
    */
   defaultRoute?: string | undefined;
   canceledAt?: number | undefined;

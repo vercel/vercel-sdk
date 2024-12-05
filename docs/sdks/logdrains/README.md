@@ -484,9 +484,9 @@ async function run() {
   const result = await vercel.logDrains.createConfigurableLogDrain({
     requestBody: {
       deliveryFormat: "json",
-      url: "https://equal-hedgehog.com",
+      url: "https://sugary-technician.name",
       sources: [
-        "firewall",
+        "external",
       ],
     },
   });
@@ -516,9 +516,9 @@ async function run() {
   const res = await logDrainsCreateConfigurableLogDrain(vercel, {
     requestBody: {
       deliveryFormat: "json",
-      url: "https://equal-hedgehog.com",
+      url: "https://sugary-technician.name",
       sources: [
-        "firewall",
+        "external",
       ],
     },
   });

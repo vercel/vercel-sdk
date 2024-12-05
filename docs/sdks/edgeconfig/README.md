@@ -181,7 +181,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.edgeConfig.getEdgeConfig({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   // Handle the result
@@ -207,7 +207,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigGetEdgeConfig(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {
@@ -257,7 +257,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.edgeConfig.updateEdgeConfig({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   // Handle the result
@@ -283,7 +283,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigUpdateEdgeConfig(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {
@@ -333,7 +333,7 @@ const vercel = new Vercel({
 
 async function run() {
   await vercel.edgeConfig.deleteEdgeConfig({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
 
@@ -358,7 +358,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigDeleteEdgeConfig(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {
@@ -407,7 +407,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.edgeConfig.getEdgeConfigItems({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   // Handle the result
@@ -433,7 +433,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigGetEdgeConfigItems(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {
@@ -483,7 +483,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.edgeConfig.getEdgeConfigSchema({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   // Handle the result
@@ -509,7 +509,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigGetEdgeConfigSchema(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {
@@ -559,7 +559,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.edgeConfig.patchEdgeConfigSchema({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   // Handle the result
@@ -585,7 +585,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigPatchEdgeConfigSchema(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {
@@ -635,7 +635,7 @@ const vercel = new Vercel({
 
 async function run() {
   await vercel.edgeConfig.deleteEdgeConfigSchema({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
 
@@ -660,7 +660,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigDeleteEdgeConfigSchema(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {
@@ -709,7 +709,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.edgeConfig.getEdgeConfigItem({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
     edgeConfigItemKey: "<value>",
   });
 
@@ -736,7 +736,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigGetEdgeConfigItem(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
     edgeConfigItemKey: "<value>",
   });
 
@@ -787,7 +787,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.edgeConfig.getEdgeConfigTokens({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   // Handle the result
@@ -813,7 +813,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigGetEdgeConfigTokens(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {
@@ -863,7 +863,7 @@ const vercel = new Vercel({
 
 async function run() {
   await vercel.edgeConfig.deleteEdgeConfigTokens({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
 
@@ -888,7 +888,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigDeleteEdgeConfigTokens(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {
@@ -937,7 +937,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.edgeConfig.getEdgeConfigToken({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
     token: "<value>",
   });
 
@@ -964,7 +964,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigGetEdgeConfigToken(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
     token: "<value>",
   });
 
@@ -1015,7 +1015,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.edgeConfig.createEdgeConfigToken({
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   // Handle the result
@@ -1041,7 +1041,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await edgeConfigCreateEdgeConfigToken(vercel, {
-    edgeConfigId: "<value>",
+    edgeConfigId: "<id>",
   });
 
   if (!res.ok) {

@@ -212,11 +212,11 @@ async function run() {
       srv: {
         target: "example2.com.",
         weight: 97604,
-        port: 845230,
-        priority: 570172,
+        port: 570172,
+        priority: 199524,
       },
       https: {
-        priority: 994903,
+        priority: 35000,
         target: "example2.com.",
       },
       comment: "used to verify ownership of domain",
@@ -255,11 +255,11 @@ async function run() {
       srv: {
         target: "example2.com.",
         weight: 97604,
-        port: 845230,
-        priority: 570172,
+        port: 570172,
+        priority: 199524,
       },
       https: {
-        priority: 994903,
+        priority: 35000,
         target: "example2.com.",
       },
       comment: "used to verify ownership of domain",

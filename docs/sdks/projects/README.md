@@ -1446,8 +1446,8 @@ const vercel = new Vercel({
 
 async function run() {
   await vercel.projects.requestPromote({
-    projectId: "<value>",
-    deploymentId: "<value>",
+    projectId: "<id>",
+    deploymentId: "<id>",
   });
 
 
@@ -1472,8 +1472,8 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await projectsRequestPromote(vercel, {
-    projectId: "<value>",
-    deploymentId: "<value>",
+    projectId: "<id>",
+    deploymentId: "<id>",
   });
 
   if (!res.ok) {
@@ -1522,7 +1522,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.projects.listPromoteAliases({
-    projectId: "<value>",
+    projectId: "<id>",
     limit: 20,
     since: 1609499532000,
     until: 1612264332000,
@@ -1551,7 +1551,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await projectsListPromoteAliases(vercel, {
-    projectId: "<value>",
+    projectId: "<id>",
     limit: 20,
     since: 1609499532000,
     until: 1612264332000,

@@ -7547,7 +7547,7 @@
                         },
                         "defaultRoute": {
                           "type": "string",
-                          "description": "Computed field that is only available for deployments with a micro-frontend configuration."
+                          "description": "Computed field that is only available for deployments with a microfrontend configuration."
                         },
                         "canceledAt": {
                           "type": "number"
@@ -8875,7 +8875,7 @@
                         },
                         "defaultRoute": {
                           "type": "string",
-                          "description": "Computed field that is only available for deployments with a micro-frontend configuration."
+                          "description": "Computed field that is only available for deployments with a microfrontend configuration."
                         },
                         "canceledAt": {
                           "type": "number"
@@ -10257,7 +10257,7 @@
                     },
                     "defaultRoute": {
                       "type": "string",
-                      "description": "Computed field that is only available for deployments with a micro-frontend configuration."
+                      "description": "Computed field that is only available for deployments with a microfrontend configuration."
                     },
                     "canceledAt": {
                       "type": "number"
@@ -11929,7 +11929,7 @@
                     },
                     "defaultRoute": {
                       "type": "string",
-                      "description": "Computed field that is only available for deployments with a micro-frontend configuration."
+                      "description": "Computed field that is only available for deployments with a microfrontend configuration."
                     },
                     "canceledAt": {
                       "type": "number"
@@ -18155,7 +18155,7 @@
     },
     "/v1/installations/{integrationConfigurationId}/billing": {
       "post": {
-        "description": "Sends the billing and usage data. The partner should do this at least once a day and ideally once per hour.",
+        "description": "Sends the billing and usage data. The partner should do this at least once a day and ideally once per hour. \u003cbr/\u003e Use the `credentials.access_token` we provided in the (Upsert Installation)[#upsert-installation] body to authorize this request.",
         "operationId": "submit-billing-data",
         "security": [
           {
@@ -18466,7 +18466,7 @@
     },
     "/v1/installations/{integrationConfigurationId}/billing/invoices": {
       "post": {
-        "description": "This endpoint allows the partner to submit an invoice to Vercel. The invoice is created in Vercel's billing system and sent to the customer. Depending on the type of billing plan, the invoice can be sent at a time of signup, at the start of the billing period, or at the end of the billing period.\u003cbr/\u003e \u003cbr/\u003e There are several limitations to the invoice submission:\u003cbr/\u003e \u003cbr/\u003e 1. A resource can only be billed once per the billing period and the billing plan.\u003cbr/\u003e 2. The billing plan used to bill the resource must have been active for this resource during the billing period.\u003cbr/\u003e 3. The billing plan used must be a subscription plan.\u003cbr/\u003e 4. The interim usage data must be sent hourly for all types of subscriptions. See [Send subscription billing and usage data](#send-subscription-billing-and-usage-data) API on how to send interim billing and usage data.\u003cbr/\u003e",
+        "description": "This endpoint allows the partner to submit an invoice to Vercel. The invoice is created in Vercel's billing system and sent to the customer. Depending on the type of billing plan, the invoice can be sent at a time of signup, at the start of the billing period, or at the end of the billing period.\u003cbr/\u003e \u003cbr/\u003e Use the `credentials.access_token` we provided in the (Upsert Installation)[#upsert-installation] body to authorize this request. \u003cbr/\u003e There are several limitations to the invoice submission:\u003cbr/\u003e \u003cbr/\u003e 1. A resource can only be billed once per the billing period and the billing plan.\u003cbr/\u003e 2. The billing plan used to bill the resource must have been active for this resource during the billing period.\u003cbr/\u003e 3. The billing plan used must be a subscription plan.\u003cbr/\u003e 4. The interim usage data must be sent hourly for all types of subscriptions. See [Send subscription billing and usage data](#send-subscription-billing-and-usage-data) API on how to send interim billing and usage data.\u003cbr/\u003e",
         "operationId": "submit-invoice",
         "security": [
           {
@@ -53201,7 +53201,8 @@
                         "manual",
                         "passkey",
                         "otp",
-                        "sms"
+                        "sms",
+                        "invite"
                       ]
                     },
                     "createdAt": {
@@ -53241,7 +53242,8 @@
                         "manual",
                         "passkey",
                         "otp",
-                        "sms"
+                        "sms",
+                        "invite"
                       ]
                     },
                     "createdAt": {

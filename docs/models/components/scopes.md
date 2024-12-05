@@ -19,7 +19,7 @@ const value: components.Scopes1 = {
 const value: components.Scopes2 = {
   type: "team",
   teamId: "<id>",
-  origin: "email",
+  origin: "manual",
   createdAt: 2916.49,
 };
 ```

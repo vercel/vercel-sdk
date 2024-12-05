@@ -38,7 +38,7 @@ async function run() {
     since: 1540095775951,
     until: 1540095775951,
     role: "OWNER",
-    teamId: "<value>",
+    teamId: "<id>",
   });
 
   // Handle the result
@@ -68,7 +68,7 @@ async function run() {
     since: 1540095775951,
     until: 1540095775951,
     role: "OWNER",
-    teamId: "<value>",
+    teamId: "<id>",
   });
 
   if (!res.ok) {
@@ -118,12 +118,16 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.teams.inviteUserToTeam({
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       uid: "kr1PsOIzqEL5Xg6M4VZcZosf",
       email: "john@example.com",
       role: "VIEWER",
       projects: [
+        {
+          projectId: "prj_ndlgr43fadlPyCtREAqxxdyFK",
+          role: "ADMIN",
+        },
         {
           projectId: "prj_ndlgr43fadlPyCtREAqxxdyFK",
           role: "ADMIN",
@@ -155,12 +159,16 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await teamsInviteUserToTeam(vercel, {
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       uid: "kr1PsOIzqEL5Xg6M4VZcZosf",
       email: "john@example.com",
       role: "VIEWER",
       projects: [
+        {
+          projectId: "prj_ndlgr43fadlPyCtREAqxxdyFK",
+          role: "ADMIN",
+        },
         {
           projectId: "prj_ndlgr43fadlPyCtREAqxxdyFK",
           role: "ADMIN",
@@ -216,7 +224,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.teams.requestAccessToTeam({
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       joinedFrom: {
         origin: "github",
@@ -252,7 +260,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await teamsRequestAccessToTeam(vercel, {
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       joinedFrom: {
         origin: "github",
@@ -312,8 +320,8 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.teams.getTeamAccessRequest({
-    userId: "<value>",
-    teamId: "<value>",
+    userId: "<id>",
+    teamId: "<id>",
   });
 
   // Handle the result
@@ -339,8 +347,8 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await teamsGetTeamAccessRequest(vercel, {
-    userId: "<value>",
-    teamId: "<value>",
+    userId: "<id>",
+    teamId: "<id>",
   });
 
   if (!res.ok) {
@@ -390,7 +398,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.teams.joinTeam({
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       inviteCode: "fisdh38aejkeivn34nslfore9vjtn4ls",
     },
@@ -419,7 +427,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await teamsJoinTeam(vercel, {
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       inviteCode: "fisdh38aejkeivn34nslfore9vjtn4ls",
     },
@@ -473,7 +481,7 @@ const vercel = new Vercel({
 async function run() {
   const result = await vercel.teams.updateTeamMember({
     uid: "ndfasllgPyCtREAqxxdyFKb",
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       confirmed: true,
       role: "[\"MEMBER\",\"VIEWER\"]",
@@ -510,7 +518,7 @@ const vercel = new VercelCore({
 async function run() {
   const res = await teamsUpdateTeamMember(vercel, {
     uid: "ndfasllgPyCtREAqxxdyFKb",
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       confirmed: true,
       role: "[\"MEMBER\",\"VIEWER\"]",
@@ -572,7 +580,7 @@ async function run() {
   const result = await vercel.teams.removeTeamMember({
     uid: "ndlgr43fadlPyCtREAqxxdyFK",
     newDefaultTeamId: "team_nllPyCtREAqxxdyFKbbMDlxd",
-    teamId: "<value>",
+    teamId: "<id>",
   });
 
   // Handle the result
@@ -600,7 +608,7 @@ async function run() {
   const res = await teamsRemoveTeamMember(vercel, {
     uid: "ndlgr43fadlPyCtREAqxxdyFK",
     newDefaultTeamId: "team_nllPyCtREAqxxdyFKbbMDlxd",
-    teamId: "<value>",
+    teamId: "<id>",
   });
 
   if (!res.ok) {
@@ -650,7 +658,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.teams.getTeam({
-    teamId: "<value>",
+    teamId: "<id>",
   });
 
   // Handle the result
@@ -676,7 +684,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await teamsGetTeam(vercel, {
-    teamId: "<value>",
+    teamId: "<id>",
   });
 
   if (!res.ok) {
@@ -726,7 +734,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.teams.patchTeam({
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       description: "Our mission is to make cloud computing accessible to everyone",
       emailDomain: "example.com",
@@ -771,7 +779,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await teamsPatchTeam(vercel, {
-    teamId: "<value>",
+    teamId: "<id>",
     requestBody: {
       description: "Our mission is to make cloud computing accessible to everyone",
       emailDomain: "example.com",
@@ -999,7 +1007,7 @@ const vercel = new Vercel({
 async function run() {
   const result = await vercel.teams.deleteTeam({
     newDefaultTeamId: "team_LLHUOMOoDlqOp8wPE4kFo9pE",
-    teamId: "<value>",
+    teamId: "<id>",
   });
 
   // Handle the result
@@ -1026,7 +1034,7 @@ const vercel = new VercelCore({
 async function run() {
   const res = await teamsDeleteTeam(vercel, {
     newDefaultTeamId: "team_LLHUOMOoDlqOp8wPE4kFo9pE",
-    teamId: "<value>",
+    teamId: "<id>",
   });
 
   if (!res.ok) {

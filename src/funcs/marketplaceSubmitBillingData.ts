@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Submit Billing Data
  *
  * @remarks
- * Sends the billing and usage data. The partner should do this at least once a day and ideally once per hour.
+ * Sends the billing and usage data. The partner should do this at least once a day and ideally once per hour. <br/> Use the `credentials.access_token` we provided in the (Upsert Installation)[#upsert-installation] body to authorize this request.
  */
 export async function marketplaceSubmitBillingData(
   client: VercelCore,
