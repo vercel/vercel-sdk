@@ -5,8 +5,8 @@ management:
   docVersion: 0.0.1
   speakeasyVersion: 1.445.2
   generationVersion: 2.461.4
-  releaseVersion: 1.0.0-canary.10
-  configChecksum: 688676bb26c1c9cd889e692f8d92a6cc
+  releaseVersion: 1.1.0
+  configChecksum: d9d849fc66fb8a1e0c64d6d636db14c7
   repoURL: https://github.com/vercel/sdk.git
   installationURL: https://github.com/vercel/sdk
   published: true
