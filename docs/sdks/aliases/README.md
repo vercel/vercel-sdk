@@ -198,7 +198,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.aliases.deleteAlias({
-    aliasId: "<value>",
+    aliasId: "<id>",
   });
 
   // Handle the result
@@ -224,7 +224,7 @@ const vercel = new VercelCore({
 
 async function run() {
   const res = await aliasesDeleteAlias(vercel, {
-    aliasId: "<value>",
+    aliasId: "<id>",
   });
 
   if (!res.ok) {

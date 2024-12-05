@@ -579,7 +579,7 @@ const vercel = new Vercel({
 
 async function run() {
   const result = await vercel.artifacts.uploadArtifact({
-    contentLength: 4036.54,
+    contentLength: 4504.13,
     xArtifactDuration: 400,
     xArtifactClientCi: "VERCEL",
     xArtifactClientInteractive: 0,

@@ -426,7 +426,7 @@ export type GetDeploymentResponseBody2 = {
   checksConclusion?: GetDeploymentResponseBodyChecksConclusion | undefined;
   deletedAt?: number | null | undefined;
   /**
-   * Computed field that is only available for deployments with a micro-frontend configuration.
+   * Computed field that is only available for deployments with a microfrontend configuration.
    */
   defaultRoute?: string | undefined;
   canceledAt?: number | undefined;
@@ -1259,7 +1259,7 @@ export type GetDeploymentResponseBody1 = {
   checksConclusion?: ResponseBodyChecksConclusion | undefined;
   deletedAt?: number | null | undefined;
   /**
-   * Computed field that is only available for deployments with a micro-frontend configuration.
+   * Computed field that is only available for deployments with a microfrontend configuration.
    */
   defaultRoute?: string | undefined;
   canceledAt?: number | undefined;

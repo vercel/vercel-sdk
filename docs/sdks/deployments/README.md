@@ -205,6 +205,9 @@ async function run() {
         {
           file: "folder/file.js",
         },
+        {
+          file: "folder/file.js",
+        },
       ],
       gitMetadata: {
         remoteUrl: "https://github.com/vercel/next.js",
@@ -247,6 +250,9 @@ async function run() {
   const res = await deploymentsCreateDeployment(vercel, {
     requestBody: {
       files: [
+        {
+          file: "folder/file.js",
+        },
         {
           file: "folder/file.js",
         },
@@ -539,7 +545,7 @@ const vercel = new Vercel({
 async function run() {
   await vercel.deployments.getDeploymentFileContents({
     id: "<id>",
-    fileId: "<value>",
+    fileId: "<id>",
   });
 
 
@@ -565,7 +571,7 @@ const vercel = new VercelCore({
 async function run() {
   const res = await deploymentsGetDeploymentFileContents(vercel, {
     id: "<id>",
-    fileId: "<value>",
+    fileId: "<id>",
   });
 
   if (!res.ok) {
