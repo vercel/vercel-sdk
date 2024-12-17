@@ -576,42 +576,149 @@ actions:
     update:
       type: string
       enum: [managedRules.update]
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs
+  # Update CRS object descriptions for /v1/security/firewall/config put responses 200
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs
     update:
       description: Custom Ruleset
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.sd
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.sd
     update:
       description: Scanner Detection - Detect and prevent reconnaissance activities from network scanning tools.
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.ma
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.ma
     update:
       description: Multipart Attack - Block attempts to bypass security controls using multipart/form-data encoding.      
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.lfi
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.lfi
     update:
       description: Local File Inclusion Attack - Prevent unauthorized access to local files through web applications.   
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.rfi
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.rfi
     update:
       description: Remote File Inclusion Attack - Prohibit unauthorized upload or execution of remote files.    
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.rce
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.rce
     update:
       description: Remote Execution Attack - Prevent unauthorized execution of remote scripts or commands.          
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.php
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.php
     update:
       description: PHP Attack - Safeguard against vulnerability exploits in PHP-based applications.
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.gen
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.gen
     update:
       description: Generic Attack - Provide broad protection from various undefined or novel attack vectors.    
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.xss
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.xss
     update:
       description: XSS Attack - Prevent injection of malicious scripts into trusted webpages.  
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.sqli
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.sqli
     update:
       description: SQL Injection Attack - Prohibit unauthorized use of SQL commands to manipulate databases. 
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.sf
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.sf
     update:
       description: Session Fixation Attack - Prevent unauthorized takeover of user sessions by enforcing unique session IDs.    
-  - target: $.paths['/v1/security/firewall/config'].put.responses.content['application/json'].schema.properties.crs.properties.java
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.crs.properties.java
     update:
-      description: Java Attack - Mitigate risks of exploitation targeting Java-based applications or components.                                       
+      description: Java Attack - Mitigate risks of exploitation targeting Java-based applications or components.    
+  # Update CRS object descriptions for /v1/security/firewall/config put requestBody    
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs
+    update:
+      description: Custom Ruleset
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.sd
+    update:
+      description: Scanner Detection - Detect and prevent reconnaissance activities from network scanning tools.
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.ma
+    update:
+      description: Multipart Attack - Block attempts to bypass security controls using multipart/form-data encoding.      
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.lfi
+    update:
+      description: Local File Inclusion Attack - Prevent unauthorized access to local files through web applications.   
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.rfi
+    update:
+      description: Remote File Inclusion Attack - Prohibit unauthorized upload or execution of remote files.    
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.rce
+    update:
+      description: Remote Execution Attack - Prevent unauthorized execution of remote scripts or commands.          
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.php
+    update:
+      description: PHP Attack - Safeguard against vulnerability exploits in PHP-based applications.
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.gen
+    update:
+      description: Generic Attack - Provide broad protection from various undefined or novel attack vectors.    
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.xss
+    update:
+      description: XSS Attack - Prevent injection of malicious scripts into trusted webpages.  
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.sqli
+    update:
+      description: SQL Injection Attack - Prohibit unauthorized use of SQL commands to manipulate databases. 
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.sf
+    update:
+      description: Session Fixation Attack - Prevent unauthorized takeover of user sessions by enforcing unique session IDs.    
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.crs.properties.java
+    update:
+      description: Java Attack - Mitigate risks of exploitation targeting Java-based applications or components.  
+  # Update CRS object descriptions for /v1/security/firewall/config/{configVersion} get responses 200    
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs
+    update:
+      description: Custom Ruleset
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.sd
+    update:
+      description: Scanner Detection - Detect and prevent reconnaissance activities from network scanning tools.
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.ma
+    update:
+      description: Multipart Attack - Block attempts to bypass security controls using multipart/form-data encoding.      
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.lfi
+    update:
+      description: Local File Inclusion Attack - Prevent unauthorized access to local files through web applications.   
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.rfi
+    update:
+      description: Remote File Inclusion Attack - Prohibit unauthorized upload or execution of remote files.    
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.rce
+    update:
+      description: Remote Execution Attack - Prevent unauthorized execution of remote scripts or commands.          
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.php
+    update:
+      description: PHP Attack - Safeguard against vulnerability exploits in PHP-based applications.
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.gen
+    update:
+      description: Generic Attack - Provide broad protection from various undefined or novel attack vectors.    
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.xss
+    update:
+      description: XSS Attack - Prevent injection of malicious scripts into trusted webpages.  
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.sqli
+    update:
+      description: SQL Injection Attack - Prohibit unauthorized use of SQL commands to manipulate databases. 
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.sf
+    update:
+      description: Session Fixation Attack - Prevent unauthorized takeover of user sessions by enforcing unique session IDs.          
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.crs.properties.java
+    update:
+      description: Java Attack - Mitigate risks of exploitation targeting Java-based applications or components.     
+  # Link to parameter reference in parameter type descriptions for /v1/security/firewall
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.type
+    update:
+      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic.  
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.type
+    update:
+      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic.  
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.type
+    update:
+      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic. 
+  - target: $.paths['/v1/security/firewall/config'].patch.requestBody.content['application/json'].schema.oneOf[1].properties.value.properties.conditionGroup.items.properties.conditions.items.properties.type
+    update:
+      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic.  
+  - target: $.paths['/v1/security/firewall/config'].patch.requestBody.content['application/json'].schema.oneOf[2].properties.value.properties.conditionGroup.items.properties.conditions.items.properties.type
+    update:
+      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic.    
+  # Link to operator reference in operator descriptions for /v1/security/firewall
+  - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.op
+    update:
+      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value.       
+  - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.op
+    update:
+      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value.  
+  - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.op
+    update:
+      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value. 
+  - target: $.paths['/v1/security/firewall/config'].patch.requestBody.content['application/json'].schema.oneOf[1].properties.value.properties.conditionGroup.items.properties.conditions.items.properties.op
+    update:
+      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value.  
+  - target: $.paths['/v1/security/firewall/config'].patch.requestBody.content['application/json'].schema.oneOf[2].properties.value.properties.conditionGroup.items.properties.conditions.items.properties.op
+    update:
+      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value.                                                                       
   - target: $.paths['/v1/teams/{teamId}/members/{uid}'].patch.requestBody.content['application/json'].schema.properties['joinedFrom'].properties['ssoUserId'].type
     remove: true
   - target: $.paths['/v1/teams/{teamId}/members/{uid}'].patch.requestBody.content['application/json'].schema.properties['joinedFrom'].properties['ssoUserId']
