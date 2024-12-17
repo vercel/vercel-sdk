@@ -1,0 +1,116 @@
+  # Update response schemas for various HTTP status codes across all paths and operations
+  - target: $["paths"][*][*]["responses"]["400"]
+    update:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/VercelBadRequestError"  # Reference to the Bad Request error schema
+
+  - target: $["paths"][*][*]["responses"]["401"]
+    update:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/VercelForbiddenError"  # Reference to the Forbidden error schema
+
+  - target: $["paths"][*][*]["responses"]["404"]
+    update:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/VercelNotFoundError"  # Reference to the Not Found error schema
+
+  - target: $["paths"][*][*]["responses"]["429"]
+    update:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/VercelRateLimitError"  # Reference to the Rate Limit error schema
+
+  # Define custom error schemas under the components section
+  - target: $["components"]["schemas"]
+    update:
+      VercelBaseError:
+        type: object
+        required: [code, message]
+        properties:
+          code:
+            type: string
+            const: bad_request  # Fixed value for the error code
+          message:
+            type: string  # Human-readable error message
+
+      VercelForbiddenError:
+        type: object
+        required: [error]
+        properties:
+          error:
+            allOf:
+              - $ref: "#/components/schemas/VercelBaseError"  # Inherits from VercelBaseError
+              - type: object
+                required: [code]
+                properties:
+                  code:
+                    type: string
+                    const: forbidden  # Specific error code for forbidden access
+
+      VercelNotFoundError:
+        type: object
+        required: [error]
+        properties:
+          error:
+            allOf:
+              - $ref: "#/components/schemas/VercelBaseError"  # Inherits from VercelBaseError
+              - type: object
+                required: [code]
+                properties:
+                  code:
+                    type: string
+                    const: not_found  # Specific error code for not found
+
+      VercelBadRequestError:
+        type: object
+        required: [error]
+        properties:
+          error:
+            allOf:
+              - $ref: "#/components/schemas/VercelBaseError"  # Inherits from VercelBaseError
+              - type: object
+                required: [code]
+                properties:
+                  code:
+                    type: string
+                    const: bad_request  # Specific error code for bad requests
+
+      VercelRateLimitError:
+        type: object
+        required: [error]
+        properties:
+          error:
+            allOf:
+              - $ref: "#/components/schemas/VercelBaseError"  # Inherits from VercelBaseError
+              - type: object
+                required: [code]
+                properties:
+                  code:
+                    type: string
+                    const: rate_limited  # Specific error code for rate limiting
+                  limit:
+                    $ref: "#/components/schemas/RateLimitNotice"  # Reference to rate limit details
+
+      RateLimitNotice:
+        type: object
+        required: [remaining, reset, resetMs, total]
+        properties:
+          remaining:
+            type: integer
+            minimum: 0  # Number of remaining allowed requests
+          reset:
+            type: integer
+            minimum: 0  # Timestamp when the rate limit resets
+          resetMs:
+            type: integer
+            minimum: 0  # Reset time in milliseconds
+          total:
+            type: integer
+            minimum: 0  # Total number of allowed requests

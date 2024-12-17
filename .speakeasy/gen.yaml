@@ -37,11 +37,11 @@ typescript:
   imports:
     option: openapi
     paths:
-      callbacks: models/callbacks
-      errors: models/errors
-      operations: models/operations
-      shared: models/components
-      webhooks: models/webhooks
+      callbacks: models
+      errors: models
+      operations: models
+      shared: models
+      webhooks: models
   inputModelSuffix: input
   maxMethodParams: 0
   methodArguments: require-security-and-request
