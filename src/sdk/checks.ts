@@ -11,23 +11,20 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   CreateCheckRequest,
   CreateCheckResponseBody,
-} from "../models/operations/createcheck.js";
+} from "../models/createcheckop.js";
 import {
   GetAllChecksRequest,
   GetAllChecksResponseBody,
-} from "../models/operations/getallchecks.js";
-import {
-  GetCheckRequest,
-  GetCheckResponseBody,
-} from "../models/operations/getcheck.js";
+} from "../models/getallchecksop.js";
+import { GetCheckRequest, GetCheckResponseBody } from "../models/getcheckop.js";
 import {
   RerequestCheckRequest,
   RerequestCheckResponseBody,
-} from "../models/operations/rerequestcheck.js";
+} from "../models/rerequestcheckop.js";
 import {
   UpdateCheckRequest,
   UpdateCheckResponseBody,
-} from "../models/operations/updatecheck.js";
+} from "../models/updatecheckop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Checks extends ClientSDK {

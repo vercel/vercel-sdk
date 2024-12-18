@@ -15,15 +15,27 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
 import {
   JoinTeamRequest,
   JoinTeamRequest$outboundSchema,
   JoinTeamResponseBody,
   JoinTeamResponseBody$inboundSchema,
-} from "../models/operations/jointeam.js";
+} from "../models/jointeamop.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
+import {
+  VercelNotFoundError,
+  VercelNotFoundError$inboundSchema,
+} from "../models/vercelnotfounderror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -39,6 +51,9 @@ export async function teamsJoinTeam(
 ): Promise<
   Result<
     JoinTeamResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -93,6 +108,7 @@ export async function teamsJoinTeam(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -114,8 +130,15 @@ export async function teamsJoinTeam(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     JoinTeamResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -125,8 +148,11 @@ export async function teamsJoinTeam(
     | ConnectionError
   >(
     M.json(200, JoinTeamResponseBody$inboundSchema),
-    M.fail([400, 401, 402, 403, 404, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([402, 403, "4XX", "5XX"]),
+    M.jsonErr(404, VercelNotFoundError$inboundSchema),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

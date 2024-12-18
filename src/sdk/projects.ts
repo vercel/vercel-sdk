@@ -25,73 +25,73 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   AddProjectDomainRequest,
   AddProjectDomainResponseBody,
-} from "../models/operations/addprojectdomain.js";
-import {
-  CreateProjectRequest,
-  CreateProjectResponseBody,
-} from "../models/operations/createproject.js";
+} from "../models/addprojectdomainop.js";
 import {
   CreateProjectEnvRequest,
   CreateProjectEnvResponseBody,
-} from "../models/operations/createprojectenv.js";
-import { DeleteProjectRequest } from "../models/operations/deleteproject.js";
+} from "../models/createprojectenvop.js";
+import {
+  CreateProjectRequest,
+  CreateProjectResponseBody,
+} from "../models/createprojectop.js";
+import { DeleteProjectRequest } from "../models/deleteprojectop.js";
 import {
   EditProjectEnvRequest,
   EditProjectEnvResponseBody,
-} from "../models/operations/editprojectenv.js";
+} from "../models/editprojectenvop.js";
 import {
   FilterProjectEnvsRequest,
   FilterProjectEnvsResponseBody,
-} from "../models/operations/filterprojectenvs.js";
+} from "../models/filterprojectenvsop.js";
 import {
   GetProjectDomainRequest,
   GetProjectDomainResponseBody,
-} from "../models/operations/getprojectdomain.js";
+} from "../models/getprojectdomainop.js";
 import {
   GetProjectDomainsRequest,
   GetProjectDomainsResponseBody,
-} from "../models/operations/getprojectdomains.js";
+} from "../models/getprojectdomainsop.js";
 import {
   GetProjectEnvRequest,
   GetProjectEnvResponseBody,
-} from "../models/operations/getprojectenv.js";
+} from "../models/getprojectenvop.js";
 import {
   GetProjectsRequest,
   GetProjectsResponseBody,
-} from "../models/operations/getprojects.js";
+} from "../models/getprojectsop.js";
 import {
   ListPromoteAliasesRequest,
   ListPromoteAliasesResponseBody,
-} from "../models/operations/listpromotealiases.js";
+} from "../models/listpromotealiasesop.js";
 import {
   RemoveProjectDomainRequest,
   RemoveProjectDomainResponseBody,
-} from "../models/operations/removeprojectdomain.js";
+} from "../models/removeprojectdomainop.js";
 import {
   RemoveProjectEnvRequest,
   RemoveProjectEnvResponseBody,
-} from "../models/operations/removeprojectenv.js";
-import { RequestPromoteRequest } from "../models/operations/requestpromote.js";
-import {
-  UpdateProjectRequest,
-  UpdateProjectResponseBody,
-} from "../models/operations/updateproject.js";
+} from "../models/removeprojectenvop.js";
+import { RequestPromoteRequest } from "../models/requestpromoteop.js";
 import {
   UpdateProjectDataCacheRequest,
   UpdateProjectDataCacheResponseBody,
-} from "../models/operations/updateprojectdatacache.js";
+} from "../models/updateprojectdatacacheop.js";
 import {
   UpdateProjectDomainRequest,
   UpdateProjectDomainResponseBody,
-} from "../models/operations/updateprojectdomain.js";
+} from "../models/updateprojectdomainop.js";
+import {
+  UpdateProjectRequest,
+  UpdateProjectResponseBody,
+} from "../models/updateprojectop.js";
 import {
   UpdateProjectProtectionBypassRequest,
   UpdateProjectProtectionBypassResponseBody,
-} from "../models/operations/updateprojectprotectionbypass.js";
+} from "../models/updateprojectprotectionbypassop.js";
 import {
   VerifyProjectDomainRequest,
   VerifyProjectDomainResponseBody,
-} from "../models/operations/verifyprojectdomain.js";
+} from "../models/verifyprojectdomainop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Projects extends ClientSDK {
@@ -320,7 +320,7 @@ export class Projects extends ClientSDK {
    * Create one or more environment variables
    *
    * @remarks
-   * Create one ore more environment variables for a project by passing its `key`, `value`, `type` and `target` and by specifying the project by either passing the project `id` or `name` in the URL.
+   * Create one or more environment variables for a project by passing its `key`, `value`, `type` and `target` and by specifying the project by either passing the project `id` or `name` in the URL. If you include `upsert=true` as a query parameter, a new environment variable will not be created if it already exists but, the existing variable's value will be updated.
    */
   async createProjectEnv(
     request: CreateProjectEnvRequest,

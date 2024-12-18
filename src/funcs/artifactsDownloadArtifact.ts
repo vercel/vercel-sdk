@@ -11,18 +11,30 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
+  DownloadArtifactRequest,
+  DownloadArtifactRequest$outboundSchema,
+} from "../models/downloadartifactop.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
-  DownloadArtifactRequest,
-  DownloadArtifactRequest$outboundSchema,
-} from "../models/operations/downloadartifact.js";
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
+import {
+  VercelNotFoundError,
+  VercelNotFoundError$inboundSchema,
+} from "../models/vercelnotfounderror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -38,6 +50,9 @@ export async function artifactsDownloadArtifact(
 ): Promise<
   Result<
     ReadableStream<Uint8Array>,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -106,6 +121,7 @@ export async function artifactsDownloadArtifact(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -128,8 +144,15 @@ export async function artifactsDownloadArtifact(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     ReadableStream<Uint8Array>,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -141,8 +164,11 @@ export async function artifactsDownloadArtifact(
     M.stream(200, z.instanceof(ReadableStream<Uint8Array>), {
       ctype: "application/json",
     }),
-    M.fail([400, 401, 402, 403, 404, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([402, 403, "4XX", "5XX"]),
+    M.jsonErr(404, VercelNotFoundError$inboundSchema),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

@@ -80,20 +80,22 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListUserEventsRequest](../../models/operations/listusereventsrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [models.ListUserEventsRequest](../../models/listusereventsrequest.md)                                                                                                          | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.ListUserEventsResponseBody](../../models/operations/listusereventsresponsebody.md)\>**
+**Promise\<[models.ListUserEventsResponseBody](../../models/listusereventsresponsebody.md)\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models.VercelBadRequestError | 400                          | application/json             |
+| models.VercelForbiddenError  | 401                          | application/json             |
+| models.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## getAuthUser
 
@@ -158,13 +160,15 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetAuthUserResponseBody](../../models/operations/getauthuserresponsebody.md)\>**
+**Promise\<[models.GetAuthUserResponseBody](../../models/getauthuserresponsebody.md)\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models.VercelBadRequestError | 400                          | application/json             |
+| models.VercelForbiddenError  | 401                          | application/json             |
+| models.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## requestDelete
 
@@ -180,7 +184,7 @@ const vercel = new Vercel({
 });
 
 async function run() {
-  const result = await vercel.user.requestDelete();
+  const result = await vercel.user.requestDelete({});
 
   // Handle the result
   console.log(result);
@@ -204,7 +208,7 @@ const vercel = new VercelCore({
 });
 
 async function run() {
-  const res = await userRequestDelete(vercel);
+  const res = await userRequestDelete(vercel, {});
 
   if (!res.ok) {
     throw res.error;
@@ -223,17 +227,19 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.RequestDeleteRequestBody](../../models/operations/requestdeleterequestbody.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [models.RequestDeleteRequestBody](../../models/requestdeleterequestbody.md)                                                                                                    | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.RequestDeleteResponseBody](../../models/operations/requestdeleteresponsebody.md)\>**
+**Promise\<[models.RequestDeleteResponseBody](../../models/requestdeleteresponsebody.md)\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models.VercelBadRequestError | 400                          | application/json             |
+| models.VercelForbiddenError  | 401                          | application/json             |
+| models.SDKError              | 4XX, 5XX                     | \*/\*                        |

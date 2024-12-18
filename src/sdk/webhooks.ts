@@ -10,16 +10,16 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   CreateWebhookRequest,
   CreateWebhookResponseBody,
-} from "../models/operations/createwebhook.js";
-import { DeleteWebhookRequest } from "../models/operations/deletewebhook.js";
+} from "../models/createwebhookop.js";
+import { DeleteWebhookRequest } from "../models/deletewebhookop.js";
 import {
   GetWebhookRequest,
   GetWebhookResponseBody,
-} from "../models/operations/getwebhook.js";
+} from "../models/getwebhookop.js";
 import {
   GetWebhooksRequest,
   GetWebhooksResponseBody,
-} from "../models/operations/getwebhooks.js";
+} from "../models/getwebhooksop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Webhooks extends ClientSDK {

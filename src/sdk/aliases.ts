@@ -11,23 +11,20 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   AssignAliasRequest,
   AssignAliasResponseBody,
-} from "../models/operations/assignalias.js";
+} from "../models/assignaliasop.js";
 import {
   DeleteAliasRequest,
   DeleteAliasResponseBody,
-} from "../models/operations/deletealias.js";
-import {
-  GetAliasRequest,
-  GetAliasResponseBody,
-} from "../models/operations/getalias.js";
+} from "../models/deletealiasop.js";
+import { GetAliasRequest, GetAliasResponseBody } from "../models/getaliasop.js";
 import {
   ListAliasesRequest,
   ListAliasesResponseBody,
-} from "../models/operations/listaliases.js";
+} from "../models/listaliasesop.js";
 import {
   ListDeploymentAliasesRequest,
   ListDeploymentAliasesResponseBody,
-} from "../models/operations/listdeploymentaliases.js";
+} from "../models/listdeploymentaliasesop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Aliases extends ClientSDK {

@@ -15,15 +15,23 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
   UpdateProjectRequest,
   UpdateProjectRequest$outboundSchema,
   UpdateProjectResponseBody,
   UpdateProjectResponseBody$inboundSchema,
-} from "../models/operations/updateproject.js";
+} from "../models/updateprojectop.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -39,6 +47,8 @@ export async function projectsUpdateProject(
 ): Promise<
   Result<
     UpdateProjectResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -98,6 +108,7 @@ export async function projectsUpdateProject(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "PATCH",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -120,8 +131,14 @@ export async function projectsUpdateProject(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     UpdateProjectResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -131,8 +148,10 @@ export async function projectsUpdateProject(
     | ConnectionError
   >(
     M.json(200, UpdateProjectResponseBody$inboundSchema),
-    M.fail([400, 401, 402, 403, 409, 428, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([402, 403, 409, 428, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

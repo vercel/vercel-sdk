@@ -17,41 +17,41 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   CreateAccessGroupRequest,
   CreateAccessGroupResponseBody,
-} from "../models/operations/createaccessgroup.js";
+} from "../models/createaccessgroupop.js";
 import {
   CreateAccessGroupProjectRequest,
   CreateAccessGroupProjectResponseBody,
-} from "../models/operations/createaccessgroupproject.js";
-import { DeleteAccessGroupRequest } from "../models/operations/deleteaccessgroup.js";
-import { DeleteAccessGroupProjectRequest } from "../models/operations/deleteaccessgroupproject.js";
+} from "../models/createaccessgroupprojectop.js";
+import { DeleteAccessGroupRequest } from "../models/deleteaccessgroupop.js";
+import { DeleteAccessGroupProjectRequest } from "../models/deleteaccessgroupprojectop.js";
 import {
   ListAccessGroupMembersRequest,
   ListAccessGroupMembersResponseBody,
-} from "../models/operations/listaccessgroupmembers.js";
+} from "../models/listaccessgroupmembersop.js";
 import {
   ListAccessGroupProjectsRequest,
   ListAccessGroupProjectsResponseBody,
-} from "../models/operations/listaccessgroupprojects.js";
+} from "../models/listaccessgroupprojectsop.js";
 import {
   ListAccessGroupsRequest,
   ListAccessGroupsResponseBody,
-} from "../models/operations/listaccessgroups.js";
+} from "../models/listaccessgroupsop.js";
 import {
   ReadAccessGroupRequest,
   ReadAccessGroupResponseBody,
-} from "../models/operations/readaccessgroup.js";
+} from "../models/readaccessgroupop.js";
 import {
   ReadAccessGroupProjectRequest,
   ReadAccessGroupProjectResponseBody,
-} from "../models/operations/readaccessgroupproject.js";
+} from "../models/readaccessgroupprojectop.js";
 import {
   UpdateAccessGroupRequest,
   UpdateAccessGroupResponseBody,
-} from "../models/operations/updateaccessgroup.js";
+} from "../models/updateaccessgroupop.js";
 import {
   UpdateAccessGroupProjectRequest,
   UpdateAccessGroupProjectResponseBody,
-} from "../models/operations/updateaccessgroupproject.js";
+} from "../models/updateaccessgroupprojectop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class AccessGroups extends ClientSDK {

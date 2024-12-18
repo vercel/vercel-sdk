@@ -11,18 +11,30 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
+  DeleteAccessGroupRequest,
+  DeleteAccessGroupRequest$outboundSchema,
+} from "../models/deleteaccessgroupop.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
-  DeleteAccessGroupRequest,
-  DeleteAccessGroupRequest$outboundSchema,
-} from "../models/operations/deleteaccessgroup.js";
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
+import {
+  VercelNotFoundError,
+  VercelNotFoundError$inboundSchema,
+} from "../models/vercelnotfounderror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -38,6 +50,9 @@ export async function accessGroupsDeleteAccessGroup(
 ): Promise<
   Result<
     void,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -73,7 +88,7 @@ export async function accessGroupsDeleteAccessGroup(
   });
 
   const headers = new Headers({
-    Accept: "*/*",
+    Accept: "application/json",
   });
 
   const secConfig = await extractSecurity(client._options.bearerToken);
@@ -96,6 +111,7 @@ export async function accessGroupsDeleteAccessGroup(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "DELETE",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -118,8 +134,15 @@ export async function accessGroupsDeleteAccessGroup(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     void,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -129,8 +152,11 @@ export async function accessGroupsDeleteAccessGroup(
     | ConnectionError
   >(
     M.nil(200, z.void()),
-    M.fail([400, 401, 403, 404, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([403, "4XX", "5XX"]),
+    M.jsonErr(404, VercelNotFoundError$inboundSchema),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

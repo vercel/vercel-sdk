@@ -15,15 +15,27 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
   UpdateTeamMemberRequest,
   UpdateTeamMemberRequest$outboundSchema,
   UpdateTeamMemberResponseBody,
   UpdateTeamMemberResponseBody$inboundSchema,
-} from "../models/operations/updateteammember.js";
+} from "../models/updateteammemberop.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
+import {
+  VercelNotFoundError,
+  VercelNotFoundError$inboundSchema,
+} from "../models/vercelnotfounderror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -39,6 +51,9 @@ export async function teamsUpdateTeamMember(
 ): Promise<
   Result<
     UpdateTeamMemberResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -97,6 +112,7 @@ export async function teamsUpdateTeamMember(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "PATCH",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -118,8 +134,15 @@ export async function teamsUpdateTeamMember(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     UpdateTeamMemberResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -129,8 +152,11 @@ export async function teamsUpdateTeamMember(
     | ConnectionError
   >(
     M.json(200, UpdateTeamMemberResponseBody$inboundSchema),
-    M.fail([400, 401, 402, 403, 404, "4XX", 500, "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([402, 403, "4XX", 500, "5XX"]),
+    M.jsonErr(404, VercelNotFoundError$inboundSchema),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

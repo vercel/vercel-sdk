@@ -16,20 +16,28 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
   SubmitBillingDataRequest,
   SubmitBillingDataRequest$outboundSchema,
-} from "../models/operations/submitbillingdata.js";
+} from "../models/submitbillingdataop.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
  * Submit Billing Data
  *
  * @remarks
- * Sends the billing and usage data. The partner should do this at least once a day and ideally once per hour. <br/> Use the `credentials.access_token` we provided in the (Upsert Installation)[#upsert-installation] body to authorize this request.
+ * Sends the billing and usage data. The partner should do this at least once a day and ideally once per hour. <br/> Use the `credentials.access_token` we provided in the [Upsert Installation](#upsert-installation) body to authorize this request.
  */
 export async function marketplaceSubmitBillingData(
   client: VercelCore,
@@ -38,6 +46,8 @@ export async function marketplaceSubmitBillingData(
 ): Promise<
   Result<
     void,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -72,7 +82,7 @@ export async function marketplaceSubmitBillingData(
 
   const headers = new Headers({
     "Content-Type": "application/json",
-    Accept: "*/*",
+    Accept: "application/json",
   });
 
   const secConfig = await extractSecurity(client._options.bearerToken);
@@ -95,6 +105,7 @@ export async function marketplaceSubmitBillingData(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -116,8 +127,14 @@ export async function marketplaceSubmitBillingData(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     void,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -127,8 +144,10 @@ export async function marketplaceSubmitBillingData(
     | ConnectionError
   >(
     M.nil(201, z.void()),
-    M.fail([400, 401, 403, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([403, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

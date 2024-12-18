@@ -15,15 +15,19 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
   SearchRepoRequest,
   SearchRepoRequest$outboundSchema,
   SearchRepoResponseBody,
   SearchRepoResponseBody$inboundSchema,
-} from "../models/operations/searchrepo.js";
+} from "../models/searchrepoop.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -39,6 +43,7 @@ export async function integrationsSearchRepo(
 ): Promise<
   Result<
     SearchRepoResponseBody,
+    | VercelBadRequestError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -95,6 +100,7 @@ export async function integrationsSearchRepo(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -117,8 +123,13 @@ export async function integrationsSearchRepo(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     SearchRepoResponseBody,
+    | VercelBadRequestError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -128,8 +139,9 @@ export async function integrationsSearchRepo(
     | ConnectionError
   >(
     M.json(200, SearchRepoResponseBody$inboundSchema),
-    M.fail([400, 403, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.fail([403, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

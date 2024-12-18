@@ -10,20 +10,28 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
+  GetDomainsRequest,
+  GetDomainsRequest$outboundSchema,
+  GetDomainsResponseBody,
+  GetDomainsResponseBody$inboundSchema,
+} from "../models/getdomainsop.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
-  GetDomainsRequest,
-  GetDomainsRequest$outboundSchema,
-  GetDomainsResponseBody,
-  GetDomainsResponseBody$inboundSchema,
-} from "../models/operations/getdomains.js";
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -39,6 +47,8 @@ export async function domainsGetDomains(
 ): Promise<
   Result<
     GetDomainsResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -93,6 +103,7 @@ export async function domainsGetDomains(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -115,8 +126,14 @@ export async function domainsGetDomains(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     GetDomainsResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -126,8 +143,10 @@ export async function domainsGetDomains(
     | ConnectionError
   >(
     M.json(200, GetDomainsResponseBody$inboundSchema),
-    M.fail([400, 401, 403, 409, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([403, 409, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

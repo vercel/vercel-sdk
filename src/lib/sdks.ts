@@ -10,7 +10,7 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
+} from "../models/httpclienterrors.js";
 import { ERR, OK, Result } from "../types/fp.js";
 import { stringToBase64 } from "./base64.js";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "./config.js";
@@ -42,6 +42,10 @@ export type RequestOptions = {
    */
   retryCodes?: string[];
   /**
+   * Overrides the base server URL that will be used by an operation.
+   */
+  serverURL?: string | URL;
+  /**
    * Sets various request options on the `fetch` call made by an SDK method.
    *
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options|Request}
@@ -52,7 +56,7 @@ export type RequestOptions = {
 type RequestConfig = {
   method: string;
   path: string;
-  baseURL?: string | URL;
+  baseURL?: string | URL | undefined;
   query?: string;
   body?: RequestInit["body"];
   headers?: HeadersInit;
@@ -119,6 +123,7 @@ export class ClientSDK {
     const inputURL = new URL(path, reqURL);
 
     if (path) {
+      reqURL.pathname += reqURL.pathname.endsWith("/") ? "" : "/";
       reqURL.pathname += inputURL.pathname.replace(/^\/+/, "");
     }
 

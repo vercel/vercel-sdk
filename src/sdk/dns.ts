@@ -10,19 +10,19 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   CreateRecordRequest,
   CreateRecordResponseBody,
-} from "../models/operations/createrecord.js";
+} from "../models/createrecordop.js";
 import {
   GetRecordsRequest,
   GetRecordsResponseBody,
-} from "../models/operations/getrecords.js";
+} from "../models/getrecordsop.js";
 import {
   RemoveRecordRequest,
   RemoveRecordResponseBody,
-} from "../models/operations/removerecord.js";
+} from "../models/removerecordop.js";
 import {
   UpdateRecordRequest,
   UpdateRecordResponseBody,
-} from "../models/operations/updaterecord.js";
+} from "../models/updaterecordop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Dns extends ClientSDK {

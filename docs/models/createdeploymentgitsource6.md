@@ -1,0 +1,25 @@
+# CreateDeploymentGitSource6
+
+Allows custom git sources (local folder mounted to the container) in test mode
+
+## Example Usage
+
+```typescript
+import { CreateDeploymentGitSource6 } from "@vercel/sdk/models/createdeploymentop.js";
+
+let value: CreateDeploymentGitSource6 = {
+  type: "custom",
+  ref: "<value>",
+  sha: "<value>",
+  gitUrl: "https://soggy-prohibition.com",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                  | Type                                                                                                                                                                                   | Required                                                                                                                                                                               | Description                                                                                                                                                                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                                                                                                                                                                                 | [models.CreateDeploymentGitSourceDeploymentsResponse200ApplicationJSONResponseBody6Type](../models/createdeploymentgitsourcedeploymentsresponse200applicationjsonresponsebody6type.md) | :heavy_check_mark:                                                                                                                                                                     | N/A                                                                                                                                                                                    |
+| `ref`                                                                                                                                                                                  | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | N/A                                                                                                                                                                                    |
+| `sha`                                                                                                                                                                                  | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | N/A                                                                                                                                                                                    |
+| `gitUrl`                                                                                                                                                                               | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | N/A                                                                                                                                                                                    |

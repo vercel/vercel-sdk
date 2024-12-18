@@ -19,49 +19,43 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   CreateTeamRequestBody,
   CreateTeamResponseBody,
-} from "../models/operations/createteam.js";
-import {
-  DeleteTeamRequest,
-  DeleteTeamResponseBody,
-} from "../models/operations/deleteteam.js";
+} from "../models/createteamop.js";
 import {
   DeleteTeamInviteCodeRequest,
   DeleteTeamInviteCodeResponseBody,
-} from "../models/operations/deleteteaminvitecode.js";
-import { GetTeamRequest } from "../models/operations/getteam.js";
+} from "../models/deleteteaminvitecodeop.js";
+import {
+  DeleteTeamRequest,
+  DeleteTeamResponseBody,
+} from "../models/deleteteamop.js";
 import {
   GetTeamAccessRequestRequest,
   GetTeamAccessRequestResponseBody,
-} from "../models/operations/getteamaccessrequest.js";
+} from "../models/getteamaccessrequestop.js";
 import {
   GetTeamMembersRequest,
   GetTeamMembersResponseBody,
-} from "../models/operations/getteammembers.js";
-import {
-  GetTeamsRequest,
-  GetTeamsResponseBody,
-} from "../models/operations/getteams.js";
+} from "../models/getteammembersop.js";
+import { GetTeamRequest } from "../models/getteamop.js";
+import { GetTeamsRequest, GetTeamsResponseBody } from "../models/getteamsop.js";
 import {
   InviteUserToTeamRequest,
   InviteUserToTeamResponseBody,
-} from "../models/operations/inviteusertoteam.js";
-import {
-  JoinTeamRequest,
-  JoinTeamResponseBody,
-} from "../models/operations/jointeam.js";
-import { PatchTeamRequest } from "../models/operations/patchteam.js";
+} from "../models/inviteusertoteamop.js";
+import { JoinTeamRequest, JoinTeamResponseBody } from "../models/jointeamop.js";
+import { PatchTeamRequest } from "../models/patchteamop.js";
 import {
   RemoveTeamMemberRequest,
   RemoveTeamMemberResponseBody,
-} from "../models/operations/removeteammember.js";
+} from "../models/removeteammemberop.js";
 import {
   RequestAccessToTeamRequest,
   RequestAccessToTeamResponseBody,
-} from "../models/operations/requestaccesstoteam.js";
+} from "../models/requestaccesstoteamop.js";
 import {
   UpdateTeamMemberRequest,
   UpdateTeamMemberResponseBody,
-} from "../models/operations/updateteammember.js";
+} from "../models/updateteammemberop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Teams extends ClientSDK {
@@ -242,7 +236,7 @@ export class Teams extends ClientSDK {
    * Create a new Team under your account. You need to send a POST request with the desired Team slug, and optionally the Team name.
    */
   async createTeam(
-    request?: CreateTeamRequestBody | undefined,
+    request: CreateTeamRequestBody,
     options?: RequestOptions,
   ): Promise<CreateTeamResponseBody> {
     return unwrapAsync(teamsCreateTeam(

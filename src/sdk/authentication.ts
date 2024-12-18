@@ -11,20 +11,20 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   CreateAuthTokenRequest,
   CreateAuthTokenResponseBody,
-} from "../models/operations/createauthtoken.js";
+} from "../models/createauthtokenop.js";
 import {
   DeleteAuthTokenRequest,
   DeleteAuthTokenResponseBody,
-} from "../models/operations/deleteauthtoken.js";
+} from "../models/deleteauthtokenop.js";
 import {
   ExchangeSsoTokenRequestBody,
   ExchangeSsoTokenResponseBody,
-} from "../models/operations/exchangessotoken.js";
+} from "../models/exchangessotokenop.js";
 import {
   GetAuthTokenRequest,
   GetAuthTokenResponseBody,
-} from "../models/operations/getauthtoken.js";
-import { ListAuthTokensResponseBody } from "../models/operations/listauthtokens.js";
+} from "../models/getauthtokenop.js";
+import { ListAuthTokensResponseBody } from "../models/listauthtokensop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Authentication extends ClientSDK {
@@ -35,7 +35,7 @@ export class Authentication extends ClientSDK {
    * During the autorization process, Vercel sends the user to the provider [redirectLoginUrl](https://vercel.com/docs/integrations/create-integration/submit-integration#redirect-login-url), that includes the OAuth authorization `code` parameter. The provider then calls the SSO Token Exchange endpoint with the sent code and receives the OIDC token. They log the user in based on this token and redirects the user back to the Vercel account using deep-link parameters included the redirectLoginUrl. This is used to verify the identity of the user during the [**Open in Provider** flow](https://vercel.com/docs/integrations/marketplace-flows#open-in-provider-button-flow). Providers should not persist the returned `id_token` in a database since the token will expire.
    */
   async exchangeSsoToken(
-    request?: ExchangeSsoTokenRequestBody | undefined,
+    request: ExchangeSsoTokenRequestBody,
     options?: RequestOptions,
   ): Promise<ExchangeSsoTokenResponseBody> {
     return unwrapAsync(authenticationExchangeSsoToken(

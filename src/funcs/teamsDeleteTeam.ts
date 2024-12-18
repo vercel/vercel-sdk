@@ -10,20 +10,32 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
+  DeleteTeamRequest,
+  DeleteTeamRequest$outboundSchema,
+  DeleteTeamResponseBody,
+  DeleteTeamResponseBody$inboundSchema,
+} from "../models/deleteteamop.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
-  DeleteTeamRequest,
-  DeleteTeamRequest$outboundSchema,
-  DeleteTeamResponseBody,
-  DeleteTeamResponseBody$inboundSchema,
-} from "../models/operations/deleteteam.js";
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
+import {
+  VercelNotFoundError,
+  VercelNotFoundError$inboundSchema,
+} from "../models/vercelnotfounderror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -39,6 +51,9 @@ export async function teamsDeleteTeam(
 ): Promise<
   Result<
     DeleteTeamResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -98,6 +113,7 @@ export async function teamsDeleteTeam(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "DELETE",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -120,8 +136,15 @@ export async function teamsDeleteTeam(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     DeleteTeamResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -131,8 +154,11 @@ export async function teamsDeleteTeam(
     | ConnectionError
   >(
     M.json(200, DeleteTeamResponseBody$inboundSchema),
-    M.fail([400, 401, 402, 403, 404, 409, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([402, 403, 409, "4XX", "5XX"]),
+    M.jsonErr(404, VercelNotFoundError$inboundSchema),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

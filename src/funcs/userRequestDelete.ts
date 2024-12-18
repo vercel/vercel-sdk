@@ -15,15 +15,23 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
 import {
   RequestDeleteRequestBody,
   RequestDeleteRequestBody$outboundSchema,
   RequestDeleteResponseBody,
   RequestDeleteResponseBody$inboundSchema,
-} from "../models/operations/requestdelete.js";
+} from "../models/requestdeleteop.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -34,11 +42,13 @@ import { Result } from "../types/fp.js";
  */
 export async function userRequestDelete(
   client: VercelCore,
-  request?: RequestDeleteRequestBody | undefined,
+  request: RequestDeleteRequestBody,
   options?: RequestOptions,
 ): Promise<
   Result<
     RequestDeleteResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -50,16 +60,14 @@ export async function userRequestDelete(
 > {
   const parsed = safeParse(
     request,
-    (value) => RequestDeleteRequestBody$outboundSchema.optional().parse(value),
+    (value) => RequestDeleteRequestBody$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = payload === undefined
-    ? null
-    : encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload, { explode: true });
 
   const path = pathToFunc("/v1/user")();
 
@@ -88,6 +96,7 @@ export async function userRequestDelete(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "DELETE",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -109,8 +118,14 @@ export async function userRequestDelete(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     RequestDeleteResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -120,8 +135,10 @@ export async function userRequestDelete(
     | ConnectionError
   >(
     M.json(202, RequestDeleteResponseBody$inboundSchema),
-    M.fail([400, 401, 402, 403, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([402, 403, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

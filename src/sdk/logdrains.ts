@@ -13,25 +13,25 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   CreateConfigurableLogDrainRequest,
   CreateConfigurableLogDrainResponseBody,
-} from "../models/operations/createconfigurablelogdrain.js";
+} from "../models/createconfigurablelogdrainop.js";
 import {
   CreateLogDrainRequest,
   CreateLogDrainResponseBody,
-} from "../models/operations/createlogdrain.js";
-import { DeleteConfigurableLogDrainRequest } from "../models/operations/deleteconfigurablelogdrain.js";
-import { DeleteIntegrationLogDrainRequest } from "../models/operations/deleteintegrationlogdrain.js";
+} from "../models/createlogdrainop.js";
+import { DeleteConfigurableLogDrainRequest } from "../models/deleteconfigurablelogdrainop.js";
+import { DeleteIntegrationLogDrainRequest } from "../models/deleteintegrationlogdrainop.js";
 import {
   GetAllLogDrainsRequest,
   GetAllLogDrainsResponseBody,
-} from "../models/operations/getalllogdrains.js";
+} from "../models/getalllogdrainsop.js";
 import {
   GetConfigurableLogDrainRequest,
   GetConfigurableLogDrainResponseBody,
-} from "../models/operations/getconfigurablelogdrain.js";
+} from "../models/getconfigurablelogdrainop.js";
 import {
   GetIntegrationLogDrainsRequest,
   GetIntegrationLogDrainsResponseBody,
-} from "../models/operations/getintegrationlogdrains.js";
+} from "../models/getintegrationlogdrainsop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class LogDrains extends ClientSDK {

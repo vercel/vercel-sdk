@@ -15,22 +15,30 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
   SubmitInvoiceRequest,
   SubmitInvoiceRequest$outboundSchema,
   SubmitInvoiceResponseBody,
   SubmitInvoiceResponseBody$inboundSchema,
-} from "../models/operations/submitinvoice.js";
+} from "../models/submitinvoiceop.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
  * Submit Invoice
  *
  * @remarks
- * This endpoint allows the partner to submit an invoice to Vercel. The invoice is created in Vercel's billing system and sent to the customer. Depending on the type of billing plan, the invoice can be sent at a time of signup, at the start of the billing period, or at the end of the billing period.<br/> <br/> Use the `credentials.access_token` we provided in the (Upsert Installation)[#upsert-installation] body to authorize this request. <br/> There are several limitations to the invoice submission:<br/> <br/> 1. A resource can only be billed once per the billing period and the billing plan.<br/> 2. The billing plan used to bill the resource must have been active for this resource during the billing period.<br/> 3. The billing plan used must be a subscription plan.<br/> 4. The interim usage data must be sent hourly for all types of subscriptions. See [Send subscription billing and usage data](#send-subscription-billing-and-usage-data) API on how to send interim billing and usage data.<br/>
+ * This endpoint allows the partner to submit an invoice to Vercel. The invoice is created in Vercel's billing system and sent to the customer. Depending on the type of billing plan, the invoice can be sent at a time of signup, at the start of the billing period, or at the end of the billing period.<br/> <br/> Use the `credentials.access_token` we provided in the [Upsert Installation](#upsert-installation) body to authorize this request. <br/> There are several limitations to the invoice submission:<br/> <br/> 1. A resource can only be billed once per the billing period and the billing plan.<br/> 2. The billing plan used to bill the resource must have been active for this resource during the billing period.<br/> 3. The billing plan used must be a subscription plan.<br/> 4. The interim usage data must be sent hourly for all types of subscriptions. See [Send subscription billing and usage data](#send-subscription-billing-and-usage-data) API on how to send interim billing and usage data.<br/>
  */
 export async function marketplaceSubmitInvoice(
   client: VercelCore,
@@ -39,6 +47,8 @@ export async function marketplaceSubmitInvoice(
 ): Promise<
   Result<
     SubmitInvoiceResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -96,6 +106,7 @@ export async function marketplaceSubmitInvoice(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -117,8 +128,14 @@ export async function marketplaceSubmitInvoice(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     SubmitInvoiceResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -128,8 +145,10 @@ export async function marketplaceSubmitInvoice(
     | ConnectionError
   >(
     M.json(200, SubmitInvoiceResponseBody$inboundSchema),
-    M.fail([400, 401, 403, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([403, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

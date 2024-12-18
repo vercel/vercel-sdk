@@ -12,34 +12,34 @@ import { deploymentsGetDeployments } from "../funcs/deploymentsGetDeployments.js
 import { deploymentsListDeploymentFiles } from "../funcs/deploymentsListDeploymentFiles.js";
 import { deploymentsUploadFile } from "../funcs/deploymentsUploadFile.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import { FileTree } from "../models/components/filetree.js";
 import {
   CancelDeploymentRequest,
   CancelDeploymentResponseBody,
-} from "../models/operations/canceldeployment.js";
+} from "../models/canceldeploymentop.js";
 import {
   CreateDeploymentRequest,
   CreateDeploymentResponseBody,
-} from "../models/operations/createdeployment.js";
+} from "../models/createdeploymentop.js";
 import {
   DeleteDeploymentRequest,
   DeleteDeploymentResponseBody,
-} from "../models/operations/deletedeployment.js";
+} from "../models/deletedeploymentop.js";
+import { FileTree } from "../models/filetree.js";
+import { GetDeploymentEventsRequest } from "../models/getdeploymenteventsop.js";
+import { GetDeploymentFileContentsRequest } from "../models/getdeploymentfilecontentsop.js";
 import {
   GetDeploymentRequest,
   GetDeploymentResponseBody,
-} from "../models/operations/getdeployment.js";
-import { GetDeploymentEventsRequest } from "../models/operations/getdeploymentevents.js";
-import { GetDeploymentFileContentsRequest } from "../models/operations/getdeploymentfilecontents.js";
+} from "../models/getdeploymentop.js";
 import {
   GetDeploymentsRequest,
   GetDeploymentsResponseBody,
-} from "../models/operations/getdeployments.js";
-import { ListDeploymentFilesRequest } from "../models/operations/listdeploymentfiles.js";
+} from "../models/getdeploymentsop.js";
+import { ListDeploymentFilesRequest } from "../models/listdeploymentfilesop.js";
 import {
   UploadFileRequest,
   UploadFileResponseBody,
-} from "../models/operations/uploadfile.js";
+} from "../models/uploadfileop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Deployments extends ClientSDK {

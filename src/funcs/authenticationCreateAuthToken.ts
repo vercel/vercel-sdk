@@ -10,20 +10,28 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
+  CreateAuthTokenRequest,
+  CreateAuthTokenRequest$outboundSchema,
+  CreateAuthTokenResponseBody,
+  CreateAuthTokenResponseBody$inboundSchema,
+} from "../models/createauthtokenop.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
-  CreateAuthTokenRequest,
-  CreateAuthTokenRequest$outboundSchema,
-  CreateAuthTokenResponseBody,
-  CreateAuthTokenResponseBody$inboundSchema,
-} from "../models/operations/createauthtoken.js";
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -39,6 +47,8 @@ export async function authenticationCreateAuthToken(
 ): Promise<
   Result<
     CreateAuthTokenResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -91,6 +101,7 @@ export async function authenticationCreateAuthToken(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -113,8 +124,14 @@ export async function authenticationCreateAuthToken(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     CreateAuthTokenResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -124,8 +141,10 @@ export async function authenticationCreateAuthToken(
     | ConnectionError
   >(
     M.json(200, CreateAuthTokenResponseBody$inboundSchema),
-    M.fail([400, 401, 403, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([403, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

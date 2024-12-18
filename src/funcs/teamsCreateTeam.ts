@@ -10,20 +10,28 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
+  CreateTeamRequestBody,
+  CreateTeamRequestBody$outboundSchema,
+  CreateTeamResponseBody,
+  CreateTeamResponseBody$inboundSchema,
+} from "../models/createteamop.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
-  CreateTeamRequestBody,
-  CreateTeamRequestBody$outboundSchema,
-  CreateTeamResponseBody,
-  CreateTeamResponseBody$inboundSchema,
-} from "../models/operations/createteam.js";
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -34,11 +42,13 @@ import { Result } from "../types/fp.js";
  */
 export async function teamsCreateTeam(
   client: VercelCore,
-  request?: CreateTeamRequestBody | undefined,
+  request: CreateTeamRequestBody,
   options?: RequestOptions,
 ): Promise<
   Result<
     CreateTeamResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -50,16 +60,14 @@ export async function teamsCreateTeam(
 > {
   const parsed = safeParse(
     request,
-    (value) => CreateTeamRequestBody$outboundSchema.optional().parse(value),
+    (value) => CreateTeamRequestBody$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = payload === undefined
-    ? null
-    : encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload, { explode: true });
 
   const path = pathToFunc("/v1/teams")();
 
@@ -88,6 +96,7 @@ export async function teamsCreateTeam(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -109,8 +118,14 @@ export async function teamsCreateTeam(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     CreateTeamResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -120,8 +135,10 @@ export async function teamsCreateTeam(
     | ConnectionError
   >(
     M.json(200, CreateTeamResponseBody$inboundSchema),
-    M.fail([400, 401, 403, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([403, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

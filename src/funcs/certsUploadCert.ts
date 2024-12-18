@@ -15,15 +15,23 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
   UploadCertRequest,
   UploadCertRequest$outboundSchema,
   UploadCertResponseBody,
   UploadCertResponseBody$inboundSchema,
-} from "../models/operations/uploadcert.js";
+} from "../models/uploadcertop.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -39,6 +47,8 @@ export async function certsUploadCert(
 ): Promise<
   Result<
     UploadCertResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -91,6 +101,7 @@ export async function certsUploadCert(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "PUT",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -113,8 +124,14 @@ export async function certsUploadCert(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     UploadCertResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -124,8 +141,10 @@ export async function certsUploadCert(
     | ConnectionError
   >(
     M.json(200, UploadCertResponseBody$inboundSchema),
-    M.fail([400, 401, 402, 403, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([402, 403, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

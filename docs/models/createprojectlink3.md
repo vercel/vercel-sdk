@@ -1,0 +1,35 @@
+# CreateProjectLink3
+
+## Example Usage
+
+```typescript
+import { CreateProjectLink3 } from "@vercel/sdk/models/createprojectop.js";
+
+let value: CreateProjectLink3 = {
+  deployHooks: [
+    {
+      id: "<id>",
+      name: "<value>",
+      ref: "<value>",
+      url: "https://tough-brace.info",
+    },
+  ],
+};
+```
+
+## Fields
+
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `name`                                                                                                             | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `slug`                                                                                                             | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `owner`                                                                                                            | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `type`                                                                                                             | [models.CreateProjectLinkProjectsResponseType](../models/createprojectlinkprojectsresponsetype.md)                 | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `uuid`                                                                                                             | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `workspaceUuid`                                                                                                    | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `createdAt`                                                                                                        | *number*                                                                                                           | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `deployHooks`                                                                                                      | [models.CreateProjectLinkProjectsResponseDeployHooks](../models/createprojectlinkprojectsresponsedeployhooks.md)[] | :heavy_check_mark:                                                                                                 | N/A                                                                                                                |
+| `gitCredentialId`                                                                                                  | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `updatedAt`                                                                                                        | *number*                                                                                                           | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `sourceless`                                                                                                       | *boolean*                                                                                                          | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `productionBranch`                                                                                                 | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |

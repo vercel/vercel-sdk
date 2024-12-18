@@ -9,20 +9,28 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
+  ExchangeSsoTokenRequestBody,
+  ExchangeSsoTokenRequestBody$outboundSchema,
+  ExchangeSsoTokenResponseBody,
+  ExchangeSsoTokenResponseBody$inboundSchema,
+} from "../models/exchangessotokenop.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
-  ExchangeSsoTokenRequestBody,
-  ExchangeSsoTokenRequestBody$outboundSchema,
-  ExchangeSsoTokenResponseBody,
-  ExchangeSsoTokenResponseBody$inboundSchema,
-} from "../models/operations/exchangessotoken.js";
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelNotFoundError,
+  VercelNotFoundError$inboundSchema,
+} from "../models/vercelnotfounderror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -33,11 +41,13 @@ import { Result } from "../types/fp.js";
  */
 export async function authenticationExchangeSsoToken(
   client: VercelCore,
-  request?: ExchangeSsoTokenRequestBody | undefined,
+  request: ExchangeSsoTokenRequestBody,
   options?: RequestOptions,
 ): Promise<
   Result<
     ExchangeSsoTokenResponseBody,
+    | VercelBadRequestError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -49,17 +59,14 @@ export async function authenticationExchangeSsoToken(
 > {
   const parsed = safeParse(
     request,
-    (value) =>
-      ExchangeSsoTokenRequestBody$outboundSchema.optional().parse(value),
+    (value) => ExchangeSsoTokenRequestBody$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = payload === undefined
-    ? null
-    : encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload, { explode: true });
 
   const path = pathToFunc("/v1/integrations/sso/token")();
 
@@ -83,6 +90,7 @@ export async function authenticationExchangeSsoToken(
 
   const requestRes = client._createRequest(context, {
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -104,8 +112,14 @@ export async function authenticationExchangeSsoToken(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     ExchangeSsoTokenResponseBody,
+    | VercelBadRequestError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -115,8 +129,10 @@ export async function authenticationExchangeSsoToken(
     | ConnectionError
   >(
     M.json(200, ExchangeSsoTokenResponseBody$inboundSchema),
-    M.fail([400, 404, "4XX", 500, "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(404, VercelNotFoundError$inboundSchema),
+    M.fail(["4XX", 500, "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

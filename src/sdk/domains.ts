@@ -13,46 +13,43 @@ import { domainsGetDomains } from "../funcs/domainsGetDomains.js";
 import { domainsGetDomainTransfer } from "../funcs/domainsGetDomainTransfer.js";
 import { domainsPatchDomain } from "../funcs/domainsPatchDomain.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import {
-  BuyDomainRequest,
-  BuyDomainResponse,
-} from "../models/operations/buydomain.js";
+import { BuyDomainRequest, BuyDomainResponse } from "../models/buydomainop.js";
 import {
   CheckDomainPriceRequest,
   CheckDomainPriceResponseBody,
-} from "../models/operations/checkdomainprice.js";
+} from "../models/checkdomainpriceop.js";
 import {
   CheckDomainStatusRequest,
   CheckDomainStatusResponseBody,
-} from "../models/operations/checkdomainstatus.js";
+} from "../models/checkdomainstatusop.js";
 import {
   CreateOrTransferDomainRequest,
   CreateOrTransferDomainResponseBody,
-} from "../models/operations/createortransferdomain.js";
+} from "../models/createortransferdomainop.js";
 import {
   DeleteDomainRequest,
   DeleteDomainResponseBody,
-} from "../models/operations/deletedomain.js";
-import {
-  GetDomainRequest,
-  GetDomainResponseBody,
-} from "../models/operations/getdomain.js";
+} from "../models/deletedomainop.js";
 import {
   GetDomainConfigRequest,
   GetDomainConfigResponseBody,
-} from "../models/operations/getdomainconfig.js";
+} from "../models/getdomainconfigop.js";
+import {
+  GetDomainRequest,
+  GetDomainResponseBody,
+} from "../models/getdomainop.js";
 import {
   GetDomainsRequest,
   GetDomainsResponseBody,
-} from "../models/operations/getdomains.js";
+} from "../models/getdomainsop.js";
 import {
   GetDomainTransferRequest,
   GetDomainTransferResponseBody,
-} from "../models/operations/getdomaintransfer.js";
+} from "../models/getdomaintransferop.js";
 import {
   PatchDomainRequest,
   PatchDomainResponseBody,
-} from "../models/operations/patchdomain.js";
+} from "../models/patchdomainop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Domains extends ClientSDK {

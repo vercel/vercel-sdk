@@ -1,0 +1,35 @@
+# GetDeploymentsProjectSettings
+
+The project settings which was used for this deployment
+
+## Example Usage
+
+```typescript
+import { GetDeploymentsProjectSettings } from "@vercel/sdk/models/getdeploymentsop.js";
+
+let value: GetDeploymentsProjectSettings = {};
+```
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `framework`                                                                    | [models.GetDeploymentsFramework](../models/getdeploymentsframework.md)         | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `gitForkProtection`                                                            | *boolean*                                                                      | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `customerSupportCodeVisibility`                                                | *boolean*                                                                      | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `gitLFS`                                                                       | *boolean*                                                                      | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `devCommand`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `installCommand`                                                               | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `buildCommand`                                                                 | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `nodeVersion`                                                                  | [models.GetDeploymentsNodeVersion](../models/getdeploymentsnodeversion.md)     | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `outputDirectory`                                                              | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `publicSource`                                                                 | *boolean*                                                                      | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `rootDirectory`                                                                | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `serverlessFunctionRegion`                                                     | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `sourceFilesOutsideRootDirectory`                                              | *boolean*                                                                      | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `commandForIgnoringBuildStep`                                                  | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `createdAt`                                                                    | *number*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `speedInsights`                                                                | [models.GetDeploymentsSpeedInsights](../models/getdeploymentsspeedinsights.md) | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `webAnalytics`                                                                 | [models.GetDeploymentsWebAnalytics](../models/getdeploymentswebanalytics.md)   | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `skipGitConnectDuringLink`                                                     | *boolean*                                                                      | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `gitComments`                                                                  | [models.GetDeploymentsGitComments](../models/getdeploymentsgitcomments.md)     | :heavy_minus_sign:                                                             | Since June '23                                                                 |

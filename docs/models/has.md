@@ -1,0 +1,19 @@
+# Has
+
+## Example Usage
+
+```typescript
+import { Has } from "@vercel/sdk/models/updateprojectdatacacheop.js";
+
+let value: Has = {
+  type: "region",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                    | Type                                                                                                                                                                                     | Required                                                                                                                                                                                 | Description                                                                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                                                                                                                                                                                   | [models.UpdateProjectDataCacheProjectsResponse200ApplicationJSONResponseBodySecurityType](../models/updateprojectdatacacheprojectsresponse200applicationjsonresponsebodysecuritytype.md) | :heavy_check_mark:                                                                                                                                                                       | N/A                                                                                                                                                                                      |
+| `key`                                                                                                                                                                                    | *string*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                       | N/A                                                                                                                                                                                      |
+| `value`                                                                                                                                                                                  | *models.UpdateProjectDataCacheProjectsValue*                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                       | N/A                                                                                                                                                                                      |

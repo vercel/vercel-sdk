@@ -9,15 +9,15 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   AddProjectMemberRequest,
   AddProjectMemberResponseBody,
-} from "../models/operations/addprojectmember.js";
+} from "../models/addprojectmemberop.js";
 import {
   GetProjectMembersRequest,
   GetProjectMembersResponseBody,
-} from "../models/operations/getprojectmembers.js";
+} from "../models/getprojectmembersop.js";
 import {
   RemoveProjectMemberRequest,
   RemoveProjectMemberResponseBody,
-} from "../models/operations/removeprojectmember.js";
+} from "../models/removeprojectmemberop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ProjectMembers extends ClientSDK {

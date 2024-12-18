@@ -10,27 +10,35 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
+  CreateProjectEnvRequest,
+  CreateProjectEnvRequest$outboundSchema,
+  CreateProjectEnvResponseBody,
+  CreateProjectEnvResponseBody$inboundSchema,
+} from "../models/createprojectenvop.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
-  CreateProjectEnvRequest,
-  CreateProjectEnvRequest$outboundSchema,
-  CreateProjectEnvResponseBody,
-  CreateProjectEnvResponseBody$inboundSchema,
-} from "../models/operations/createprojectenv.js";
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
  * Create one or more environment variables
  *
  * @remarks
- * Create one ore more environment variables for a project by passing its `key`, `value`, `type` and `target` and by specifying the project by either passing the project `id` or `name` in the URL.
+ * Create one or more environment variables for a project by passing its `key`, `value`, `type` and `target` and by specifying the project by either passing the project `id` or `name` in the URL. If you include `upsert=true` as a query parameter, a new environment variable will not be created if it already exists but, the existing variable's value will be updated.
  */
 export async function projectsCreateProjectEnv(
   client: VercelCore,
@@ -39,6 +47,8 @@ export async function projectsCreateProjectEnv(
 ): Promise<
   Result<
     CreateProjectEnvResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -99,6 +109,7 @@ export async function projectsCreateProjectEnv(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -121,8 +132,14 @@ export async function projectsCreateProjectEnv(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     CreateProjectEnvResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -132,8 +149,10 @@ export async function projectsCreateProjectEnv(
     | ConnectionError
   >(
     M.json(201, CreateProjectEnvResponseBody$inboundSchema),
-    M.fail([400, 401, 402, 403, 409, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([402, 403, 409, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

@@ -21,7 +21,7 @@ specific category of applications.
 ```typescript
 import { VercelCore } from "@vercel/sdk/core.js";
 import { projectsUpdateProject } from "@vercel/sdk/funcs/projectsUpdateProject.js";
-import { SDKValidationError } from "@vercel/sdk/models/errors/sdkvalidationerror.js";
+import { SDKValidationError } from "@vercel/sdk/models/sdkvalidationerror.js";
 
 // Use `VercelCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

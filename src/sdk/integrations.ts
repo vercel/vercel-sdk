@@ -8,23 +8,23 @@ import { integrationsGetConfigurations } from "../funcs/integrationsGetConfigura
 import { integrationsGitNamespaces } from "../funcs/integrationsGitNamespaces.js";
 import { integrationsSearchRepo } from "../funcs/integrationsSearchRepo.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import { DeleteConfigurationRequest } from "../models/operations/deleteconfiguration.js";
+import { DeleteConfigurationRequest } from "../models/deleteconfigurationop.js";
 import {
   GetConfigurationRequest,
   GetConfigurationResponseBody,
-} from "../models/operations/getconfiguration.js";
+} from "../models/getconfigurationop.js";
 import {
   GetConfigurationsRequest,
   GetConfigurationsResponseBody,
-} from "../models/operations/getconfigurations.js";
+} from "../models/getconfigurationsop.js";
 import {
   GitNamespacesRequest,
   GitNamespacesResponseBody,
-} from "../models/operations/gitnamespaces.js";
+} from "../models/gitnamespacesop.js";
 import {
   SearchRepoRequest,
   SearchRepoResponseBody,
-} from "../models/operations/searchrepo.js";
+} from "../models/searchrepoop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Integrations extends ClientSDK {

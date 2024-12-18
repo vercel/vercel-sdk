@@ -15,15 +15,27 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 import {
   UpdateAttackChallengeModeRequest,
   UpdateAttackChallengeModeRequest$outboundSchema,
   UpdateAttackChallengeModeResponseBody,
   UpdateAttackChallengeModeResponseBody$inboundSchema,
-} from "../models/operations/updateattackchallengemode.js";
+} from "../models/updateattackchallengemodeop.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
+import {
+  VercelNotFoundError,
+  VercelNotFoundError$inboundSchema,
+} from "../models/vercelnotfounderror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -39,6 +51,9 @@ export async function securityUpdateAttackChallengeMode(
 ): Promise<
   Result<
     UpdateAttackChallengeModeResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -91,6 +106,7 @@ export async function securityUpdateAttackChallengeMode(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -113,8 +129,15 @@ export async function securityUpdateAttackChallengeMode(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     UpdateAttackChallengeModeResponseBody,
+    | VercelBadRequestError
+    | VercelForbiddenError
+    | VercelNotFoundError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -124,8 +147,11 @@ export async function securityUpdateAttackChallengeMode(
     | ConnectionError
   >(
     M.json(200, UpdateAttackChallengeModeResponseBody$inboundSchema),
-    M.fail([400, 401, 403, 404, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([403, "4XX", "5XX"]),
+    M.jsonErr(404, VercelNotFoundError$inboundSchema),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

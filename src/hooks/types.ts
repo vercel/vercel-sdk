@@ -100,3 +100,10 @@ export interface Hooks {
   /** Registers a hook to be used by the SDK for the after error event. */
   registerAfterErrorHook(hook: AfterErrorHook): void;
 }
+
+export type Hook =
+  | SDKInitHook
+  | BeforeCreateRequestHook
+  | BeforeRequestHook
+  | AfterSuccessHook
+  | AfterErrorHook;

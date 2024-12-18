@@ -10,19 +10,19 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   GetCertByIdRequest,
   GetCertByIdResponseBody,
-} from "../models/operations/getcertbyid.js";
+} from "../models/getcertbyidop.js";
 import {
   IssueCertRequest,
   IssueCertResponseBody,
-} from "../models/operations/issuecert.js";
+} from "../models/issuecertop.js";
 import {
   RemoveCertRequest,
   RemoveCertResponseBody,
-} from "../models/operations/removecert.js";
+} from "../models/removecertop.js";
 import {
   UploadCertRequest,
   UploadCertResponseBody,
-} from "../models/operations/uploadcert.js";
+} from "../models/uploadcertop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Certs extends ClientSDK {

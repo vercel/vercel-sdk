@@ -9,21 +9,18 @@ import { artifactsRecordEvents } from "../funcs/artifactsRecordEvents.js";
 import { artifactsStatus } from "../funcs/artifactsStatus.js";
 import { artifactsUploadArtifact } from "../funcs/artifactsUploadArtifact.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import { ArtifactExistsRequest } from "../models/operations/artifactexists.js";
+import { ArtifactExistsRequest } from "../models/artifactexistsop.js";
 import {
   ArtifactQueryRequest,
   ResponseBody,
-} from "../models/operations/artifactquery.js";
-import { DownloadArtifactRequest } from "../models/operations/downloadartifact.js";
-import { RecordEventsRequest } from "../models/operations/recordevents.js";
-import {
-  StatusRequest,
-  StatusResponseBody,
-} from "../models/operations/status.js";
+} from "../models/artifactqueryop.js";
+import { DownloadArtifactRequest } from "../models/downloadartifactop.js";
+import { RecordEventsRequest } from "../models/recordeventsop.js";
+import { StatusRequest, StatusResponseBody } from "../models/statusop.js";
 import {
   UploadArtifactRequest,
   UploadArtifactResponseBody,
-} from "../models/operations/uploadartifact.js";
+} from "../models/uploadartifactop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Artifacts extends ClientSDK {

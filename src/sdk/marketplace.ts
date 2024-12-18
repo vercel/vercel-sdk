@@ -12,30 +12,30 @@ import { marketplaceSubmitInvoice } from "../funcs/marketplaceSubmitInvoice.js";
 import { marketplaceUpdateInvoice } from "../funcs/marketplaceUpdateInvoice.js";
 import { marketplaceUpdateResourceSecrets } from "../funcs/marketplaceUpdateResourceSecrets.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import { CreateEventRequest } from "../models/operations/createevent.js";
+import { CreateEventRequest } from "../models/createeventop.js";
 import {
   ExchangeSsoTokenRequestBody,
   ExchangeSsoTokenResponseBody,
-} from "../models/operations/exchangessotoken.js";
+} from "../models/exchangessotokenop.js";
 import {
   GetAccountInfoRequest,
   GetAccountInfoResponseBody,
-} from "../models/operations/getaccountinfo.js";
+} from "../models/getaccountinfoop.js";
 import {
   GetInvoiceRequest,
   GetInvoiceResponseBody,
-} from "../models/operations/getinvoice.js";
+} from "../models/getinvoiceop.js";
 import {
   GetMemberRequest,
   GetMemberResponseBody,
-} from "../models/operations/getmember.js";
-import { SubmitBillingDataRequest } from "../models/operations/submitbillingdata.js";
+} from "../models/getmemberop.js";
+import { SubmitBillingDataRequest } from "../models/submitbillingdataop.js";
 import {
   SubmitInvoiceRequest,
   SubmitInvoiceResponseBody,
-} from "../models/operations/submitinvoice.js";
-import { UpdateInvoiceRequest } from "../models/operations/updateinvoice.js";
-import { UpdateResourceSecretsRequest } from "../models/operations/updateresourcesecrets.js";
+} from "../models/submitinvoiceop.js";
+import { UpdateInvoiceRequest } from "../models/updateinvoiceop.js";
+import { UpdateResourceSecretsRequest } from "../models/updateresourcesecretsop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Marketplace extends ClientSDK {
@@ -94,7 +94,7 @@ export class Marketplace extends ClientSDK {
    * Submit Billing Data
    *
    * @remarks
-   * Sends the billing and usage data. The partner should do this at least once a day and ideally once per hour. <br/> Use the `credentials.access_token` we provided in the (Upsert Installation)[#upsert-installation] body to authorize this request.
+   * Sends the billing and usage data. The partner should do this at least once a day and ideally once per hour. <br/> Use the `credentials.access_token` we provided in the [Upsert Installation](#upsert-installation) body to authorize this request.
    */
   async submitBillingData(
     request: SubmitBillingDataRequest,
@@ -111,7 +111,7 @@ export class Marketplace extends ClientSDK {
    * Submit Invoice
    *
    * @remarks
-   * This endpoint allows the partner to submit an invoice to Vercel. The invoice is created in Vercel's billing system and sent to the customer. Depending on the type of billing plan, the invoice can be sent at a time of signup, at the start of the billing period, or at the end of the billing period.<br/> <br/> Use the `credentials.access_token` we provided in the (Upsert Installation)[#upsert-installation] body to authorize this request. <br/> There are several limitations to the invoice submission:<br/> <br/> 1. A resource can only be billed once per the billing period and the billing plan.<br/> 2. The billing plan used to bill the resource must have been active for this resource during the billing period.<br/> 3. The billing plan used must be a subscription plan.<br/> 4. The interim usage data must be sent hourly for all types of subscriptions. See [Send subscription billing and usage data](#send-subscription-billing-and-usage-data) API on how to send interim billing and usage data.<br/>
+   * This endpoint allows the partner to submit an invoice to Vercel. The invoice is created in Vercel's billing system and sent to the customer. Depending on the type of billing plan, the invoice can be sent at a time of signup, at the start of the billing period, or at the end of the billing period.<br/> <br/> Use the `credentials.access_token` we provided in the [Upsert Installation](#upsert-installation) body to authorize this request. <br/> There are several limitations to the invoice submission:<br/> <br/> 1. A resource can only be billed once per the billing period and the billing plan.<br/> 2. The billing plan used to bill the resource must have been active for this resource during the billing period.<br/> 3. The billing plan used must be a subscription plan.<br/> 4. The interim usage data must be sent hourly for all types of subscriptions. See [Send subscription billing and usage data](#send-subscription-billing-and-usage-data) API on how to send interim billing and usage data.<br/>
    */
   async submitInvoice(
     request: SubmitInvoiceRequest,
@@ -182,7 +182,7 @@ export class Marketplace extends ClientSDK {
    * During the autorization process, Vercel sends the user to the provider [redirectLoginUrl](https://vercel.com/docs/integrations/create-integration/submit-integration#redirect-login-url), that includes the OAuth authorization `code` parameter. The provider then calls the SSO Token Exchange endpoint with the sent code and receives the OIDC token. They log the user in based on this token and redirects the user back to the Vercel account using deep-link parameters included the redirectLoginUrl. This is used to verify the identity of the user during the [**Open in Provider** flow](https://vercel.com/docs/integrations/marketplace-flows#open-in-provider-button-flow). Providers should not persist the returned `id_token` in a database since the token will expire.
    */
   async exchangeSsoToken(
-    request?: ExchangeSsoTokenRequestBody | undefined,
+    request: ExchangeSsoTokenRequestBody,
     options?: RequestOptions,
   ): Promise<ExchangeSsoTokenResponseBody> {
     return unwrapAsync(marketplaceExchangeSsoToken(

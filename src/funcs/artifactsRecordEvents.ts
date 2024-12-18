@@ -16,13 +16,21 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
-import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+} from "../models/httpclienterrors.js";
 import {
   RecordEventsRequest,
   RecordEventsRequest$outboundSchema,
-} from "../models/operations/recordevents.js";
+} from "../models/recordeventsop.js";
+import { SDKError } from "../models/sdkerror.js";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
+import {
+  VercelBadRequestError,
+  VercelBadRequestError$inboundSchema,
+} from "../models/vercelbadrequesterror.js";
+import {
+  VercelForbiddenError,
+  VercelForbiddenError$inboundSchema,
+} from "../models/vercelforbiddenerror.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -38,6 +46,8 @@ export async function artifactsRecordEvents(
 ): Promise<
   Result<
     void,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -67,7 +77,7 @@ export async function artifactsRecordEvents(
 
   const headers = new Headers({
     "Content-Type": "application/json",
-    Accept: "*/*",
+    Accept: "application/json",
     "x-artifact-client-ci": encodeSimple(
       "x-artifact-client-ci",
       payload["x-artifact-client-ci"],
@@ -100,6 +110,7 @@ export async function artifactsRecordEvents(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -122,8 +133,14 @@ export async function artifactsRecordEvents(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     void,
+    | VercelBadRequestError
+    | VercelForbiddenError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -133,8 +150,10 @@ export async function artifactsRecordEvents(
     | ConnectionError
   >(
     M.nil(200, z.void()),
-    M.fail([400, 401, 402, 403, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr(400, VercelBadRequestError$inboundSchema),
+    M.jsonErr(401, VercelForbiddenError$inboundSchema),
+    M.fail([402, 403, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

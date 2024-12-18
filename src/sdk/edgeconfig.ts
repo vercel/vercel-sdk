@@ -19,51 +19,51 @@ import { edgeConfigGetEdgeConfigTokens } from "../funcs/edgeConfigGetEdgeConfigT
 import { edgeConfigPatchEdgeConfigSchema } from "../funcs/edgeConfigPatchEdgeConfigSchema.js";
 import { edgeConfigUpdateEdgeConfig } from "../funcs/edgeConfigUpdateEdgeConfig.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import { EdgeConfigItem } from "../models/components/edgeconfigitem.js";
-import { EdgeConfigToken } from "../models/components/edgeconfigtoken.js";
 import {
   CreateEdgeConfigRequest,
   CreateEdgeConfigResponseBody,
-} from "../models/operations/createedgeconfig.js";
+} from "../models/createedgeconfigop.js";
 import {
   CreateEdgeConfigTokenRequest,
   CreateEdgeConfigTokenResponseBody,
-} from "../models/operations/createedgeconfigtoken.js";
-import { DeleteEdgeConfigRequest } from "../models/operations/deleteedgeconfig.js";
-import { DeleteEdgeConfigSchemaRequest } from "../models/operations/deleteedgeconfigschema.js";
-import { DeleteEdgeConfigTokensRequest } from "../models/operations/deleteedgeconfigtokens.js";
-import {
-  GetEdgeConfigRequest,
-  GetEdgeConfigResponseBody,
-} from "../models/operations/getedgeconfig.js";
+} from "../models/createedgeconfigtokenop.js";
+import { DeleteEdgeConfigRequest } from "../models/deleteedgeconfigop.js";
+import { DeleteEdgeConfigSchemaRequest } from "../models/deleteedgeconfigschemaop.js";
+import { DeleteEdgeConfigTokensRequest } from "../models/deleteedgeconfigtokensop.js";
+import { EdgeConfigItem } from "../models/edgeconfigitem.js";
+import { EdgeConfigToken } from "../models/edgeconfigtoken.js";
 import {
   GetEdgeConfigBackupRequest,
   GetEdgeConfigBackupResponseBody,
-} from "../models/operations/getedgeconfigbackup.js";
+} from "../models/getedgeconfigbackupop.js";
 import {
   GetEdgeConfigBackupsRequest,
   GetEdgeConfigBackupsResponseBody,
-} from "../models/operations/getedgeconfigbackups.js";
-import { GetEdgeConfigItemRequest } from "../models/operations/getedgeconfigitem.js";
-import { GetEdgeConfigItemsRequest } from "../models/operations/getedgeconfigitems.js";
+} from "../models/getedgeconfigbackupsop.js";
+import { GetEdgeConfigItemRequest } from "../models/getedgeconfigitemop.js";
+import { GetEdgeConfigItemsRequest } from "../models/getedgeconfigitemsop.js";
 import {
-  GetEdgeConfigsRequest,
-  GetEdgeConfigsResponseBody,
-} from "../models/operations/getedgeconfigs.js";
+  GetEdgeConfigRequest,
+  GetEdgeConfigResponseBody,
+} from "../models/getedgeconfigop.js";
 import {
   GetEdgeConfigSchemaRequest,
   GetEdgeConfigSchemaResponseBody,
-} from "../models/operations/getedgeconfigschema.js";
-import { GetEdgeConfigTokenRequest } from "../models/operations/getedgeconfigtoken.js";
-import { GetEdgeConfigTokensRequest } from "../models/operations/getedgeconfigtokens.js";
+} from "../models/getedgeconfigschemaop.js";
+import {
+  GetEdgeConfigsRequest,
+  GetEdgeConfigsResponseBody,
+} from "../models/getedgeconfigsop.js";
+import { GetEdgeConfigTokenRequest } from "../models/getedgeconfigtokenop.js";
+import { GetEdgeConfigTokensRequest } from "../models/getedgeconfigtokensop.js";
 import {
   PatchEdgeConfigSchemaRequest,
   PatchEdgeConfigSchemaResponseBody,
-} from "../models/operations/patchedgeconfigschema.js";
+} from "../models/patchedgeconfigschemaop.js";
 import {
   UpdateEdgeConfigRequest,
   UpdateEdgeConfigResponseBody,
-} from "../models/operations/updateedgeconfig.js";
+} from "../models/updateedgeconfigop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class EdgeConfig extends ClientSDK {

@@ -10,19 +10,19 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import {
   GetFirewallConfigRequest,
   GetFirewallConfigResponseBody,
-} from "../models/operations/getfirewallconfig.js";
+} from "../models/getfirewallconfigop.js";
 import {
   PutFirewallConfigRequest,
   PutFirewallConfigResponseBody,
-} from "../models/operations/putfirewallconfig.js";
+} from "../models/putfirewallconfigop.js";
 import {
   UpdateAttackChallengeModeRequest,
   UpdateAttackChallengeModeResponseBody,
-} from "../models/operations/updateattackchallengemode.js";
+} from "../models/updateattackchallengemodeop.js";
 import {
   UpdateFirewallConfigRequest,
   UpdateFirewallConfigResponseBody,
-} from "../models/operations/updatefirewallconfig.js";
+} from "../models/updatefirewallconfigop.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Security extends ClientSDK {
