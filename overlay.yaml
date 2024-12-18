@@ -690,35 +690,35 @@ actions:
   # Link to parameter reference in parameter type descriptions for /v1/security/firewall
   - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.type
     update:
-      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic.  
+      description: "[Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic."  
   - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.type
     update:
-      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic.  
+      description: "[Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic."  
   - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.type
     update:
-      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic. 
+      description: "[Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic." 
   - target: $.paths['/v1/security/firewall/config'].patch.requestBody.content['application/json'].schema.oneOf[1].properties.value.properties.conditionGroup.items.properties.conditions.items.properties.type
     update:
-      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic.  
+      description: "[Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic."  
   - target: $.paths['/v1/security/firewall/config'].patch.requestBody.content['application/json'].schema.oneOf[2].properties.value.properties.conditionGroup.items.properties.conditions.items.properties.type
     update:
-      description: [Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic.    
+      description: "[Parameter](https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters) from the incoming traffic."    
   # Link to operator reference in operator descriptions for /v1/security/firewall
   - target: $.paths['/v1/security/firewall/config/{configVersion}'].get.responses.200.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.op
     update:
-      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value.       
+      description: "[Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value"       
   - target: $.paths['/v1/security/firewall/config'].put.responses.200.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.op
     update:
-      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value.  
+      description: "[Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value."  
   - target: $.paths['/v1/security/firewall/config'].put.requestBody.content['application/json'].schema.properties.rules.items.properties.conditionGroup.items.properties.conditions.items.properties.op
     update:
-      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value. 
+      description: "[Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value." 
   - target: $.paths['/v1/security/firewall/config'].patch.requestBody.content['application/json'].schema.oneOf[1].properties.value.properties.conditionGroup.items.properties.conditions.items.properties.op
     update:
-      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value.  
+      description: "[Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value."  
   - target: $.paths['/v1/security/firewall/config'].patch.requestBody.content['application/json'].schema.oneOf[2].properties.value.properties.conditionGroup.items.properties.conditions.items.properties.op
     update:
-      description: [Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value.                                                                       
+      description: "[Operator](https://vercel.com/docs/security/vercel-waf/rule-configuration#operators) used to compare the parameter with a value"                                                                       
   - target: $.paths['/v1/teams/{teamId}/members/{uid}'].patch.requestBody.content['application/json'].schema.properties['joinedFrom'].properties['ssoUserId'].type
     remove: true
   - target: $.paths['/v1/teams/{teamId}/members/{uid}'].patch.requestBody.content['application/json'].schema.properties['joinedFrom'].properties['ssoUserId']
