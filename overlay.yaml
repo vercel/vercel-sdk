@@ -1208,3 +1208,163 @@ actions:
         - marketplace.invoice.notpaid,
         - marketplace.invoice.refunded,
         - test-webhook
+# Make requestbody required
+- target: $.paths['/v1/access-groups/{idOrName}'].post.requestBody
+  update:
+    required: true
+- target: $.paths['/v1/access-groups'].post.requestBody
+  update:
+    required: true    
+- target: $.paths['/v1/access-groups/{accessGroupIdOrName}/projects'].post.requestBody
+  update:
+    required: true     
+- target: $.paths['/v1/access-groups/{accessGroupIdOrName}/projects/{projectId}'].patch.requestBody
+  update:
+    required: true      
+- target: $.paths['/v8/artifacts/events'].post.requestBody
+  update:
+    required: true       
+- target: $.paths['/v8/artifacts/{hash}'].put.requestBody
+  update:
+    required: true       
+- target: $.paths['/v8/artifacts'].post.requestBody
+  update:
+    required: true     
+- target: $.paths['/v1/deployments/{deploymentId}/checks'].post.requestBody
+  update:
+    required: true   
+- target: $.paths['/v1/deployments/{deploymentId}/checks/{checkId}'].patch.requestBody
+  update:
+    required: true     
+- target: $.paths['/v1/data-cache/projects/{projectId}'].patch.requestBody
+  update:
+    required: true     
+- target: $.paths['/v13/deployments'].post.requestBody
+  update:
+    required: true     
+- target: $.paths['/v5/domains/buy'].post.requestBody
+  update:
+    required: true      
+- target: $.paths['/v2/domains/{domain}/records'].post.requestBody
+  update:
+    required: true    
+- target: $.paths['/v1/domains/records/{recordId}'].patch.requestBody
+  update:
+    required: true     
+- target: $.paths['/v5/domains'].post.requestBody
+  update:
+    required: true     
+- target: $.paths['/v3/domains/{domain}'].patch.requestBody
+  update:
+    required: true   
+- target: $.paths['/v1/edge-config'].post.requestBody
+  update:
+    required: true        
+- target: $.paths['/v1/edge-config/{edgeConfigId}'].put.requestBody
+  update:
+    required: true   
+- target: $.paths['/v1/edge-config/{edgeConfigId}/schema'].post.requestBody
+  update:
+    required: true 
+- target: $.paths['/v1/edge-config/{edgeConfigId}/tokens'].delete.requestBody
+  update:
+    required: true  
+- target: $.paths['/v1/edge-config/{edgeConfigId}/token'].post.requestBody
+  update:
+    required: true  
+- target: $.paths['/v1/installations/{integrationConfigurationId}/events'].post.requestBody
+  update:
+    required: true      
+- target: $.paths['/v1/installations/{integrationConfigurationId}/billing'].post.requestBody
+  update:
+    required: true     
+- target: $.paths['/v1/installations/{integrationConfigurationId}/billing/invoices'].post.requestBody
+  update:
+    required: true      
+- target: $.paths['/v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}/actions'].post.requestBody
+  update:
+    required: true  
+- target: $.paths['/v1/installations/{integrationConfigurationId}/products/{integrationProductIdOrSlug}/resources/{resourceId}/secrets'].put.requestBody
+  update:
+    required: true   
+- target: $.paths['/v1/integrations/sso/token'].post.requestBody
+  update:
+    required: true  
+- target: $.paths['/v2/integrations/log-drains'].post.requestBody
+  update:
+    required: true  
+- target: $.paths['/v1/log-drains'].post.requestBody
+  update:
+    required: true  
+- target: $.paths['/v1/projects/{idOrName}/members'].post.requestBody
+  update:
+    required: true  
+- target: $.paths['/v10/projects'].post.requestBody
+  update:
+    required: true  
+- target: $.paths['/v9/projects/{idOrName}'].patch.requestBody
+  update:
+    required: true  
+- target: $.paths['/v9/projects/{idOrName}/domains/{domain}'].patch.requestBody
+  update:
+    required: true  
+- target: $.paths['/v10/projects/{idOrName}/domains'].post.requestBody
+  update:
+    required: true 
+- target: $.paths['/v10/projects/{idOrName}/env'].post.requestBody
+  update:
+    required: true 
+- target: $.paths['/v9/projects/{idOrName}/env/{id}'].patch.requestBody
+  update:
+    required: true 
+- target: $.paths['/v1/projects/{idOrName}/protection-bypass'].patch.requestBody
+  update:
+    required: true 
+- target: $.paths['/v1/security/attack-mode'].post.requestBody
+  update:
+    required: true 
+- target: $.paths['/v1/security/firewall/config'].put.requestBody
+  update:
+    required: true 
+- target: $.paths['/v1/security/firewall/config'].patch.requestBody
+  update:
+    required: true 
+- target: $.paths['/v1/teams/{teamId}/members'].post.requestBody
+  update:
+    required: true 
+- target: $.paths['/v1/teams/{teamId}/request'].post.requestBody
+  update:
+    required: true
+- target: $.paths['/v1/teams/{teamId}/members/teams/join'].post.requestBody
+  update:
+    required: true
+- target: $.paths['/v1/teams/{teamId}/members/{uid}'].patch.requestBody
+  update:
+    required: true
+- target: $.paths['/v2/teams/{teamId}'].patch.requestBody
+  update:
+    required: true
+- target: $.paths['/v1/teams'].post.requestBody
+  update:
+    required: true
+- target: $.paths['/v1/teams/{teamId}'].delete.requestBody
+  update:
+    required: true
+- target: $.paths['/v1/user'.delete.requestBody
+  update:
+    required: true
+- target: $.paths['/v3/user/tokens'].post.requestBody
+  update:
+    required: true
+- target: $.paths['/v1/webhooks'].post.requestBody
+  update:
+    required: true
+- target: $.paths['/v2/deployments/{id}/aliases'].post.requestBody
+  update:
+    required: true
+- target: $.paths['/v7/certs'].post.requestBody
+  update:
+    required: true
+- target: $.paths['/v7/certs'].put.requestBody
+  update:
+    required: true
