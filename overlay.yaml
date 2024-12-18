@@ -1271,6 +1271,9 @@ actions:
                   code:
                     type: string
                     const: not_found  # Specific error code for not found
+                  message:
+                    type: string
+                    const: "The item you requested was not found"                    
       VercelBadRequestError:
         type: object
         required: [error]
@@ -1284,6 +1287,9 @@ actions:
                   code:
                     type: string
                     const: bad_request  # Specific error code for bad requests
+                  message:
+                    type: string
+                    const: "One of the provided values in the request query, body or headers is invalid"
       VercelRateLimitError:
         type: object
         required: [error]
