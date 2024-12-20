@@ -4,6 +4,11 @@ info:
   version: 0.0.2
 # The fixes below from the errors found with speakeasy openapi lint and testing the usage of the SDK and endpoints
 actions:
+  # Update info
+  - target: $.info
+    update:
+      description: The @vercel/sdk is a type-safe Typescript SDK that allows you to access the resources and methods of the Vercel REST API.
+      title: Vercel SDK
   # Removing these paths as they return errors at the source (by calling the endpoint directly)
   - target: $["paths"]["/data-cache/purge-all"]
     remove: true
