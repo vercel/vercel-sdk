@@ -4,6 +4,11 @@ info:
   version: 0.0.2
 # The fixes below from the errors found with speakeasy openapi lint and testing the usage of the SDK and endpoints
 actions:
+  # Update info
+  - target: $.info
+    update:
+      description: The [`@vercel/sdk`](https://www.npmjs.com/package/@vercel/sdk) is a type-safe Typescript SDK that allows you to access the resources and methods of the Vercel REST API. Learn how to [install it](https://vercel.com/docs/rest-api/sdk#installing-vercel-sdk) and [authenticate](https://vercel.com/docs/rest-api/sdk#authentication) with a Vercel access token.
+      title: Vercel SDK
   # Removing these paths as they return errors at the source (by calling the endpoint directly)
   - target: $["paths"]["/data-cache/purge-all"]
     remove: true
