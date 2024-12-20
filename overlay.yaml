@@ -7,7 +7,7 @@ actions:
   # Update info
   - target: $.info
     update:
-      description: The @vercel/sdk is a type-safe Typescript SDK that allows you to access the resources and methods of the Vercel REST API.
+      description: The [`@vercel/sdk`](https://www.npmjs.com/package/@vercel/sdk) is a type-safe Typescript SDK that allows you to access the resources and methods of the Vercel REST API. Learn how to [install it](/docs/rest-api/sdk#installing-vercel-sdk) and [authenticate](/docs/rest-api/sdk#authentication) with a Vercel access token
       title: Vercel SDK
   # Removing these paths as they return errors at the source (by calling the endpoint directly)
   - target: $["paths"]["/data-cache/purge-all"]
